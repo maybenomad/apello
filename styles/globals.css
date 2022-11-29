@@ -9,7 +9,7 @@
   
   @font-face {
         font-family: "azonix";
-        src: url('./fonts/Azonix.otf');
+        src: url('../fonts/Azonix.otf');
         font-display: swap;
   }
 

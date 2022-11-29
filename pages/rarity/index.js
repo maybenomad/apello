@@ -15,7 +15,7 @@ const RaritySection = () => {
     //get the collections from the backend
     useEffect(() => {
       const fetchCollections = async ()=> {
-        const response = await fetch(`https://apello.xyz:4000/api/collectionsInfo?page=${pageNumber}`);
+        const response = await fetch(`https://apello-api.xyz:4000/api/collectionsInfo?page=${pageNumber}`);
         const {total, collections} = await response.json();
 
         if(response.ok){
@@ -108,7 +108,7 @@ const RaritySection = () => {
           </div>
             <div className="mb-16 flex justify-center gap-x-1">
               {pages.map((pageIndex)=> (
-                <button key={pageIndex} className="p-1 border-2 border-violet" onClick={()=>setPageNumber(pageIndex)}>{pageIndex + 1}</button>
+                <button key={pageIndex} className="p-1 text-violet" onClick={()=>setPageNumber(pageIndex)}>{pageIndex + 1}</button>
               ))}
             </div>
         </section>

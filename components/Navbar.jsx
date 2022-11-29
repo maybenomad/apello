@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="relative flex ">
 
           <div className="flex min-w-fit h-full">
-            <Link href="/" className="pt-2 md:pt-0 flex items-center" > <h2 className="text-xl ml-0 font-bold  uppercase ">Apello</h2></Link>
+            <Link href="/" className="pt-2 md:pt-0 flex items-center" ><img src="/apello-01-05.png" alt="logo" className="h-10  object-cover"   /> <h2 className="text-xl ml-0 font-bold  uppercase ">Apello</h2></Link>
           </div>
 
           <ul className={`absolute top-[70px] left-0 right-0 md:inset-0 md:relative w-full h-[calc(100vh-70px)] md:h-auto z-50 bg-noir md:bg-transparent self-center flex flex-col md:flex-row justify-center items-center uppercase     gap-y-5 gap-x-3 ${menuOpen? "translate-x-0 " : "-translate-x-full bg-transparent"}  md:translate-x-0 ease-in-out duration-300`} >

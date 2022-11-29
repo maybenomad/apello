@@ -11,7 +11,7 @@ export const useDiscordCnx = () => {
 
     const authorizeDiscord = async (name, discordId, discordImage, wallet)=>{
 
-        const response = await fetch('https://apello.xyz:4000/api/users',{
+        const response = await fetch('https://apello-api.xyz:4000/api/users',{
             method :'POST',
             headers: { "Content-Type": "application/json"},
             body : JSON.stringify({name, discordId, discordImage, wallet})

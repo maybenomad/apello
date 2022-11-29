@@ -25,7 +25,7 @@ const NftSection = (props) => {
     //useeffect that will fetch the collection and store it on a local state
     useEffect(() => {
         const fetchCollection = async ()=> {
-          const response = await fetch(`https://apello.xyz:4000/api/nfts/${db_name}`);
+          const response = await fetch(`https://apello-api.xyz:4000/api/nfts/${db_name}`);
           const json = await response.json();
   
           if(response.ok){
