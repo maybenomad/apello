@@ -105,7 +105,7 @@ const RaritySection = () => {
                 //console.log(blockchain)
                 return name.toLowerCase() === ''
                         ? collection 
-                        : collection.name.toLowerCase().includes(name);
+                        : collection.name.toLowerCase().includes(name.toLowerCase());
               }).map((collection,i)=>(
                   <CollectionCard key={i} collectionInfo={collection}  />
               ) )}
