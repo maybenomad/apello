@@ -63,13 +63,13 @@ const NftSection = (props) => {
                 
                 <div className="w-full flex flex-col">
                     <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-4 text-base font-azonix" aria-label="search fields">
-                        <div className="flex gap-x-1 w-4/5" aria-label="search by number">
-                            <input type="text" placeholder="Search by Number" className="outline-none border-violet border-2 rounded-lg p-3 text-noir w-full" onKeyDown={handleKeyDown} onChange={(e)=>setNumber(e.target.value)}/>
+                        <div className="flex gap-x-1 w-full sm:w-4/5" aria-label="search by number">
+                            <input type="text" placeholder="Search by ID" className="outline-none border-violet border-2 rounded-lg p-3 text-noir w-full" onKeyDown={handleKeyDown} onChange={(e)=>setNumber(e.target.value)}/>
                             <button className="bg-violet rounded-lg p-3 uppercase" onClick={goClick}>Go</button>
                         </div>
                         
                     </div>
-                    <div className="bg-noir rounded-lg p-4 flex flex-col self-center w-4/5 outline-none border-2 border-violet">
+                    <div className="bg-noir rounded-lg p-4 flex flex-col self-center w-full sm:w-4/5 outline-none border-2 border-violet">
                         <div className="flex justify-between flex-wrap">
                             <h4 className="font-medium text-2xl capitalize">{nftObj? collectionInfo.name+"#"+nftObj.ID :  "nft name"}</h4>
                             <span className="bg-violet rounded-xl whitespace-nowrap h-8 p-2 flex items-center font-medium">{nftObj? "Rank "+nftObj.Rank+" of "+collectionInfo.totalItem : "nft rank"}</span>
@@ -79,7 +79,7 @@ const NftSection = (props) => {
                     
 
                 </div>
-                <div className="w-4/5 mt-4  ">
+                <div className="w-full sm:w-4/5 mt-4  ">
                     <div style={{backgroundImage : `url(${nftObj?.Pic || collectionInfo.imageUrl})`}} className="pt-[100%] rounded-3xl outline-none border-4 border-violet bg-cover bg-center "></div>
                 </div>
                 
