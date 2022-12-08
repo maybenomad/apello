@@ -10,7 +10,7 @@ const CollectionCard = ({collectionInfo}) => {
             { collectionInfo && <Link href={
                     {   pathname: `/rarity/${collectionInfo.symbol}`,
                         query: collectionInfo 
-            }}   className='w-full' >
+            }} as={`/rarity/${collectionInfo.symbol}`}   className='w-full' >
                 <div className="bg-noir flex flex-col rounded-xl overflow-hidden  ">
                 <img  src={collectionInfo.coverImageUrl} alt="collection profile" className={`h-48 object-cover object-center transition-transform duration-300 hover:scale-110  `} />
                     

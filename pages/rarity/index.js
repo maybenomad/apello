@@ -1,46 +1,52 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import CollectionCard from "../../components/Cards/CollectionCard";
+import useFetch from "../../hooks/useFetch";
 
 const RaritySection = () => {
+  let timer;
+  //page number 
+  const [pageNumber, setPageNumber] = useState(0);
+  //filter by name
+  const [query, setQuery] = useState("");
+  
+  //call the useFetch hook
+  const { loading, error, list , hasMore } = useFetch(query, pageNumber);
+  
+  //to reference the last element on the infinite scroll
+  const observer = useRef();
 
-    const [collectionList, setCollectionList] = useState(null) ;
-    //number of pages
-    const [nbPages, setNbPages] = useState(0)
+  //the ref that we declared on the last element will attach that last node as an argument to the lastelement
+  const lastElemet = useCallback( (node) => {
+    //if it's fetching new data and it's loading we don't need to do anything
+    if(loading) return;
+    //if it's already observing anything then we disconnect from it to observe the new node which has been loaded recently
+    if(observer.current) observer.current.disconnect();
 
-    //page number 
-    const [pageNumber, setPageNumber] = useState(0);
-    //a little trick to set up an array of page numbers to map
-    const pages = new Array(nbPages).fill(null).map((v,i)=>i);
-    //get the collections from the backend
-    useEffect(() => {
-      const fetchCollections = async ()=> {
-        const response = await fetch(`https://apello-api.xyz:4000/api/collectionsInfo?page=${pageNumber}`);
-        const {total, collections} = await response.json();
-
-        if(response.ok){
-          setCollectionList(collections);
-          setNbPages(total)
-          console.log(collections)
-          window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-        }
-
+    observer.current = new IntersectionObserver((entries) => {
+      //entries contain all the things that we're observing, in this case we are just observing one element which is the last element
+      //it's always going to be an array of nodes an array of all the things that we're observing
+      //console.log('observing',entries)
+      if(entries[0].isIntersecting && hasMore){
+        setPageNumber((prev) => prev+1);
       }
-      fetchCollections();
+
       
-    }, [pageNumber]);
-
-    //pagination next previous button
-    const gotoPrevious = ()=>{
-      setPageNumber(Math.max(0,pageNumber - 1));
-    }
-    const gotoNext = ()=>{
-      setPageNumber(Math.min(nbPages - 1,pageNumber + 1));
-    }
+    });
+    //to observe
+    if(node) observer.current.observe(node);
+  },[loading,hasMore]);
     
-
-    //filter by name
-    const [name, setName] = useState('');
+  const handleChange = (e) => {
+    if(timer){
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      setQuery(e.target.value);
+      setPageNumber(0);
+    }, 1000);
+  }
+   
 
     //filter by blockchain
     const [blockchain, setBlockchain] = useState('All Chains');
@@ -75,8 +81,8 @@ const RaritySection = () => {
               </svg>
               <input type="text" placeholder="Collection Name" 
                 className="bg-transparent outline-none  w-full "
-                onChange={(e) => setName(e.target.value)} value={name} />
-              {name.length>0 && (<button className="" onClick={()=>setName('')}>
+                onChange={handleChange}  />
+              {query.length>0 && (<button className="" onClick={()=>setQuery('')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -101,20 +107,20 @@ const RaritySection = () => {
           </div>
 
           <div className="ml-[-16px] flex flex-wrap flex-row p-10  gap-y-3">
-              {collectionList && collectionList.filter((collection) => {
-                //console.log(blockchain)
-                return name.toLowerCase() === ''
-                        ? collection 
-                        : collection.name.toLowerCase().includes(name.toLowerCase());
-              }).map((collection,i)=>(
-                  <CollectionCard key={i} collectionInfo={collection}  />
-              ) )}
+              {list && list.map((collection,i)=>{
+                if( list.length === i+1 ){
+                  return  (<Fragment key={i}>
+                    <div  className="" ref={lastElemet}></div>
+                    <CollectionCard  collectionInfo={collection}  />
+                  </Fragment>);
+                }
+                else{
+                  return  (<CollectionCard key={i} collectionInfo={collection}  />);
+                }
+              } )}
           </div>
-            <div className="mb-16 flex justify-center gap-x-1">
-              {pages.map((pageIndex)=> (
-                <button key={pageIndex} className="p-1 text-violet" onClick={()=>setPageNumber(pageIndex)}>{pageIndex + 1}</button>
-              ))}
-            </div>
+            <div className="">{loading && "Loading..."}</div>
+            <div className="">{error && `Error:${error}`}</div>
         </section>
      );
 }

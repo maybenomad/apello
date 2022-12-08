@@ -9,13 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@terra-money/wallet-provider": "^3.11.1",
+    "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "@terra-money/wallet-provider": "^3.11.1",
     "react-particles": "^2.3.3",
     "tsparticles": "^2.3.4"
   },

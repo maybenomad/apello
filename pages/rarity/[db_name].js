@@ -10,10 +10,8 @@ const NftSection = (props) => {
     //get the data passed in the link
     const collectionInfo  = useRouter().query;
     //console.log("infos",collectionInfo);
-    
-
+   
     //get the collection name from the route parameter
-    
     const { db_name } = router.query;
     //console.log(db_name)
     //create a state that will contain the collection nfts
