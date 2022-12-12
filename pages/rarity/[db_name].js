@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
+import axios from "axios";
 //import "../../styles/nfts.css";
 
 const NftSection = (props) => {
@@ -23,12 +24,12 @@ const NftSection = (props) => {
     //useeffect that will fetch the collection and store it on a local state
     useEffect(() => {
         const fetchCollection = async ()=> {
-          const response = await fetch(`https://apello-api.xyz:4000/api/nfts/${db_name}`);
-          const json = await response.json();
-  
-          if(response.ok){
-            setnfts(json)
-            console.log(json)
+          const response = await axios.get(`https://apello-api.xyz:4000/api/nfts/${db_name}`);
+          const data = response.data;
+            
+          if(response.status===200){
+            setnfts(data)
+            console.log(data)
             
           }
         }
@@ -42,7 +43,7 @@ const NftSection = (props) => {
         if(nfts && number){
             
             setNftObj(nfts.find(nft =>{
-                return nft.ID === number;
+                return parseInt(nft.ID) === parseInt(number);
             }));
             //console.log(nftObj.length);
         }
