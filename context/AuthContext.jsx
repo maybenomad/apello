@@ -44,7 +44,7 @@ export const AuthContextProvider = ({ children })=>{
         wallet: null,
         token : null
     });
-    console.log('WalletContext state : ',state);
+    //console.log('WalletContext state : ',state);
     //set th
     useEffect(() => {
       

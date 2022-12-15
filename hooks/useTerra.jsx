@@ -3,7 +3,7 @@ import { useAddWallet  } from "./useAddWallet";
 
 export const useTerra =  ()=>{
     const { addWallet,isLoading } = useAddWallet();
-    console.log('terra',isLoading)
+    //console.log('terra',isLoading)
     const {
         status,
         network,
@@ -19,10 +19,10 @@ export const useTerra =  ()=>{
         if(status === WalletStatus.WALLET_CONNECTED){
             //call the connect hook
            
-            console.log('before',wallets[0]["terraAddress"])
+            //console.log('before',wallets[0]["terraAddress"])
              addWallet("terra", wallets[0]["terraAddress"]);
             
-            console.log('after',wallets[0]["terraAddress"])
+            //console.log('after',wallets[0]["terraAddress"])
             
         }
     }
@@ -118,7 +118,83 @@ export const useTerra =  ()=>{
             // { code: 4001, message: "User rejected the request."}
         }
     }
+    const connectTeritori = async ()=> {
+        
+        if (!window.keplr) {
+            alert("Please install keplr extension");
+        } else {
+            const chainId = "teritori-1";
+            await window.keplr.experimentalSuggestChain({
+                "chainId": "teritori-1",
+                "chainName": "Teritori",
+                "rpc": "https://rpc.mainnet.teritori.com",
+                "rest": "https://rest.mainnet.teritori.com",
+                "stakeCurrency": {
+                  "coinDenom": "TORI",
+                  "coinMinimalDenom": "utori",
+                  "coinDecimals": 6,
+                  "coinGeckoId": "teritori"
+                },
+                "bip44": {
+                  "coinType": 118
+                },
+                "bech32Config": {
+                  "bech32PrefixAccAddr": "tori",
+                  "bech32PrefixAccPub": "toripub",
+                  "bech32PrefixValAddr": "torivaloper",
+                  "bech32PrefixValPub": "torivaloperpub",
+                  "bech32PrefixConsAddr": "torivalcons",
+                  "bech32PrefixConsPub": "torivalconspub"
+                },
+                "currencies": [
+                  {
+                    "coinDenom": "TORI",
+                    "coinMinimalDenom": "utori",
+                    "coinDecimals": 6,
+                    "coinGeckoId": "teritori"
+                  }
+                ],
+                "feeCurrencies": [
+                  {
+                    "coinDenom": "TORI",
+                    "coinMinimalDenom": "utori",
+                    "coinDecimals": 6,
+                    "coinGeckoId": "teritori",
+                    "gasPriceStep": {
+                      "low": 0,
+                      "average": 0.025,
+                      "high": 0.04
+                    }
+                  }
+                ],
+                "features": [
+                  "stargate",
+                  "ibc-transfer",
+                  "cosmwasm",
+                  "no-legacy-stdTx",
+                  "ibc-go"
+                ],
+                "beta": true
+              })
 
-    return { connecterra, connectStargaze, connectJuno, connectPetra, connectMartian }
+            // Enabling before using the Keplr is recommended.
+            // This method will ask the user whether to allow access if they haven't visited this website.
+            // Also, it will request that the user unlock the wallet if the wallet is locked.
+            //wd =await window.keplr.enable(chainId);
+           
+        
+            const offlineSigner = window.keplr.getOfflineSigner(chainId);
+            // You can get the address/public keys by `getAccounts` method.
+            // It can return the array of address/public key.
+            // But, currently, Keplr extension manages only one address/public key pair.
+            // XXX: This line is needed to set the sender address for SigningCosmosClient.
+            const accounts = await offlineSigner.getAccounts();
+
+            await addWallet("teritori", accounts[0].address);
+ 
+        }
+    }
+
+    return { connecterra, connectStargaze, connectJuno, connectPetra, connectMartian, connectTeritori }
 
 }
