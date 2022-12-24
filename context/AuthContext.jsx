@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { useCheckWallet } from "../hooks/useCheckWallet";
 
 
 //create a new context
@@ -44,16 +45,24 @@ export const AuthContextProvider = ({ children })=>{
         wallet: null,
         token : null
     });
+    //check the local storage data
+    const {loading, error, checkWallet} = useCheckWallet();
     //console.log('WalletContext state : ',state);
     //set th
     useEffect(() => {
-      
-        const auth = JSON.parse(localStorage.getItem('auth'));
-        if(auth){
-            dispatch({type: 'CONNECT_WALLET', payload: auth});
+        const fillContext = async()=> {
+            const auth = JSON.parse(localStorage.getItem('auth'));
+            if(auth){
+                //console.log('auth context',auth.wallet.adress,auth.token);
+                const data = await checkWallet(auth.wallet.adress,auth.token);
+                dispatch({type: 'CONNECT_WALLET', payload: data});
+                
+            }
         }
+        fillContext();
+        
 
-    }, []);
+    }, [checkWallet]);
 
     return (
         <AuthContext.Provider value={{...state,dispatch}} >

@@ -11,7 +11,7 @@ const WalletCnx = () => {
 
   //call the isconnecting
   const { isLoading } = useAddWallet();
-    console.log(isLoading)
+    //console.log(isLoading)
     const { wallet, token } = useAuthContext();
     //
     const {disconnectWallet} = useDisconnectWallet();
@@ -52,7 +52,7 @@ const WalletCnx = () => {
     const connectClick =  ()=>{
         
         setOpen(true);
-        console.log(open)
+        //console.log(open)
         
         
     }
@@ -85,21 +85,28 @@ const WalletCnx = () => {
             </svg>
           )
         }
-        return (<svg  xmlns="http://www.w3.org/2000/svg" className="h-6 " viewBox="0 0 256 256" >
-            <defs>
-              <linearGradient id="linearGradient-1"  x1="7.272%" x2="93.886%" y1="5.601%" y2="92.985%" >
-                <stop offset="0%" stopColor="#3BA4CE"></stop>
-                <stop offset="52.085%" stopColor="#7868C8"></stop>
-                <stop offset="100%" stopColor="#B54BC1"></stop>
-              </linearGradient>
-            </defs>
-            <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
-              <g>
-                <rect width="256"  height="256" x="0" y="0" fill="url(#linearGradient-1)" rx="64" ></rect>
-                <path fill="#FFF" d="M67 54.75L95.4172414 54.75 95.4172414 119.496204 152.675862 54.75 190 54.75 123.18131 127.75 190 200.75 152.675862 200.75 95.4172414 136.003796 95.4172414 200.75 67 200.75z"></path>
-              </g>
-            </g>
-          </svg>);
+        else if(wallet.type.toLowerCase()==="stargaze"){
+          return (
+            <div className="relative h-6 w-6">
+              <Image src="/stargaze.png" fill  alt="Stargaze logo" />
+            </div>
+          )
+        }
+        else if(wallet.type.toLowerCase()==="juno"){
+          return (
+            <div className="relative h-6 w-6">
+              <Image src="/juno.png" fill  alt="Juno logo" />
+            </div>
+          )
+        }
+        
+        return (
+          <div className="relative h-6 w-6">
+            <img src="https://teritori.com/logo.svg" className="absolute h-full"  alt="Teritori logo" />
+          </div>
+        )
+        
+        
     } 
 
     return ( <div className="absolute top-1 right-[50px] md:relative md:inset-0">

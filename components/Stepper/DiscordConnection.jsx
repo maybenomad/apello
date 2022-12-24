@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {TiTick} from "react-icons/ti"
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useDiscordCnx } from "../../hooks/useDiscordCnx";
@@ -7,19 +7,23 @@ import { useDiscordCnx } from "../../hooks/useDiscordCnx";
 const DiscordConnection = ({currentStep,setcurrentStep}) => {
     
 
-    const { wallet } = useAuthContext();
+    const { wallet, token } = useAuthContext();
+    
     //after step 2 authorization... 
     const [user, setuser] = useState(null);
 
     const { authorizeDiscord } = useDiscordCnx();
 
-    useEffect(() => {
+    //to assure
+    //const { signBytes,txResult, txError, verifyResult} = useIsConnected()
+    const fetchDiscord = useCallback( async() => {
         const fragment = new URLSearchParams(window.location.hash.slice(1));
         const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-        if (user===null && accessToken !==null) {
-            
+        //console.log('outside',token)
+        if (user===null && accessToken !==null && wallet) {
+            //console.log('inside')
         
-            console.log('accesstoken & tokenTpe',accessToken,tokenType)
+            //console.log('accesstoken & tokenTpe',accessToken,tokenType)
         
             fetch('https://discord.com/api/users/@me', {
               headers: {
@@ -28,37 +32,45 @@ const DiscordConnection = ({currentStep,setcurrentStep}) => {
             })
               .then(result => result.json())
               .then(response => {
-                const walletFromLocalStorage = JSON.parse(localStorage.getItem('auth')).wallet;
-                const {adress, type} = walletFromLocalStorage;
+                //signBytes();
+                //console.log("test is connected",txResult, txError, verifyResult);
+                
+                const {adress, type} = wallet;
                 const { username, discriminator, id, avatar } = response;
-                console.log(username,discriminator, id, avatar,typeof(response.avater),response, wallet,walletFromLocalStorage);
+                //console.log(username,discriminator, id, avatar,typeof(response.avater),response, wallet,walletFromLocalStorage);
                 setuser(username);
                 
 
-                authorizeDiscord(username, id, avatar, {adress, type} );
+                authorizeDiscord(username, id, avatar, {adress, type}, token );
                 
            
               
                 // setDiscordinfco("Hello "+username);
                 // setDiscorlogin("hidden");
-                console.log("useEffect core...",currentStep);
+                //console.log("useEffect core...",currentStep);
                 setcurrentStep(2);
         
               })
               .catch(console.error);
               window.history.replaceState({}, document.title, "/holder")
         }
-    
-    }, [])
+    }, [wallet, token]);
+
+    useEffect(() => {
+        fetchDiscord();
+    }, [fetchDiscord])
 
     const hundleClick = ()=>{
+
         window.open(
             'https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello.xyz%2Fholder&response_type=token&scope=identify'
             ,"_self")
-        
+            //https://discord.com/api/oauth2/authorize?client_id=998693764178657342&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fholder&response_type=token&scope=identify
             
         
+        
     }
+    
 
     return ( 
         <div className={`step-item ${currentStep === 1 && "active"} ${(1<currentStep) && "complete" } `} aria-label="step 1: connet to your Discord">
@@ -83,3 +95,36 @@ const DiscordConnection = ({currentStep,setcurrentStep}) => {
 }
  //onMouseOver={(e) => {alert('Please connect your wallet first.')}}
 export default DiscordConnection;
+
+/**
+ * const hundleClick = async()=>{
+        if(wallet.type === "terra"){
+            signBytes();
+            console.log("test is connected",txResult, txError, verifyResult);
+        }
+        else{
+            if (!window.keplr) {
+                alert("Please install keplr extension");
+            } else {
+                const chainId = "juno-1";
+                await window.keplr.enable(chainId);
+            const keplrtest = await window.keplr.signDirect(chainId, "signer")
+            console.log(keplrtest);
+            }
+        }
+        
+        
+    }
+    //to redirect into discord authorization after the verify
+    useEffect(() => {
+        if(verifyResult === "Verified"){
+            window.open(
+                'https://discord.com/api/oauth2/authorize?client_id=998693764178657342&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fholder&response_type=token&scope=identify'
+                ,"_self")
+            
+                //https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello.xyz%2Fholder&response_type=token&scope=identify
+        }
+    
+      
+    }, [verifyResult])
+ */

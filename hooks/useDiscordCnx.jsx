@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useCallback } from "react";
+import { useAuthContext } from "./useAuthContext";
 
 
 
@@ -7,18 +10,31 @@ export const useDiscordCnx = () => {
     //check the wallet cnx
 
     //const [error, setError] = useState(null);
-    
 
-    const authorizeDiscord = async (name, discordId, discordImage, wallet)=>{
+    //const { wallet, token } = useAuthContext();
 
-        const response = await fetch('https://apello-api.xyz:4000/api/users',{
-            method :'POST',
-            headers: { "Content-Type": "application/json"},
-            body : JSON.stringify({name, discordId, discordImage, wallet})
-        });
-        const json= await response.json();
-        console.log('new wallet added',json);
-    }
+    const authorizeDiscord = async (name, discordId, discordImage, wallet, token)=>{
+        //console.log(wallet,token)
+        try {
+            if(wallet && token){
+                const response = await axios.post('https://apello-api.xyz:4000/api/users',{
+                    name, 
+                    discordId, 
+                    discordImage, 
+                    wallet
+                },{
+                    headers: {
+                        'Authorization': `Bearer ${token}` 
+                    }
+                });
+                const json = response.data;
+                //console.log('new wallet added',json);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        
+    };
 
     return {authorizeDiscord};
 }

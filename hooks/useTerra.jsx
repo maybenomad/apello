@@ -63,7 +63,7 @@ export const useTerra =  ()=>{
             // This method will ask the user whether to allow access if they haven't visited this website.
             // Also, it will request that the user unlock the wallet if the wallet is locked.
             //wd =await window.keplr.enable(chainId);
-           console.log('wd')
+           
         
             const offlineSigner = window.keplr.getOfflineSigner(chainId);
         
@@ -89,7 +89,7 @@ export const useTerra =  ()=>{
         const wallet = getAptosWallet();
         try {
             const response = await wallet.connect();
-            console.log(response,response.address); // { address: string, address: string }
+            //console.log(response,response.address); // { address: string, address: string }
 
             await addWallet("petra", response.address);
             /*const account = await wallet.account();
@@ -110,7 +110,7 @@ export const useTerra =  ()=>{
         try {
             
             const response = await wallet.connect(); //window.martian
-            console.log(response.address); // { address: string, address: string }
+            //console.log(response.address); // { address: string, address: string }
 
             //connect & add wallet to db
             await addWallet("martian", response.address);

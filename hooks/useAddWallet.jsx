@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext";
 
@@ -13,26 +14,28 @@ export const useAddWallet =  ()=>{
         setError(null);
         setIsloading(true);
 
-        const response = await fetch('https://apello-api.xyz:4000/api/wallets',{
-            method :'POST',
-            headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
-            body : JSON.stringify({type, adress})
-        });
-        const json= await response.json();
-        console.log('new wallet added',json);
+        try {
+            const response = await axios.post('https://apello-api.xyz:4000/api/wallets',{
+                type, 
+                adress
+            });
+            const json = response.data;
+        
 
-        if(response.ok){
+        
             // save the wallet to the local storage
             localStorage.setItem('auth',JSON.stringify(json));
             //update the auth context
             dispatch({type: 'CONNECT_WALLET', payload: json});
             setIsloading(false);
-
-        }
-        if(!response.ok){
+            //console.log('new wallet added',json);
+        
+            
+        } catch (err) {
             setIsloading(false);
-            setError(json.err);
+            setError(err);
         }
+        
         
     }
 
