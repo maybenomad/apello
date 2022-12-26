@@ -1,6 +1,6 @@
 // searching a nft inside a collection 
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import axios from "axios";
 //import "../../styles/nfts.css";
@@ -9,8 +9,17 @@ const NftSection = (props) => {
     
     const router = useRouter()
     //get the data passed in the link
-    const collectionInfo  = useRouter().query;
-    //console.log("infos",collectionInfo);
+    const [collectionInfo, setcollectionInfo] = useState([]);
+    const getcollectionInfo  = useCallback(() => {
+        
+        if(router.query.imageUrl){
+            return setcollectionInfo(router.query) ;
+        }
+        
+    }, []);
+    
+    
+    
    
     //get the collection name from the route parameter
     const { db_name } = router.query;
@@ -23,13 +32,19 @@ const NftSection = (props) => {
     const [rank, setRank] = useState(null);
     //useeffect that will fetch the collection and store it on a local state
     useEffect(() => {
+        //call the callback function to setcollectionInfo if the router query contains it
+        getcollectionInfo();
+
         const fetchCollection = async ()=> {
           const response = await axios.get(`https://apello-api.xyz:4000/api/nfts/${db_name}`);
-          const data = response.data;
+          const {data, collectInfo} = response.data;
+          
             
           if(response.status===200){
-            setnfts(data)
-            console.log(data)
+            setnfts(data);
+            setcollectionInfo(collectInfo) ;
+            
+            //console.log(data,collectionInfo)
             
           }
         }
