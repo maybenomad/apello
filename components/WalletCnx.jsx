@@ -124,7 +124,7 @@ const WalletCnx = () => {
             (<button className="select-none  flex items-center px-2 py-1 rounded-md border-solid border-violet md:border-2  " onClick={()=>setshow(true)}>
             
                 <Blockchain />
-                <span className="hidden md:block whitespace-nowrap  ml-1">{`${wallet.adress.substring(0, 5)}***${wallet.adress.substring(wallet.adress.length-4, wallet.adress.length-1)}`}</span>
+                <span className="hidden md:block whitespace-nowrap  ml-1">{`${wallet.adress.substring(0, 5)}***${wallet.adress.substring(wallet.adress.length-3, wallet.adress.length)}`}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="10" viewBox="0 0 256 256" > <path fill="none" d="M0 0H256V256H0z"></path> <path d="M215.4 92.9A8 8 0 00208 88H48a8 8 0 00-7.4 4.9 8.4 8.4 0 001.7 8.8l80 80a8.2 8.2 0 0011.4 0l80-80a8.4 8.4 0 001.7-8.8z"></path></svg>
             </button>)
             
