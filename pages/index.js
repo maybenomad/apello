@@ -26,10 +26,10 @@ export default function Home() {
               <div className="w-full md:w-1/2 lg:px-[5%] ">
                 <div className="relative ">
                   <Image src="/apello-01-01.png" alt='Home image' className='!h-full' width={600}  height={600} />
-                  <Image src="/terra sdt.png" alt='terra blockchain' className='absolute top-[35%] left-[22%] w-[12%] animate-bounce-float' width={60}  height={80} />
+                  <Image src="/juno-home.png" alt='terra blockchain' className='absolute top-[35%] left-[22%] w-[12%] animate-bounce-float' width={60}  height={80} />
                   <Image src="/Aptos-home.png" alt='aptos blockchain' className='absolute top-[41%] right-[30%] w-[12%] animate-bounce-float' width={60}  height={80} />
                   <Image src="/stargaze-home.png" alt='stargaze blockchain' className='absolute bottom-[20%] right-[22%] w-[12%] animate-bounce-float' width={60}  height={80} />
-                  <Image src="/juno-home.png" alt='juno blackchain' className='absolute bottom-[20%] left-[22%] w-[12%] animate-bounce-float' width={60}  height={80} />
+                  <Image src="/terra sdt.png" alt='juno blackchain' className='absolute bottom-[20%] left-[22%] w-[12%] animate-bounce-float' width={60}  height={80} />
                 </div>
                   
               </div>

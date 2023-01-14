@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-function useFetch(query, page) {
+function useFetch(api, query, page) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [list, setList] = useState([]);
@@ -14,16 +14,18 @@ function useFetch(query, page) {
     try {
       setLoading(true);
       setError(false);
-      const res = await axios.get(`https://apello-api.xyz:4000/api/collectionsInfo/search?name=${query}&page=${page}`);
-      const {hasMore, collections} = res.data;
-      setList((prev) => [ ...new Set([...prev, ...collections]) ] );
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${api}?name=${query}&page=${page}`);
+      console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${api}`)
+      const {hasMore, data} = res.data;
+      console.log(page,data)
+      setList((prev) => [ ...new Set([...prev, ...data]) ] );
       isHasMore(hasMore)
       setLoading(false);
     } catch (err) {
       setError(err);
       setLoading(false);
     }
-  }, [query, page]);
+  }, [query, page, api]);
 
   useEffect(() => {
     sendQuery(query);

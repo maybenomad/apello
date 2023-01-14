@@ -11,7 +11,7 @@ const RaritySection = () => {
   const [query, setQuery] = useState("");
   
   //call the useFetch hook
-  const { loading, error, list , hasMore } = useFetch(query, pageNumber);
+  const { loading, error, list , hasMore } = useFetch('collectionsInfo/search', query, pageNumber);
   
   //to reference the last element on the infinite scroll
   const observer = useRef();

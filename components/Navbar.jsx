@@ -24,9 +24,10 @@ const Navbar = () => {
 
           <ul className={`absolute top-[70px] left-0 right-0 md:inset-0 md:relative w-full h-[calc(100vh-70px)] md:h-auto z-50 bg-noir md:bg-transparent self-center flex flex-col md:flex-row justify-center items-center uppercase     gap-y-5 gap-x-3 ${menuOpen? "translate-x-0 " : "-translate-x-full bg-transparent"}  md:translate-x-0 ease-in-out duration-300`} >
             <li className="text-xl ml-0 font-bold  "><Link href="/holder" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected  ">Holders</Link></li>
-            <li className="text-xl ml-0 font-bold  "><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected selected-dis">Sales</Link></li>
+            <li className="text-xl ml-0 font-bold  "><Link href="/sales" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected ">Sales</Link></li>
             <li className="text-xl font-bold"><Link href="/rarity"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected ">Rarity</Link></li>
-            <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Activity</Link></li>
+            <li className="text-xl font-bold"><Link href="#"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Vote</Link></li>
+            <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">stats</Link></li>
             <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Snapshot</Link></li> 
           </ul>
 
