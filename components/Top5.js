@@ -43,7 +43,7 @@ const Top5 = () => {
                         <div className="flex flex-col ">
                             <span className="text-lg capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center gap-x-1">
-                                <span className="text-lg ">{sale.amountSum} </span>
+                                <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
                                 <Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />
                             </div>
                         </div>

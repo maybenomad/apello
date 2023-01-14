@@ -6,9 +6,9 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
     return ( 
         <div>
             <div className="p-4 flex gap-4">
-                <img className="basis-[50px] rounded-xl" src={(nftImage && (CollectionName!=='rektbulls' && !CollectionName.includes("levana"))) ? nftImage : collectionImage} alt="" width="50" height="50" />
-                <div className="flex basis-full flex-col justify-around  text-sm">
-                    <span className="font-semibold capitalize ">{`${CollectionName ? CollectionName : ''} # ${nftID}` }</span>
+                <img className="basis-[50px] h-[50px] rounded-xl" src={(nftImage && (CollectionName!=='rektbulls' && !CollectionName.includes("levana"))) ? nftImage : collectionImage} alt="" width="50" height="50" />
+                <div className="flex basis-full flex-col justify-end  text-sm overflow-visible relative">
+                    <span className="font-semibold capitalize whitespace-nowrap absolute top-0 mb-4  ">{`${CollectionName ? CollectionName : ''} # ${nftID}` }</span>
                     <div className="flex justify-center items-center py-1 font-normal px-2 h-fit w-fit rounded-2xl bg-violet/80">
                         <p className="m-0 text-xs leading-[1]">Sale</p>
                     </div>
@@ -16,7 +16,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                 <div className="basis-40 flex flex-col justify-around items-end">
                     <div className="flex gap-x-2">
                         <img src="/usdc.png" className="h-5" alt="juno logo" />
-                        <p className="">{amount}</p>
+                        <p className="">{(Math.round(amount * 100) / 100).toFixed(2)}</p>
                         <button onClick={()=>setShow(!show)} className="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-4 h-4 ${show ? 'hidden' : 'block'}`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
