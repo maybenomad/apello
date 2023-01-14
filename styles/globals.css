@@ -6,7 +6,9 @@
 
 @layer base {
   
-  
+  html,body {
+    @apply min-h-screen
+  }
   @font-face {
         font-family: "azonix";
         src: url('/fonts/Azonix.otf');

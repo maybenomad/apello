@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Top5 = () => {
     const [list, setList ] = useState([]);
-    const [query,setQuery] = useState(null)
+    const [query,setQuery] = useState(7)
 
     useEffect(()=>{
         const fetchData = async() =>{
