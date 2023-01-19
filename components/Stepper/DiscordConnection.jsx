@@ -12,7 +12,7 @@ const DiscordConnection = ({currentStep,setcurrentStep}) => {
     //after step 2 authorization... 
     const [user, setuser] = useState(null);
 
-    const { authorizeDiscord } = useDiscordCnx();
+    const { authorizeDiscord, error } = useDiscordCnx();
 
     //to assure
     //const { signBytes,txResult, txError, verifyResult} = useIsConnected()
@@ -41,7 +41,12 @@ const DiscordConnection = ({currentStep,setcurrentStep}) => {
                 setuser(username);
                 
 
-                authorizeDiscord(username, id, avatar, {adress, type}, token );
+                authorizeDiscord(username, id, avatar, {adress, type}, token ).then(res => {
+                    if(res){
+
+                        setcurrentStep(2) 
+                    }
+                });
                 
            
               
@@ -82,12 +87,16 @@ const DiscordConnection = ({currentStep,setcurrentStep}) => {
             </div>
             
             <div className={`max-h-80 overflow-hidden ${(currentStep !== 1) && "max-h-0"} transition-[max-height] `}>
-                <><p className="text-gray-500  step-parag">Terra services links Discord to your crypto wallet. Unlock the community potential of your crypto assets with server roles, token weighted voting and other powerful features.</p>
-                <div data-tip="Connect your wallet first." className={`relative ml-14  ${(!wallet) &&  'max-w-fit  before:content-[attr(data-tip)] before:absolute before:px-3 before:py-2 before:left-1/2 before:-top-3 before:w-max before:max-w-xs before:-translate-x-1/2 before:-translate-y-full before:bg-violet before:text-white before:rounded-md before:opacity-0 before:transition-all after:absolute after:left-1/2 after:-top-3 after:after:h-0 after:w-0 after:-translate-x-1/2 after:border-8 after:border-t-violet after:border-l-transparent after:border-b-transparent after:border-r-transparent after:opacity-0 after:transition-all hover:before:opacity-100 hover:after:opacity-100'}`} >
-                    <button disabled={(!wallet)} className="clip-button p-2  bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible " onClick={hundleClick}> 
-                        <span  className="font-azonix " >connect Discord</span>
-                    </button>
-                </div>
+                <>
+                    <p className="text-gray-500  step-parag">Terra services links Discord to your crypto wallet. Unlock the community potential of your crypto assets with server roles, token weighted voting and other powerful features.</p>
+                    <div data-tip="Connect your wallet first." className={`relative ml-14  ${(!wallet) &&  'max-w-fit  before:content-[attr(data-tip)] before:absolute before:px-3 before:py-2 before:left-1/2 before:-top-3 before:w-max before:max-w-xs before:-translate-x-1/2 before:-translate-y-full before:bg-violet before:text-white before:rounded-md before:opacity-0 before:transition-all after:absolute after:left-1/2 after:-top-3 after:after:h-0 after:w-0 after:-translate-x-1/2 after:border-8 after:border-t-violet after:border-l-transparent after:border-b-transparent after:border-r-transparent after:opacity-0 after:transition-all hover:before:opacity-100 hover:after:opacity-100'}`} >
+                        <button disabled={(!wallet)} className="clip-button p-2  bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible " onClick={hundleClick}> 
+                            <span  className="font-azonix " >connect Discord</span>
+                        </button>
+                    </div>
+                    { error && <div className={`text-red-700 border border-red-100 p-4 mb-4 text-sm  rounded-lg dark:bg-gray-800 dark:text-blue-400`} role="alert">
+                            <span className="font-medium">{error}</span> 
+                    </div>}
                 </>
             </div>
         </div>
