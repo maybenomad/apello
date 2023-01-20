@@ -12,7 +12,7 @@ const Top5 = () => {
         const fetchData = async() =>{
             try{
                 
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top5?day=${query}&chain=${router.query.chain}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top5?day=${query}${ (router.query.chain) && "&chain="+router.query.chain}`);
             console.log(res)
             const { count, sales} = res.data;
             console.log(count,query);

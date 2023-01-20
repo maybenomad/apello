@@ -9,7 +9,7 @@ const Sales = () => {
     const [query, setQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const router = useRouter();
-    const { loading, error, list , hasMore } = useFetch('sales/search', query, pageNumber,`&chain=${router.query.chain}`);
+    const { loading, error, list , hasMore } = useFetch('sales/search', query, pageNumber,(router.query.chain) && `&chain=${router.query.chain}`);
     //console.log("pageNumber",pageNumber)
     //to reference the last element on the infinite scroll
     const observer = useRef();
