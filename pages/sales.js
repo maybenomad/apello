@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SalesCard from "../components/Cards/SalesCard";
 import Top5 from "../components/Top5";
@@ -7,7 +8,8 @@ import useFetch from "../hooks/useFetch";
 const Sales = () => {
     const [query, setQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
-    const { loading, error, list , hasMore } = useFetch('sales/search', query, pageNumber);
+    const router = useRouter();
+    const { loading, error, list , hasMore } = useFetch('sales/search', query, pageNumber,`&chain=${router.query.chain}`);
     //console.log("pageNumber",pageNumber)
     //to reference the last element on the infinite scroll
     const observer = useRef();

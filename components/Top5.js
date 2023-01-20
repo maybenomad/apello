@@ -1,20 +1,23 @@
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Top5 = () => {
     const [list, setList ] = useState([]);
     const [query,setQuery] = useState(7)
-
+    const router = useRouter();
+    //console.log("ch",router.query.chain);
     useEffect(()=>{
         const fetchData = async() =>{
             try{
                 
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top5?day=${query}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top5?day=${query}&chain=${router.query.chain}`);
             console.log(res)
             const { count, sales} = res.data;
             console.log(count,query);
             setList(sales);
+
             } catch (err) {
                 console.log(err)
             }
@@ -43,7 +46,7 @@ const Top5 = () => {
                             <span className="text-lg capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
-                                { sale.chain === "juno" ? <Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  /> : (<img src="https://www.stargaze.zone/icon.svg" className="h-5" alt="juno logo" />) }
+                                { router.query.chain ==="juno" ? (<Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />) : ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} alt="stargaze coin" className="" /> ) }
                             </div>
                         </div>
                     </div>))
