@@ -15,7 +15,6 @@ const Top5 = () => {
             const { count, sales} = res.data;
             console.log(count,query);
             setList(sales);
-
             } catch (err) {
                 console.log(err)
             }
@@ -44,7 +43,7 @@ const Top5 = () => {
                             <span className="text-lg capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
-                                <Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />
+                                { sale.chain === "juno" ? <Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  /> : (<img src="https://www.stargaze.zone/icon.svg" className="h-5" alt="juno logo" />) }
                             </div>
                         </div>
                     </div>))

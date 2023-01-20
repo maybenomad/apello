@@ -55,14 +55,17 @@ export const AuthContextProvider = ({ children })=>{
             if(auth){
                 //console.log('auth context',auth.wallet.adress,auth.token);
                 const data = await checkWallet(auth.wallet.adress,auth.token);
-                dispatch({type: 'CONNECT_WALLET', payload: data});
+                if(!error && data){
+
+                    dispatch({type: 'CONNECT_WALLET', payload: data});
+                }
                 
             }
         }
         fillContext();
         
 
-    }, [checkWallet]);
+    }, [checkWallet, error]);
 
     return (
         <AuthContext.Provider value={{...state,dispatch}} >
