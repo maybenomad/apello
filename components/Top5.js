@@ -46,7 +46,7 @@ const Top5 = () => {
                             <span className="text-lg capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
-                                { router.query.chain ==="juno" ? (<Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />) : ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} alt="stargaze coin" className="" /> ) }
+                                { router.query.chain ==="stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} alt="stargaze coin" className="" /> ) : (<Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />) }
                             </div>
                         </div>
                     </div>))
