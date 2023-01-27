@@ -1,39 +1,47 @@
-import { useTerraCnx, useJunoCnx, useStargazeCnx } from './Wallets';
+import { useEffect } from 'react';
+import ReactPortal from './ReactPortal';
 
-const Modal = ({open, close}) => {
+function Modal({ children, title, isOpen, handleClose }) {
+    // close modal on escape key press
+  useEffect(() => {
+    const closeOnEscapeKey = e => e.key === "Escape" ? handleClose() : null;
+    document.body.addEventListener("keydown", closeOnEscapeKey);
+    return () => {
+      document.body.removeEventListener("keydown", closeOnEscapeKey);
+    };
+  }, [handleClose]);
 
-    
+  //disable scroll on modal load
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  },[isOpen])
 
-    return ( 
-    <div className="fixed inset-0 w-full h-full bg-black opacity-70 z-50 blur-lg " aria-label="modal">
+  if (!isOpen) return null;
 
-        <div className="m-8 max-w-sm w-full p-6 ">
-            <div className="relative ">
-                <h2 className="">Coonect wallet</h2>
-                <button className="absoluet top-0 right-0" aria-label="close modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+  return (
+    <ReactPortal wrapperId="modal-container">
+        <>
+            <div className='fixed inset-0 w-screen h-screen z-40 bg-black opacity-50' />
+            <div className="fixed inset-0 w-full h-full flex justify-center items-center   box-border min-w-fit overflow-hidden  text-white z-50">
+                <div className="rounded flex flex-col justify-center w-fit m-5 p-5 bg-noir"> 
+                <div className="flex justify-between relative w-full">
+                        <h2 className="font-jura font-bold text-xl capitalize">{title}</h2>
+                        <button  onClick={handleClose} className="ml-auto p-1 rounded-full transition-colors hover:bg-black/20" aria-label="close modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
 
-                </button>
+                        </button>
+                    </div>
+                    <div className="h-5/6 box-border">{children}</div>
+                </div>
             </div>
-            <div className="mt-6 flex flex-col justify-center gap-y-4">
-                <button className="inline-flex gap-x-2 bg-[#212529]" onClick={useTerraCnx}>
-                    <img src="src/assets/terra_station.png" className="h-5" alt="tera station logo" />
-                    <span className="font-azonix ">Terra Station</span>
-                </button>
-                <button className="inline-flex gap-x-2 bg-[#212529]" onClick={useStargazeCnx}>
-                    <img src="./assets/terra_station.png" className="h-5" alt="tera station logo" />
-                    <span className="font-azonix ">Stargaze</span>
-                </button>
-                <button className="inline-flex gap-x-2 bg-[#212529]" onClick={useJunoCnx}>
-                    <img src="/assets/terra_station.png" className="h-5" alt="tera station logo" />
-                    <span className="font-azonix ">Juno</span>
-                </button>
-            </div>
-        </div>
-
-    </div> );
-}
+        </>
+    </ReactPortal>
+  );
+};
  
 export default Modal;

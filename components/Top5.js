@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { CoinImage } from "./Cards/SalesCard";
 
 const Top5 = () => {
     const [list, setList ] = useState([]);
@@ -23,7 +24,7 @@ const Top5 = () => {
             }
         }
         fetchData();
-    },[query])
+    },[query, router.query.chain])
     return ( 
         <div className="rounded-2xl my-5 p-2 bg-noir text-[#85848b]">
             
@@ -46,7 +47,7 @@ const Top5 = () => {
                             <span className="text-lg capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
-                                { router.query.chain ==="stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} alt="stargaze coin" className="" /> ) : (<Image src="/usdc.png" alt="usdc coin" className="  " width={20} height={20}  />) }
+                                <CoinImage chain={router.query.chain} />
                             </div>
                         </div>
                     </div>))
