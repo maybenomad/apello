@@ -40,12 +40,12 @@ const Top5 = () => {
             <div className={` px-2 mx-auto flex flex-col md:flex-row ${(list.length<=3 ? "justify-start  gap-x-10" : "justify-between" )}  `}>
                 {
                     list.map((sale,i) => (
-                    <div key={i} className="text-lg flex flex-row md:flex-col items-center gap-2 p-2 rounded-lg hover:bg-black/25 cursor-pointer"> 
+                    <div key={i} className="text-lg basis-full md:basis-1/5 overflow-hidden flex flex-row md:flex-col items-center gap-2 p-2 rounded-lg hover:bg-black/25 cursor-pointer"> 
                         
                         <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center"><img src={sale.collectionImage} alt={sale.CollectionName} className="" /></div>
-                        <div className="flex flex-col ">
-                            <span className="text-lg capitalize">{sale.CollectionName}</span>
-                            <div className="flex items-center gap-x-1">
+                        <div className="flex flex-col  w-full overflow-hidden">
+                            <span className="md:text-center text-lg truncate capitalize">{sale.CollectionName}</span>
+                            <div className="flex items-center justify-start md:justify-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
                                 <CoinImage chain={router.query.chain} />
                             </div>

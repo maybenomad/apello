@@ -1,8 +1,15 @@
+import { KeplrExtensionWallet, keplrExtensionInfo, KeplrMobileWallet } from '@cosmos-kit/keplr';
+import { wallets } from '@cosmos-kit/keplr';
+import wallet from '@cosmos-kit/keplr-mobile'
+import { useChain } from '@cosmos-kit/react';
+import { useAddWallet } from '../hooks/useAddWallet';
 import { useTerra } from '../hooks/useTerra';
 
 const ModalConnection = ({open, close}) => {
+    const { addWallet,isLoading } = useAddWallet();
     const { connecterra, connectStargaze, connectJuno, connectPetra, connectMartian, connectTeritori } = useTerra();
-    
+    //const { chain, status, address, enable, getOfflineSigner, connect } = useChain("stargaze");
+    //console.log(status, address)
     const closeModel = ()=>{
         close(false);
     }
@@ -14,9 +21,36 @@ const ModalConnection = ({open, close}) => {
         connecterra();
         closeModel();
     }
-    const stargazeClick = ()=>{
+    const stargazeClick = async()=>{
         connectStargaze();
         closeModel();
+        // try{
+        // console.log(wallets, wallets[1].client, wallets[1].client.connector._clientId)
+        // const client = wallets[1].client
+        // alert(wallets[1].client.connector._clientId)
+        // //alert("cccc"+wallets[1].client.connector);
+        // //alert(client.getAppUrl("android"))
+        // client.getAppUrl("ios")
+        // const test = await wallets[1].connect() ;
+        // alert("connect"+test)
+        // await client.enable("stargaze-1")
+        // //wallets[0].clientPromise
+        // const offlineSigner = await client.getOfflineSigner("stargaze-1");
+        // const accounts = await offlineSigner?.getAccounts();
+        // console.log(accounts, accounts[0].address)
+        // console.log(accounts)
+        // if(accounts[0]){
+            
+        //     await addWallet("stargaze", accounts[0].address);
+        // }
+        // alert("done!"+accounts[0].address);
+        // }catch(err){
+        //     alert("error!"+err);
+        // }
+
+        //console.log(wallets[0],wallets[0].getChainWallet(),KeplrExtensionWallet);
+        
+       
     }
     const junoClick = ()=>{
         connectJuno();

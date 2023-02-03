@@ -7,10 +7,10 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
     const [ show, setShow ] = useState(false);
     return ( 
         <div>
-            <div className="p-4 flex gap-4">
+            <div className="p-2 py-4 sm:p-4 flex gap-4">
                 <img className="basis-[50px] h-[50px] rounded-xl" src={(nftImage && (CollectionName!=='rektbulls' && !CollectionName.includes("levana"))) ? nftImage : collectionImage} alt="" width="50" height="50" />
-                <div className="flex basis-full flex-col justify-end  text-sm overflow-visible relative">
-                    <span className="font-semibold capitalize whitespace-nowrap absolute top-0 mb-4  ">{`${CollectionName ? CollectionName : ''} # ${nftID}` }</span>
+                <div className="flex basis-full flex-col justify-end overflow-hidden text-sm relative">
+                    <span className="font-semibold max-w-fit capitalize truncate mb-4  ">{`${CollectionName ? CollectionName : ''} # ${nftID}` }</span>
                     <div className="flex justify-center items-center py-1 font-normal px-2 h-fit w-fit rounded-2xl bg-violet/80">
                         <p className="m-0 text-xs leading-[1]">Sale</p>
                     </div>

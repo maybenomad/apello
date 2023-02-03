@@ -39,7 +39,7 @@ const Navbar = () => {
               </div>
             </li>
             <li className="text-xl font-bold"><Link href="/rarity"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected ">Rarity</Link></li>
-            <li className="text-xl font-bold"><Link href="#"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Vote</Link></li>
+            <li className="text-xl font-bold"><Link href="#"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Calendar</Link></li>
             <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">stats</Link></li>
             <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Snapshot</Link></li> 
           </ul>

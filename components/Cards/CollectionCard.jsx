@@ -19,7 +19,7 @@ const CollectionCard = ({collectionInfo}) => {
                             
                     </div>
                     <div className='py-2 flex justify-center '>
-                        <h2 className="font-jura text-lg">{collectionInfo.name}</h2>
+                        <h2 className="font-jura text-lg truncate px-2">{collectionInfo.name}</h2>
                     </div>
                 </div>
             </Link>}
