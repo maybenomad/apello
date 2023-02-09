@@ -41,7 +41,7 @@ const AddNewCalendar = () => {
                 twitterLink: data["Twitter link"],
                 websiteLink: data["Website link"], 
             };
-            const response = await axios.post('http://localhost:4000/api/calendar', 
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/calendar`, 
                 calendarObject,{
                 headers: {
                     'Authorization': `Bearer ${token}` 
