@@ -88,21 +88,22 @@ const WalletCnx = () => {
         else if(wallet.type.toLowerCase()==="stargaze"){
           return (
             <div className="relative h-6 w-6">
-              <Image src="/stargaze.png" fill  alt="Stargaze logo" />
+              <Image src="/chains/stargaze.png" fill  alt="Stargaze logo" />
             </div>
           )
         }
         else if(wallet.type.toLowerCase()==="juno"){
           return (
             <div className="relative h-6 w-6">
-              <Image src="/juno.png" fill  alt="Juno logo" />
+              <Image src="/chains/juno.png" fill  alt="Juno logo" />
             </div>
           )
         }
         
         return (
           <div className="relative h-6 w-6">
-            <img src="https://teritori.com/logo.svg" className="absolute h-full"  alt="Teritori logo" />
+            {/* https://teritori.com/logo.svg */}
+            <img src="/chains/teritori.png" className="absolute h-full"  alt="Teritori logo" />
           </div>
         )
         
@@ -135,7 +136,7 @@ const WalletCnx = () => {
                     <Blockchain />
                     <div className="flex flex-col pl-1 ">
                         <span className="text-sm">wallet profile</span>
-                        <span className="text-[#e5e5e5] font-sans text-xs">{`${wallet.adress.substring(0, 5)}***${wallet.adress.substring(wallet.adress.length-4, wallet.adress.length-1)}`}</span>
+                        <span className="text-[#e5e5e5] font-sans text-xs">{`${wallet.adress.substring(0, 5)}***${wallet.adress.substring(wallet.adress.length-4, wallet.adress.length)}`}</span>
                     </div>
                 </div>
                 <hr className="text-[#e5e5e5]" />

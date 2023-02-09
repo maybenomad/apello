@@ -15,12 +15,12 @@ import '../styles/globals.css'
 //   variable: '--font-azonix'
 // })
 
- export default function App({ Component, defaultNetwork, walletConnectChainIds }= AppProps && WalletControllerChainOptions ) {
+ export default function App({ Component,pageProps, defaultNetwork, walletConnectChainIds }= AppProps && WalletControllerChainOptions ) {
   
   const main = (
         <AuthContextProvider >
             <Layout>
-              <Component  />
+              <Component {...pageProps} />
             </Layout>
         </AuthContextProvider>
   )

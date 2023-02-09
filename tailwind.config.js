@@ -34,6 +34,20 @@ module.exports = {
           '0%, 100%': { transform: 'translatey(0)' },
           '50%': { transform: 'translatey(10%)' },
         }
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
+          "2xl": "6rem",
+        },
+      },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        'mobile': 'repeat(auto-fit,minmax(269px,350px))',
       }
     },
   },

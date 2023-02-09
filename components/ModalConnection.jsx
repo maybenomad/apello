@@ -1,7 +1,7 @@
-import { KeplrExtensionWallet, keplrExtensionInfo, KeplrMobileWallet } from '@cosmos-kit/keplr';
-import { wallets } from '@cosmos-kit/keplr';
-import wallet from '@cosmos-kit/keplr-mobile'
-import { useChain } from '@cosmos-kit/react';
+// import { KeplrExtensionWallet, keplrExtensionInfo, KeplrMobileWallet } from '@cosmos-kit/keplr';
+// import { wallets } from '@cosmos-kit/keplr';
+// import wallet from '@cosmos-kit/keplr-mobile'
+// import { useChain } from '@cosmos-kit/react';
 import { useAddWallet } from '../hooks/useAddWallet';
 import { useTerra } from '../hooks/useTerra';
 
