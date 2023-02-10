@@ -1,7 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
@@ -22,9 +22,18 @@ const AddNewCalendar = () => {
         handleSubmit,
         formState: { errors, isValid } 
     } = useForm({mode: "all"});
+    //for the steper form
+    const [step, setStep] = useState(0)
 
     const router = useRouter();
     const { wallet, token } = useAuthContext();
+    //to runs it only on the client site i'll use useeffect
+    useEffect(() => {
+        if(!wallet || !token){
+            router.push("/calendar");
+        }
+    },[])
+
     //form submit
     const onSubmit = async(data) => {
         try{
@@ -146,7 +155,7 @@ const AddNewCalendar = () => {
         return markers
     }
 
-    const [step, setStep] = useState(0)
+    
 
     const fieldGroups =[
         <CollectionFields key="0"/>,
