@@ -18,7 +18,7 @@ const Calendar = () => {
     useEffect(()=>{
         getItems(url);
     },[query,status, chain])
-    console.log(url, data)
+    //console.log(url, data)
     //search bar
     let timer;
     const handleChange = (e) => {
