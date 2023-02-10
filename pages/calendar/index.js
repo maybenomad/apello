@@ -49,7 +49,7 @@ const Calendar = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </button>
-                        <div aria-label="drop_down" className={`hidden focus-within:!hidden peer-focus:block hover:block bg-noir text-[#8b949e] overflow-visible w-auto absolute top-12 left-0 py-3 rounded shadow  z-20 `} >
+                        <div aria-label="drop_down" className={`hidden focus-within:!hidden peer-hover:block md:peer-focus:block hover:block bg-noir text-[#8b949e] overflow-visible w-auto absolute top-12 left-0 py-3 rounded shadow  z-20 `} >
                             <ul className="rounded flex flex-col gap-y-1">
                                 <li className="py-2 px-4 text-lg capitalize whitespace-nowrap cursor-pointer rounded shadow-[inset_0_0_0_rgba(108,99,255,0.6)] transition-shadow duration-500 ease-linear hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)] hover:text-white" onClick={e => setChain(e.target.textContent)}>all chains</li>
                                 <li className="py-2 px-4 text-lg capitalize whitespace-nowrap cursor-pointer rounded shadow-[inset_0_0_0_rgba(108,99,255,0.6)] transition-shadow duration-500 ease-linear hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)] hover:text-white" onClick={e => setChain(e.target.textContent)}>juno</li>
@@ -67,7 +67,7 @@ const Calendar = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </button>
-                        <div aria-label="drop_down" className={`hidden focus-within:hidden peer-focus:block hover:block bg-noir text-[#8b949e] overflow-visible w-auto absolute top-12 left-0 py-3 rounded shadow  z-20 `} >
+                        <div aria-label="drop_down" className={`hidden focus-within:hidden peer-hover:block md:peer-focus:block hover:block bg-noir text-[#8b949e] overflow-visible w-auto absolute top-12 left-0 py-3 rounded shadow  z-20 `} >
                             <ul className="rounded flex flex-col gap-y-1">
                                 <li className="py-2 px-4 text-lg capitalize whitespace-nowrap cursor-pointer rounded shadow-[inset_0_0_0_rgba(108,99,255,0.6)] transition-shadow duration-500 ease-linear hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)] hover:text-white" onClick={e => setStatus(e.target.textContent)}>upcoming</li>
                                 <li className="py-2 px-4 text-lg capitalize whitespace-nowrap cursor-pointer rounded shadow-[inset_0_0_0_rgba(108,99,255,0.6)] transition-shadow duration-500 ease-linear hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)] hover:text-white" onClick={e => setStatus(e.target.textContent)}>live</li>

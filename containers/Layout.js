@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     //'/signin', '/register',
     const noNav =  [ '/calendar', '/calendar/create'];
     return ( 
-        <div onTouchStart="" className={`App ${(noNav.includes(pathname)) && "bg-black"} relative text-blanc h-full min-h-screen overflow-hidden w-full`}>
+        <div className={`App ${(noNav.includes(pathname)) && "bg-black"} relative text-blanc h-full min-h-screen overflow-hidden w-full`}>
             <Head>
                 <title>Apello</title>
                 <link rel="icon" type="image/svg+xml" href="/lyre-08.png" />
