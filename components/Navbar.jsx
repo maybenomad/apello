@@ -2,9 +2,10 @@ import { useState } from "react";
 import {FaTelegramPlane , FaDiscord , FaTwitter , FaGithub} from 'react-icons/fa';
 import  Link  from "next/link";
 import WalletCnx from "./WalletCnx";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Navbar = () => {
-
+  const { wallet } = useAuthContext();
     const [menuOpen,setMenuOpen] = useState(false);
 
     const toggleClick = () => {
@@ -39,7 +40,26 @@ const Navbar = () => {
               </div>
             </li>
             <li className="text-xl font-bold"><Link href="/rarity"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected ">Rarity</Link></li>
-            <li className="text-xl font-bold"><Link href="/calendar"onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected ">Calendar</Link></li>
+            <li className="group relative text-xl font-bold">
+              <div className="group-hover:text-violet cursor-pointer flex items-center gap-1 text-xl p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3  ">
+                <span className="">Calendar</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </div>
+              <div aria-label="drop_down" className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-auto absolute top-9 left-0 py-3 rounded shadow  z-20 `} >
+                <div className="px-4  " >
+                  <Link href={"/calendar"} onClick={toggleClick} className="block p-1 mb-2 text-base text-white whitespace-nowrap hover:text-violet transition-colors">view </Link>
+                  {
+                    !wallet ?
+                    (<div data-tip="Connect your wallet first." className="relative hover:disableSpan"> 
+                        <button disabled className="disabled:cursor-not-allowed p-1 uppercase text-base text-white whitespace-nowrap hover:text-violet transition-colors" >add collection</button>
+                    </div>)
+                    : <Link href='/calendar/create' onClick={toggleClick} className="p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors">add collection</Link>
+                }
+                </div>
+              </div>
+            </li>
             <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">stats</Link></li>
             <li className="text-xl font-bold"><Link href="#" onClick={toggleClick} className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis">Snapshot</Link></li> 
           </ul>

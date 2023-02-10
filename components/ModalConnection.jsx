@@ -87,11 +87,11 @@ const ModalConnection = ({open, close}) => {
                         <span className="font-azonix ">Terra</span>
                     </button>
                     <button className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]" onClick={stargazeClick} >
-                        <img src="/stargaze.png" className="h-5" alt="stargaze logo" />
+                        <img src="/chains/stargaze.png" className="h-5" alt="stargaze logo" />
                         <span className="font-azonix ">Stargaze</span>
                     </button>
                     <button className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]" onClick={junoClick}>
-                        <img src="/juno.png" className="h-5" alt="juno logo" />
+                        <img src="/chains/juno.png" className="h-5" alt="juno logo" />
                         <span className="font-azonix ">Juno</span>
                     </button>
                     <button className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]" onClick={petraClick}>
@@ -105,7 +105,7 @@ const ModalConnection = ({open, close}) => {
                         <span className="font-azonix ">Martian</span>
                     </button>
                     <button className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]" onClick={teritoriClick}>
-                        <img src="https://teritori.com/logo.svg" className="h-5" alt="Teritori wallet logo" />
+                        <img src="/chains/teritori.png" className="h-5" alt="Teritori wallet logo" />
                         <span className="font-azonix ">Teritori</span>
                     </button>
                 </div>
