@@ -7,6 +7,7 @@ import {
   WalletProvider,
 } from '@terra-money/wallet-provider';
 import { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 import '../styles/globals.css'
 // import localFont from '@next/font';
 
@@ -21,6 +22,7 @@ import '../styles/globals.css'
         <AuthContextProvider >
             <Layout>
               <Component {...pageProps} />
+              <Analytics />
             </Layout>
         </AuthContextProvider>
   )
