@@ -42,7 +42,7 @@ const Calendar = () => {
 
                     </div>
                     {/* chain select component */}
-                    <div className="flex relative h-full  border-l border-[#2d2d2d] py-2 px-1 w-[200px] whitespace-nowrap ">
+                    <div className="flex relative h-full  border-l border-[#2d2d2d] px-1 w-[200px] whitespace-nowrap ">
                         <button className="flex items-center gap-x-1 capitalize peer mx-auto" >
                             {chain}
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-[#8b949e]">
