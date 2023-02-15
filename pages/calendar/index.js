@@ -31,7 +31,7 @@ const Calendar = () => {
         }, 1000);
     }
     return ( 
-        <section className="container mx-auto " aria-label="calendar section">
+        <section className="container mx-auto pb-2" aria-label="calendar section">
             <div className="flex flex-col-reverse md:flex-row justify-between gap-3" aria-label="search fields">
                 <div className="flex items-center gap-x-2 border border-[#2d2d2d] focus-within:border-[#8b949e] rounded-3xl w-full md:w-fit md:max-w-lg h-12 px-4 ">
                     <div className="flex items-center gap-x-2 ">
