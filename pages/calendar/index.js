@@ -98,7 +98,7 @@ const Calendar = () => {
                 </div>
             }
             <div className="mt-10 px-3">
-                <div className="grid grid-cols-mobile sm:grid-cols-[repeat(auto-fill,_minmax(269px,269px))] gap-5">
+                <div className="grid grid-cols-mobile sm:grid-cols-[repeat(auto-fill,_minmax(269px,269px))] gap-5 place-content-center">
                     {data.map(calendar => (
                         <CalendarCard key={calendar._id} {...calendar} />
                     ))}
