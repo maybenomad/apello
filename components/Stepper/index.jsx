@@ -56,7 +56,7 @@ const Stepper = () => {
         <section className="">
 
             
-            <div className="mt-10  p-4  ">
+            <div className="mt-5  p-4  ">
 
                 
                 <DiscordConnection currentStep={currentStep} setcurrentStep={setcurrentStep}/>
