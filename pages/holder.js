@@ -3,14 +3,15 @@ import Stepper from "../components/Stepper";
 
 const HolderSection = () => {
   return (
-    <section className="mt-2">
-      <a className="relative block h-[125px] md:h-[150px] mx-auto" href="https://discord.gg/7bwXQU77bC" target="_blank" rel="noreferrer">
+    <section>
+      <a className="relative block w-full max-w-2xl px-5 md:mx-auto" href="https://discord.gg/7bwXQU77bC" target="_blank" rel="noreferrer">
         <Image
-          fill
-          unoptimized
-          alt=""
+          responsive
+          width={673}
+          height={164}
+          alt="Cosmos Ape Alliance Generation 2 minting soon. Join the Discord."
           className="object-contain"
-          src="/holder-banner.webp"
+          src="/caa2-teaser.webp"
         />
       </a>
       <Stepper />
