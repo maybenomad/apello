@@ -4,7 +4,7 @@ import Stepper from "../components/Stepper";
 const HolderSection = () => {
   return (
     <section className="mt-2">
-      <div className="relative h-[125px] md:h-[150px] mx-auto">
+      <a className="relative block h-[125px] md:h-[150px] mx-auto" href="https://discord.gg/7bwXQU77bC" target="_blank" rel="noopener">
         <Image
           fill
           unoptimized
@@ -12,7 +12,7 @@ const HolderSection = () => {
           className="object-contain"
           src="/holder-banner.webp"
         />
-      </div>
+      </a>
       <Stepper />
     </section>
   );
