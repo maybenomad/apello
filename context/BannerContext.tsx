@@ -20,6 +20,7 @@ export enum BannerStyle {
   Cyberpunk = "cyberpunk",
   Fantasy = "fantasy",
   Posters = "posters",
+  Gallery = "gallery",
 }
 
 export enum BannerType {

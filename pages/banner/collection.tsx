@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import NFTSelector from "../../components/NFTSelector";
 import { Stepper } from "../../components/NFTSelector/Stepper";
