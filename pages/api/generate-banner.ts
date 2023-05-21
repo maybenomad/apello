@@ -1,11 +1,7 @@
-import fs from "fs";
-import path from "path";
-import axios from "axios";
-import sharp from "sharp";
+import { BannerStyle } from "../../context/BannerContext";
 import { buildFantasyImage } from "../../utils/banners/fantasy";
 import { buildGalleryImage } from "../../utils/banners/gallery";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { BannerStyle } from "../../context/BannerContext";
 
 type ResponseData = { error: string } | string;
 
@@ -24,12 +20,12 @@ export default async function handler(
   }
 
   try {
-    let base64Image;
+    let base64Image: string;
 
     if (!req.body.config) {
       throw new Error("Missing config");
     }
-    console.log(req.body.config.style);
+
     switch (req.body.config.style) {
       case BannerStyle.Gallery:
         base64Image = await buildGalleryImage(req.body.config);

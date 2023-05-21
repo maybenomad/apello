@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import axios from "axios";
-import sharp from "sharp";
+import sharp, { OverlayOptions } from "sharp";
 import type { Config } from "../../context/BannerContext";
 
 export const buildFantasyImage = async (config: Config) => {
@@ -37,22 +37,30 @@ export const buildFantasyImage = async (config: Config) => {
     .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
 
-  let svgText: Buffer;
-  if (config.twitterUsername) {
-    svgText = Buffer.from(`
+  const compositeOptions: OverlayOptions[] = [
+    { input: imageBuffer1, left: 477, top: 121 },
+    { input: imageBuffer2, left: 813, top: 107 },
+    { input: imageBuffer3, left: 1189, top: 145 },
+  ];
+
+  // Add Twitter username if provided
+  if (config.twitterUsername?.length > 0) {
+    const svgText = Buffer.from(`
       <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="70" >
         <text x="1480" y="48" font-size="48" font-weigh="bold" text-anchor="end" font-family="Arial, Helvetica, sans-serif" fill="white">@${config.twitterUsername}</text>
       </svg>
     `);
+
+    compositeOptions.push({
+      input: svgText,
+      left: 0,
+      top: 430,
+      blend: "overlay",
+    });
   }
 
   const compositedImageBuffer = await baseImage
-    .composite([
-      { input: imageBuffer1, left: 477, top: 121 },
-      { input: imageBuffer2, left: 813, top: 107 },
-      { input: imageBuffer3, left: 1189, top: 145 },
-      { input: svgText, left: 0, top: 430, blend: "overlay" },
-    ])
+    .composite(compositeOptions)
     .jpeg({ mozjpeg: true })
     .toBuffer();
 
