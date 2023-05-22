@@ -132,8 +132,9 @@ const NFTSelector = ({ address }: { address: string }) => {
   }, [address]);
 
   const handleSelect = (newItem: ItemType) => {
+    // If max 3 already selected, replace last with new selection
     if (config.selectedNFTs.length === 3) {
-      // ToDo: show warning message
+      saveNFTs([...config.selectedNFTs.slice(0, 2), newItem]);
       return;
     }
 
