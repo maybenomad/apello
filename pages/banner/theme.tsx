@@ -42,6 +42,12 @@ const ThemePage: NextPage = () => {
             handleChange={() => saveBannerStyle(BannerStyle.Gallery)}
             value={BannerStyle.Gallery}
           />
+          <ImageRadioButton
+            image="/banners/street_thumb.jpg"
+            selected={config.style === BannerStyle.Street}
+            handleChange={() => saveBannerStyle(BannerStyle.Street)}
+            value={BannerStyle.Street}
+          />
         </div>
       </div>
       <SaveSnackbar>

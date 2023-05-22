@@ -21,6 +21,7 @@ export enum BannerStyle {
   Fantasy = "fantasy",
   Posters = "posters",
   Gallery = "gallery",
+  Street = "street",
 }
 
 export enum BannerType {
@@ -51,33 +52,21 @@ export const BannerContextProvider: React.FC<{
 }> = ({ children }) => {
   const [config, setConfig] = useState<Config>(INITIAL_CONFIG);
 
-  const saveNFTs = useCallback(
-    (nfts: Item[]) => {
-      setConfig((state) => ({ ...state, selectedNFTs: nfts }));
-    },
-    [config]
-  );
+  const saveNFTs = useCallback((nfts: Item[]) => {
+    setConfig((state) => ({ ...state, selectedNFTs: nfts }));
+  }, []);
 
-  const saveTwitterUsername = useCallback(
-    (username: string) => {
-      setConfig((state) => ({ ...state, twitterUsername: username }));
-    },
-    [config]
-  );
+  const saveTwitterUsername = useCallback((username: string) => {
+    setConfig((state) => ({ ...state, twitterUsername: username }));
+  }, []);
 
-  const saveBannerStyle = useCallback(
-    (style: BannerStyle) => {
-      setConfig((state) => ({ ...state, style }));
-    },
-    [config]
-  );
+  const saveBannerStyle = useCallback((style: BannerStyle) => {
+    setConfig((state) => ({ ...state, style }));
+  }, []);
 
-  const saveBannerType = useCallback(
-    (type: BannerType) => {
-      setConfig((state) => ({ ...state, type }));
-    },
-    [config]
-  );
+  const saveBannerType = useCallback((type: BannerType) => {
+    setConfig((state) => ({ ...state, type }));
+  }, []);
 
   return (
     <BannerContext.Provider

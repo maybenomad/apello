@@ -4,11 +4,11 @@ import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
 import type { Config } from "../../context/BannerContext";
 
-export const buildFantasyImage = async (config: Config) => {
+export const buildStreetImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
     "public/banners",
-    "fantasy.jpg"
+    "street.jpg"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
@@ -23,23 +23,47 @@ export const buildFantasyImage = async (config: Config) => {
     responseType: "arraybuffer",
   });
 
-  const imageBuffer1 = await sharp(image1.data)
-    .resize(252, 252)
-    .rotate(-2.8, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  const imageBuffer1 = await sharp(image1.data).resize(317, 317).toBuffer();
+  const imageBuffer2 = await sharp(image2.data).resize(317, 317).toBuffer();
+  const imageBuffer3 = await sharp(image3.data).resize(317, 317).toBuffer();
+  const imageBufferReflection1 = await sharp(image1.data)
+    .resize(317, 317)
+    .flip()
+    .blur(1)
     .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .resize(287, 287)
-    .rotate(1.2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  const imageBufferReflection2 = await sharp(image2.data)
+    .resize(317, 317)
+    .flip()
+    .blur(1)
     .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .resize(236, 236)
-    .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  const imageBufferReflection3 = await sharp(image3.data)
+    .resize(317, 317)
+    .flip()
+    .blur(1)
     .toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
-    { input: imageBuffer1, left: 477, top: 121 },
-    { input: imageBuffer2, left: 813, top: 107 },
-    { input: imageBuffer3, left: 1189, top: 145 },
+    { input: imageBuffer1, left: 404, top: 91 },
+    { input: imageBuffer2, left: 745, top: 91 },
+    { input: imageBuffer3, left: 1086, top: 91 },
+    {
+      input: imageBufferReflection1,
+      left: 404,
+      top: 408,
+      blend: "overlay",
+    },
+    {
+      input: imageBufferReflection2,
+      left: 745,
+      top: 408,
+      blend: "overlay",
+    },
+    {
+      input: imageBufferReflection3,
+      left: 1086,
+      top: 408,
+      blend: "overlay",
+    },
   ];
 
   // Add Twitter username if provided
