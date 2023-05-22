@@ -76,6 +76,7 @@ const NFTSelector = ({ address }: { address: string }) => {
 
   const { config, saveNFTs } = useContext(BannerContext);
 
+  // ToDo: Move to context or hook
   const fetchData = useCallback(async () => {
     setLoadingCollection(true);
     setError(false);

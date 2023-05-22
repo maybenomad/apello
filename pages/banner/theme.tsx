@@ -12,6 +12,18 @@ const ThemePage: NextPage = () => {
   const { wallet } = useAuthContext();
   const { config, saveBannerStyle } = useContext(BannerContext);
 
+  useEffect(() => {
+    // If no "type", redirect to start
+    // User needs to start from beginning
+    if (config.type === "DEFAULT") {
+      push("/banner/social");
+    }
+  }, [config, push]);
+
+  if (config.type === "DEFAULT") {
+    return null;
+  }
+
   return (
     <section className="m-10 mt-4">
       <div className="w-full flex flex-col items-center mb-[200px]">

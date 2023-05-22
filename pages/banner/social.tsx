@@ -20,8 +20,8 @@ const SocialPage: NextPage = () => {
           Create an <span className="text-indigo-500">NFT</span> banner
         </h1>
         <p className="text-center text-lg mb-8">
-          Let's set up the basics including your Twitter handle and where your
-          banner will be used.
+          Let&apos;s set up the basics including your Twitter handle and where
+          your banner will be used.
         </p>
         <label className="max-w-sm w-full text-lg mb-6">
           Twitter Handle (optional)
