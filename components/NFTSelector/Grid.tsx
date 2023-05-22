@@ -33,9 +33,11 @@ export const Grid: React.FC<GridProps> = ({
             </div>
             <Image
               fill
+              priority
               src={image}
               alt={`${collectionName} ${tokenId}`}
               className="transition-transform duration-175 ease-out hover:scale-105"
+              sizes="(max-width: 640px) 30vw, (max-width: 768px) 20vw, 12vw"
             />
             <div
               className="absolute w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
@@ -51,9 +53,9 @@ export const Grid: React.FC<GridProps> = ({
                   className="w-12 h-12"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               ) : (
@@ -64,9 +66,9 @@ export const Grid: React.FC<GridProps> = ({
                   className="w-12 h-12"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               )}

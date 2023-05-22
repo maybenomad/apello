@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/router";
+
 import { Grid } from "./Grid";
 import { BannerContext } from "../../context/BannerContext";
 import { SelectCollection } from "./SelectCollection";
 import { SaveSnackbar } from "./SaveSnackbar";
 import { BannerModal } from "./BannerModal";
-import Image from "next/image";
-import { Collection, Item, DataResponse } from "./types";
+
+import type { Collection, Item, DataResponse } from "./types";
 
 const Item: React.FC<{
   children?: React.ReactNode;
@@ -28,9 +30,11 @@ const Item: React.FC<{
           <>
             <Image
               fill
+              priority
               src={item.image}
               alt={item.tokenId}
               className="transition-transform duration-175 ease-out hover:scale-105"
+              sizes="(max-width: 1024px) 30vw, 10vw"
             />
             <div
               className="absolute w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
@@ -45,9 +49,9 @@ const Item: React.FC<{
                 className="w-10 h-10"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm3 10.5a.75.75 0 000-1.5H9a.75.75 0 000 1.5h6z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             </div>
@@ -70,17 +74,18 @@ const NFTSelector = ({ address }: { address: string }) => {
 
   const { config, saveNFTs } = useContext(BannerContext);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(false);
     try {
       const response = await axios.get<DataResponse>(
-        `https://nft-api.stargaze-apis.com/api/v1beta/profile/${address}/nfts`
+        // `https://nft-api.stargaze-apis.com/api/v1beta/profile/${address}/nfts` // Deprecated API
+        `https://nft-api.stargaze-apis.com/api/v1beta/profile/${address}/paginated_nfts?limit=1000`
       );
 
-      const data = response.data;
+      const tokens = response.data.tokens;
 
-      const groupedByCollectionName = data.reduce((accumulator, item) => {
+      const groupedByCollectionName = tokens.reduce((accumulator, item) => {
         const { name } = item.collection;
         const group = accumulator.find((group) => group.name === name);
         const reducedItem = {
@@ -122,7 +127,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [address]);
 
   const handleSelect = (newItem: Item) => {
     if (config.selectedNFTs.length === 3) {
@@ -156,7 +161,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     if (address) {
       fetchData();
     }
-  }, [address]);
+  }, [address, fetchData]);
 
   useEffect(() => {
     if (selectedCollection) {
