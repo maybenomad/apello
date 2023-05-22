@@ -37,12 +37,6 @@ const ThemePage: NextPage = () => {
         </p>
         <div className="w-full flex flex-wrap justify-center items-center gap-6">
           <ImageRadioButton
-            image="/banners/posters_thumb.jpg"
-            selected={config.style === BannerStyle.Posters}
-            handleChange={() => saveBannerStyle(BannerStyle.Posters)}
-            value={BannerStyle.Posters}
-          />
-          <ImageRadioButton
             image="/banners/fantasy_thumb.jpg"
             selected={config.style === BannerStyle.Fantasy}
             handleChange={() => saveBannerStyle(BannerStyle.Fantasy)}

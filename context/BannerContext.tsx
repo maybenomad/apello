@@ -17,11 +17,16 @@ export interface Config {
 }
 
 export enum BannerStyle {
-  Cyberpunk = "cyberpunk",
+  // Implemented as Twitter banner only so far
   Fantasy = "fantasy",
-  Posters = "posters",
   Gallery = "gallery",
   Street = "street",
+  // To be implemented
+  Cyberpunk = "cyberpunk",
+  Posters = "posters",
+  Synthwave = "synthwave",
+  Tron = "Tron",
+  Warpspeed = "warpspeed",
 }
 
 export enum BannerType {
