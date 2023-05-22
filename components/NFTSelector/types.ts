@@ -1,5 +1,10 @@
-export type DataResponse = Array<ResponseItem>;
 import type { BannerStyle } from "../../context/BannerContext";
+
+export interface DataResponse {
+  limit: number;
+  offset: number;
+  tokens: ResponseItem[];
+}
 
 export interface ResponseItem extends Item {
   collection: {
