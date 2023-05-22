@@ -3,18 +3,19 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import { Grid } from "./Grid";
 import { BannerContext } from "../../context/BannerContext";
+import { Grid } from "./Grid";
+import { AbsoluteSpinner } from "../AbsoluteSpinner";
 import { SelectCollection } from "./SelectCollection";
 import { SaveSnackbar } from "./SaveSnackbar";
 import { BannerModal } from "./BannerModal";
 
-import type { Collection, Item, DataResponse } from "./types";
+import type { Collection, Item as ItemType, DataResponse } from "./types";
 
 const Item: React.FC<{
   children?: React.ReactNode;
-  item?: Item;
-  handleClick(item: Item): void;
+  item?: ItemType;
+  handleClick(item: ItemType): void;
 }> = ({ children, item, handleClick }) => {
   return (
     <div
@@ -64,10 +65,11 @@ const Item: React.FC<{
 
 const NFTSelector = ({ address }: { address: string }) => {
   const { push } = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loadingCollection, setLoadingCollection] = useState(false);
+  const [loadingBanner, setLoadingBanner] = useState(false);
   const [error, setError] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<ItemType[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<string>(null);
   const [bannerBase64, setBannerBase64] = useState<string>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,7 +77,7 @@ const NFTSelector = ({ address }: { address: string }) => {
   const { config, saveNFTs } = useContext(BannerContext);
 
   const fetchData = useCallback(async () => {
-    setLoading(true);
+    setLoadingCollection(true);
     setError(false);
     try {
       const response = await axios.get<DataResponse>(
@@ -125,35 +127,35 @@ const NFTSelector = ({ address }: { address: string }) => {
     } catch (error: unknown) {
       setError(true);
     } finally {
-      setLoading(false);
+      setLoadingCollection(false);
     }
   }, [address]);
 
-  const handleSelect = (newItem: Item) => {
+  const handleSelect = (newItem: ItemType) => {
     if (config.selectedNFTs.length === 3) {
       // ToDo: show warning message
       return;
     }
-    if (config.selectedNFTs.includes(newItem)) {
-      saveNFTs(config.selectedNFTs.filter((item) => item !== newItem));
-      return;
-    }
+
     saveNFTs([...config.selectedNFTs, newItem]);
   };
 
-  const handleRemove = (value: Item) => {
-    saveNFTs(config.selectedNFTs.filter((item) => item !== value));
+  const handleRemove = (oldItem: ItemType) => {
+    saveNFTs(config.selectedNFTs.filter((item) => item !== oldItem));
   };
 
   const handleSubmit = async () => {
     try {
+      setLoadingBanner(true);
       const response = await axios.post("/api/generate-banner", {
         config,
       });
       setBannerBase64(`data:;base64,${response.data}`);
       setIsModalOpen(true);
     } catch (error: unknown) {
-      console.error("Error uploading images:");
+      console.error("Error generating image");
+    } finally {
+      setLoadingBanner(false);
     }
   };
 
@@ -187,12 +189,12 @@ const NFTSelector = ({ address }: { address: string }) => {
         handleClose={() => {
           setIsModalOpen(false);
           setBannerBase64(null);
-          // saveNFTs([]);
         }}
       />
       <Grid
         collectionName={selectedCollection}
         handleSelect={handleSelect}
+        handleRemove={handleRemove}
         items={items}
         selected={config.selectedNFTs}
       />
@@ -219,12 +221,17 @@ const NFTSelector = ({ address }: { address: string }) => {
           </button>
           <button
             className="block w-full min-w-[100px] py-2 rounded bg-indigo-600 text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-indigo-500 disabled:bg-slate-500 disabled:cursor-not-allowed"
-            disabled={config.selectedNFTs.length < 3}
+            disabled={
+              config.selectedNFTs.length < 3 ||
+              loadingBanner ||
+              loadingCollection
+            }
             onClick={handleSubmit}
           >
             Next
           </button>
         </div>
+        {loadingBanner && <AbsoluteSpinner />}
       </SaveSnackbar>
     </div>
   );

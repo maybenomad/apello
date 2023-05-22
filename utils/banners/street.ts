@@ -29,17 +29,17 @@ export const buildStreetImage = async (config: Config) => {
   const imageBufferReflection1 = await sharp(image1.data)
     .resize(317, 317)
     .flip()
-    .blur(1)
+    .blur(3)
     .toBuffer();
   const imageBufferReflection2 = await sharp(image2.data)
     .resize(317, 317)
     .flip()
-    .blur(1)
+    .blur(3)
     .toBuffer();
   const imageBufferReflection3 = await sharp(image3.data)
     .resize(317, 317)
     .flip()
-    .blur(1)
+    .blur(3)
     .toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
@@ -78,7 +78,7 @@ export const buildStreetImage = async (config: Config) => {
       input: svgText,
       left: 0,
       top: 430,
-      blend: "overlay",
+      blend: "over",
     });
   }
 

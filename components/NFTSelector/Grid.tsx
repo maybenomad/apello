@@ -4,6 +4,7 @@ import type { GridProps } from "./types";
 
 export const Grid: React.FC<GridProps> = ({
   items,
+  handleRemove,
   handleSelect,
   selected,
   collectionName,
@@ -42,7 +43,7 @@ export const Grid: React.FC<GridProps> = ({
             <div
               className="absolute w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
               onClick={() => {
-                handleSelect(item);
+                isSelected ? handleRemove(item) : handleSelect(item);
               }}
             >
               {isSelected ? (

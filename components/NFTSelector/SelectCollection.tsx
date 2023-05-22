@@ -9,6 +9,7 @@ export const SelectCollection: React.FC<SelectCollectionProps> = ({
     <select
       className=" border text-md rounded-lg block w-full p-2.5 bg-gray-700 border-gray-500  text-white max-w-md"
       defaultValue="DEFAULT"
+      disabled={!collections?.length}
       onChange={(event) => {
         handleChange(event.target.value ?? null);
       }}

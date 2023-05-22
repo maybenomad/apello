@@ -25,7 +25,8 @@ export interface Collection {
 
 export interface GridProps {
   items: Item[];
-  handleSelect(newItem: any): void;
+  handleRemove(oldItem: Item): void;
+  handleSelect(newItem: Item): void;
   selected: Item[];
   collectionName: string;
 }
