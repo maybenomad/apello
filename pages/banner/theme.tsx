@@ -2,14 +2,17 @@ import React, { useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Stepper } from "../../components/NFTSelector/Stepper";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { BannerContext, BannerStyle } from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton";
 
+const THEMES_BY_TYPE = {
+  twitterHeader: [BannerStyle.Fantasy, BannerStyle.Gallery, BannerStyle.Street],
+  socialRect: [],
+};
+
 const ThemePage: NextPage = () => {
   const { push } = useRouter();
-  const { wallet } = useAuthContext();
   const { config, saveBannerStyle } = useContext(BannerContext);
 
   useEffect(() => {
@@ -36,24 +39,15 @@ const ThemePage: NextPage = () => {
           placed into.
         </p>
         <div className="w-full flex flex-wrap justify-center items-center gap-6">
-          <ImageRadioButton
-            image="/banners/fantasy_thumb.jpg"
-            selected={config.style === BannerStyle.Fantasy}
-            handleChange={() => saveBannerStyle(BannerStyle.Fantasy)}
-            value={BannerStyle.Fantasy}
-          />
-          <ImageRadioButton
-            image="/banners/gallery_thumb.jpg"
-            selected={config.style === BannerStyle.Gallery}
-            handleChange={() => saveBannerStyle(BannerStyle.Gallery)}
-            value={BannerStyle.Gallery}
-          />
-          <ImageRadioButton
-            image="/banners/street_thumb.jpg"
-            selected={config.style === BannerStyle.Street}
-            handleChange={() => saveBannerStyle(BannerStyle.Street)}
-            value={BannerStyle.Street}
-          />
+          {THEMES_BY_TYPE[config.type].map((style: BannerStyle) => (
+            <ImageRadioButton
+              key={style}
+              image={`/banners/${style}_thumb.jpg`}
+              selected={config.style === style}
+              handleChange={() => saveBannerStyle(style)}
+              value={style}
+            />
+          ))}
         </div>
       </div>
       <SaveSnackbar>

@@ -11,13 +11,10 @@ const BannerPage: NextPage = () => {
   const { connectStargaze } = useTerra();
 
   useEffect(() => {
-    console.log(wallet);
-    // ToDo: this is a temp redirect while wallet connect not working
-    // push("/banner/social");
     if (wallet?.type === "stargaze") {
       push("/banner/social");
     }
-  }, [wallet]);
+  }, [push, wallet]);
 
   return (
     <section className="m-10">

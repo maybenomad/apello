@@ -2,13 +2,11 @@ import React, { useContext } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Stepper } from "../../components/NFTSelector/Stepper";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { BannerContext, BannerType } from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 
 const SocialPage: NextPage = () => {
   const { push } = useRouter();
-  const { wallet } = useAuthContext();
   const { config, saveBannerType, saveTwitterUsername } =
     useContext(BannerContext);
 
@@ -61,16 +59,13 @@ const SocialPage: NextPage = () => {
               -
             </option>
             <option value={BannerType.TwitterHeader}>
-              Twitter profile header
+              Twitter Profile Header
             </option>
-            <option value={BannerType.DiscordServer}>
-              Discord server banner
+            <option disabled value={BannerType.SocialRect}>
+              Social Media Post
             </option>
-            <option value={BannerType.SocialRect}>
-              Social media post (rectangular)
-            </option>
-            <option value={BannerType.SocialSquare}>
-              Social media post (square)
+            <option disabled value={BannerType.SocialRect}>
+              Discord Server Banner
             </option>
           </select>
         </label>

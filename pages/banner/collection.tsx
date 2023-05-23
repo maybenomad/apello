@@ -33,10 +33,7 @@ const CollectionPage: NextPage = () => {
         <p className="text-center text-lg mb-10">
           Choose 3 NFTs from your collection to build into your banner image.
         </p>
-        {/* <NFTSelector address="stars14mslxrqf786748jrtf5penzarpeaag8asyeuqd" /> */}
-        {wallet?.type === "stargaze" && (
-          <NFTSelector address="stars14mslxrqf786748jrtf5penzarpeaag8asyeuqd" />
-        )}
+        {wallet?.type === "stargaze" && <NFTSelector address={wallet.adress} />}
       </div>
     </section>
   );

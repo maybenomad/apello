@@ -103,7 +103,7 @@ const NFTSelector = ({ address }: { address: string }) => {
         }
 
         return accumulator;
-      }, []);
+      }, [] as Collection[]);
 
       // Sort collection names A-Z
       groupedByCollectionName.sort((a, b) => {
@@ -119,7 +119,7 @@ const NFTSelector = ({ address }: { address: string }) => {
       // Sort collection items by token id ascending
       groupedByCollectionName.reduce((accumulator, collection) => {
         collection.items.sort((a, b) => {
-          return a.tokenId - b.tokenId;
+          return parseInt(a.tokenId) - parseInt(b.tokenId);
         });
         return accumulator;
       }, []);
@@ -179,12 +179,38 @@ const NFTSelector = ({ address }: { address: string }) => {
   return (
     <div className="w-full flex flex-col items-center">
       {error && <div>Error fetching data</div>}
-      <SelectCollection
-        collections={collections}
-        handleChange={(value: string | null) => {
-          setSelectedCollection(value);
-        }}
-      />
+      {collections.length > 0 ? (
+        <>
+          <SelectCollection
+            collections={collections}
+            handleChange={(value: string | null) => {
+              setSelectedCollection(value);
+            }}
+          />
+          <Grid
+            collectionName={selectedCollection}
+            handleSelect={handleSelect}
+            handleRemove={handleRemove}
+            items={items}
+            selected={config.selectedNFTs}
+          />
+        </>
+      ) : (
+        <p
+          className="bg-purple-100 rounded-lg py-5 px-6 mb-4 text-base text-indigo-900"
+          role="alert"
+        >
+          This wallet has no NFTs. Get some at{" "}
+          <a
+            href="https://www.stargaze.zone/marketplace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-400 hover:no-underline underline"
+          >
+            Stargaze.zone
+          </a>
+        </p>
+      )}
       <BannerModal
         isOpen={isModalOpen}
         bannerBase64={bannerBase64}
@@ -193,13 +219,14 @@ const NFTSelector = ({ address }: { address: string }) => {
           setBannerBase64(null);
         }}
       />
-      <Grid
-        collectionName={selectedCollection}
-        handleSelect={handleSelect}
-        handleRemove={handleRemove}
-        items={items}
-        selected={config.selectedNFTs}
-      />
+      {loadingBanner && (
+        <div
+          className="absolute top-0 right-0 bottom-0 left-0 bg-slate-900 opacity-75"
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        />
+      )}
       <SaveSnackbar>
         <div className="flex gap-3 mb-3">
           <Item handleClick={handleRemove} item={config.selectedNFTs?.[0]}>
