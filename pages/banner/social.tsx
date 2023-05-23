@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { Stepper } from "../../components/NFTSelector/Stepper";
 import { BannerContext, BannerType } from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 
 const SocialPage: NextPage = () => {
   const { push } = useRouter();
+  const { wallet } = useAuthContext();
   const { config, saveBannerType, saveTwitterUsername } =
     useContext(BannerContext);
+
+  useEffect(() => {
+    // Redirect to start of flow if wallet not connected
+    if (wallet?.type !== "stargaze") {
+      push("/banner/");
+    }
+  }, [push, wallet]);
 
   return (
     <section className="m-10 mt-4">
