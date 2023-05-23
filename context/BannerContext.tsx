@@ -21,6 +21,7 @@ export enum BannerStyle {
   Fantasy = "fantasy",
   Gallery = "gallery",
   Street = "street",
+  Jungle = "jungle",
   // To be implemented
   Cyberpunk = "cyberpunk",
   Posters = "posters",

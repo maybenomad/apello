@@ -1,6 +1,7 @@
 import { BannerStyle } from "../../context/BannerContext";
 import { buildFantasyImage } from "../../utils/banners/fantasy";
 import { buildGalleryImage } from "../../utils/banners/gallery";
+import { buildJungleImage } from "../../utils/banners/jungle";
 import { buildStreetImage } from "../../utils/banners/street";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -36,6 +37,9 @@ export default async function handler(
         break;
       case BannerStyle.Street:
         base64Image = await buildStreetImage(req.body.config);
+        break;
+      case BannerStyle.Jungle:
+        base64Image = await buildJungleImage(req.body.config);
         break;
       default:
         throw new Error("Invalid style");

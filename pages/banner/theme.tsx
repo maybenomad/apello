@@ -7,7 +7,12 @@ import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton";
 
 const THEMES_BY_TYPE = {
-  twitterHeader: [BannerStyle.Fantasy, BannerStyle.Gallery, BannerStyle.Street],
+  twitterHeader: [
+    BannerStyle.Fantasy,
+    BannerStyle.Gallery,
+    BannerStyle.Jungle,
+    BannerStyle.Street,
+  ],
   socialRect: [],
 };
 
