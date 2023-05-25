@@ -68,7 +68,7 @@ const NFTSelector = ({ address }: { address: string }) => {
   const [loadingCollection, setLoadingCollection] = useState(false);
   const [loadingBanner, setLoadingBanner] = useState(false);
   const [error, setError] = useState(false);
-  const [collections, setCollections] = useState<Collection[]>([]);
+  const [collections, setCollections] = useState<Collection[]>(null);
   const [items, setItems] = useState<ItemType[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<string>(null);
   const [bannerBase64, setBannerBase64] = useState<string>(null);
@@ -169,7 +169,7 @@ const NFTSelector = ({ address }: { address: string }) => {
 
   useEffect(() => {
     if (selectedCollection) {
-      const associatedCollection = collections.find(
+      const associatedCollection = collections?.find(
         (item) => item.name === selectedCollection
       );
       setItems(associatedCollection.items);
@@ -179,7 +179,7 @@ const NFTSelector = ({ address }: { address: string }) => {
   return (
     <div className="w-full flex flex-col items-center">
       {error && <div>Error fetching data</div>}
-      {collections.length > 0 ? (
+      {collections?.length > 0 && (
         <>
           <SelectCollection
             collections={collections}
@@ -195,7 +195,9 @@ const NFTSelector = ({ address }: { address: string }) => {
             selected={config.selectedNFTs}
           />
         </>
-      ) : (
+      )}
+      {loadingCollection && <p>Looking for NFT collections...</p>}
+      {collections?.length === 0 && (
         <p
           className="bg-purple-100 rounded-lg py-5 px-6 mb-4 text-base text-indigo-900"
           role="alert"
