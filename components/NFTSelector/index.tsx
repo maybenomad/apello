@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ import { SelectCollection } from "./SelectCollection";
 import { SaveSnackbar } from "./SaveSnackbar";
 import { BannerModal } from "./BannerModal";
 
-import type { Collection, Item as ItemType, DataResponse } from "./types";
+import type { Item as ItemType } from "./types";
 
 const Item: React.FC<{
   children?: React.ReactNode;
@@ -65,72 +65,19 @@ const Item: React.FC<{
 
 const NFTSelector = ({ address }: { address: string }) => {
   const { push } = useRouter();
-  const [loadingCollection, setLoadingCollection] = useState(false);
   const [loadingBanner, setLoadingBanner] = useState(false);
-  const [error, setError] = useState(false);
-  const [collections, setCollections] = useState<Collection[]>(null);
   const [items, setItems] = useState<ItemType[]>([]);
   const [selectedCollection, setSelectedCollection] = useState<string>(null);
   const [bannerBase64, setBannerBase64] = useState<string>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { config, saveNFTs } = useContext(BannerContext);
-
-  // ToDo: Move to context or hook
-  const fetchData = useCallback(async () => {
-    setLoadingCollection(true);
-    setError(false);
-    try {
-      const response = await axios.get<DataResponse>(
-        // `https://nft-api.stargaze-apis.com/api/v1beta/profile/${address}/nfts` // Deprecated API
-        `https://nft-api.stargaze-apis.com/api/v1beta/profile/${address}/paginated_nfts?limit=1000`
-      );
-
-      const tokens = response.data.tokens;
-
-      const groupedByCollectionName = tokens.reduce((accumulator, item) => {
-        const { name } = item.collection;
-        const group = accumulator.find((group) => group.name === name);
-        const reducedItem = {
-          tokenId: item.tokenId,
-          image: item.image,
-        };
-
-        if (group) {
-          group.items.push(reducedItem);
-        } else {
-          accumulator.push({ name, items: [reducedItem] });
-        }
-
-        return accumulator;
-      }, [] as Collection[]);
-
-      // Sort collection names A-Z
-      groupedByCollectionName.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
-
-      // Sort collection items by token id ascending
-      groupedByCollectionName.reduce((accumulator, collection) => {
-        collection.items.sort((a, b) => {
-          return parseInt(a.tokenId) - parseInt(b.tokenId);
-        });
-        return accumulator;
-      }, []);
-
-      setCollections(groupedByCollectionName);
-    } catch (error: unknown) {
-      setError(true);
-    } finally {
-      setLoadingCollection(false);
-    }
-  }, [address]);
+  const {
+    config,
+    saveNFTs,
+    collections,
+    isLoadingCollection,
+    errorFetchingCollections,
+  } = useContext(BannerContext);
 
   const handleSelect = (newItem: ItemType) => {
     // If max 3 already selected, replace last with new selection
@@ -162,12 +109,6 @@ const NFTSelector = ({ address }: { address: string }) => {
   };
 
   useEffect(() => {
-    if (address) {
-      fetchData();
-    }
-  }, [address, fetchData]);
-
-  useEffect(() => {
     if (selectedCollection) {
       const associatedCollection = collections?.find(
         (item) => item.name === selectedCollection
@@ -178,7 +119,7 @@ const NFTSelector = ({ address }: { address: string }) => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {error && <div>Error fetching data</div>}
+      {errorFetchingCollections && <div>Error fetching data</div>}
       {collections?.length > 0 && (
         <>
           <SelectCollection
@@ -196,7 +137,7 @@ const NFTSelector = ({ address }: { address: string }) => {
           />
         </>
       )}
-      {loadingCollection && <p>Looking for NFT collections...</p>}
+      {isLoadingCollection && <p>Looking for NFT collections...</p>}
       {collections?.length === 0 && (
         <p
           className="bg-purple-100 rounded-lg py-5 px-6 mb-4 text-base text-indigo-900"
@@ -255,7 +196,7 @@ const NFTSelector = ({ address }: { address: string }) => {
             disabled={
               config.selectedNFTs.length < 3 ||
               loadingBanner ||
-              loadingCollection
+              isLoadingCollection
             }
             onClick={handleSubmit}
           >
