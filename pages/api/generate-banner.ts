@@ -1,7 +1,9 @@
 import { BannerStyle } from "../../context/BannerContext";
+import { buildCoinflipImage } from "../../utils/banners/coinflip";
 import { buildFantasyImage } from "../../utils/banners/fantasy";
 import { buildGalleryImage } from "../../utils/banners/gallery";
 import { buildJungleImage } from "../../utils/banners/jungle";
+import { buildPixelWizardsImage } from "../../utils/banners/pixelwizards";
 import { buildStreetImage } from "../../utils/banners/street";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -40,6 +42,12 @@ export default async function handler(
         break;
       case BannerStyle.Jungle:
         base64Image = await buildJungleImage(req.body.config);
+        break;
+      case BannerStyle.Coinflip:
+        base64Image = await buildCoinflipImage(req.body.config);
+        break;
+      case BannerStyle.PixelWizards:
+        base64Image = await buildPixelWizardsImage(req.body.config);
         break;
       default:
         throw new Error("Invalid style");

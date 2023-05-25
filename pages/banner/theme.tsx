@@ -8,9 +8,11 @@ import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton"
 
 const THEMES_BY_TYPE = {
   twitterHeader: [
+    BannerStyle.Coinflip,
+    BannerStyle.PixelWizards,
     BannerStyle.Fantasy,
-    BannerStyle.Gallery,
     BannerStyle.Jungle,
+    BannerStyle.Gallery,
     BannerStyle.Street,
   ],
   socialRect: [],
