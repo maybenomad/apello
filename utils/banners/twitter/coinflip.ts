@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
-import type { Config } from "../../context/BannerContext";
+import type { Config } from "../../../context/BannerContext";
 
 export const buildCoinflipImage = async (config: Config) => {
   const baseImagePath = path.join(

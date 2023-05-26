@@ -1,10 +1,11 @@
 import { BannerStyle } from "../../context/BannerContext";
-import { buildCoinflipImage } from "../../utils/banners/coinflip";
-import { buildFantasyImage } from "../../utils/banners/fantasy";
-import { buildGalleryImage } from "../../utils/banners/gallery";
-import { buildJungleImage } from "../../utils/banners/jungle";
-import { buildPixelWizardsImage } from "../../utils/banners/pixelwizards";
-import { buildStreetImage } from "../../utils/banners/street";
+import { buildCoinflipImage } from "../../utils/banners/twitter/coinflip";
+import { buildFantasyImage } from "../../utils/banners/twitter/fantasy";
+import { buildGalleryImage } from "../../utils/banners/twitter/gallery";
+import { buildGelottoImage } from "../../utils/banners/twitter/gelotto";
+import { buildJungleImage } from "../../utils/banners/twitter/jungle";
+import { buildPixelWizardsImage } from "../../utils/banners/twitter/pixelwizards";
+import { buildStreetImage } from "../../utils/banners/twitter/street";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = { error: string } | string;
@@ -48,6 +49,9 @@ export default async function handler(
         break;
       case BannerStyle.PixelWizards:
         base64Image = await buildPixelWizardsImage(req.body.config);
+        break;
+      case BannerStyle.Gelotto:
+        base64Image = await buildGelottoImage(req.body.config);
         break;
       default:
         throw new Error("Invalid style");

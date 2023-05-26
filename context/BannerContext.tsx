@@ -33,6 +33,7 @@ export enum BannerStyle {
   Jungle = "jungle",
   // Collabs
   Coinflip = "coinflip",
+  Gelotto = "gelotto",
   PixelWizards = "pixel wizards",
   // To be implemented
   Cyberpunk = "cyberpunk",
