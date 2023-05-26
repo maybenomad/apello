@@ -14,6 +14,7 @@ const THEMES_BY_TYPE = {
     BannerStyle.Fantasy,
     BannerStyle.Jungle,
     BannerStyle.Apeclub,
+    BannerStyle.Posters,
     BannerStyle.Gallery,
     BannerStyle.Street,
   ],

@@ -31,13 +31,13 @@ export enum BannerStyle {
   Street = "street",
   Jungle = "jungle",
   Apeclub = "apeclub",
+  Posters = "posters",
   // Collabs
   Coinflip = "coinflip",
   Gelotto = "gelotto",
   PixelWizards = "pixel wizards",
   // To be implemented
   // Cyberpunk = "cyberpunk",
-  // Posters = "posters",
   // Synthwave = "synthwave",
   // Tron = "Tron",
   // Warpspeed = "warpspeed",

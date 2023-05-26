@@ -6,6 +6,7 @@ import { buildGalleryImage } from "../../utils/banners/twitter/gallery";
 import { buildGelottoImage } from "../../utils/banners/twitter/gelotto";
 import { buildJungleImage } from "../../utils/banners/twitter/jungle";
 import { buildPixelWizardsImage } from "../../utils/banners/twitter/pixelwizards";
+import { buildPostersImage } from "../../utils/banners/twitter/posters";
 import { buildStreetImage } from "../../utils/banners/twitter/street";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -57,6 +58,9 @@ export default async function handler(
         break;
       case BannerStyle.Apeclub:
         base64Image = await buildApeclubImage(req.body.config);
+        break;
+      case BannerStyle.Posters:
+        base64Image = await buildPostersImage(req.body.config);
         break;
       default:
         throw new Error("Invalid style");
