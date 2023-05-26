@@ -1,4 +1,5 @@
 import { BannerStyle } from "../../context/BannerContext";
+import { buildApeclubImage } from "../../utils/banners/twitter/apeclub";
 import { buildCoinflipImage } from "../../utils/banners/twitter/coinflip";
 import { buildFantasyImage } from "../../utils/banners/twitter/fantasy";
 import { buildGalleryImage } from "../../utils/banners/twitter/gallery";
@@ -31,6 +32,7 @@ export default async function handler(
       throw new Error("Missing config");
     }
 
+    // ToDo: refactor this. It just supports 1 style and is too verbose
     switch (req.body.config.style) {
       case BannerStyle.Gallery:
         base64Image = await buildGalleryImage(req.body.config);
@@ -52,6 +54,9 @@ export default async function handler(
         break;
       case BannerStyle.Gelotto:
         base64Image = await buildGelottoImage(req.body.config);
+        break;
+      case BannerStyle.Apeclub:
+        base64Image = await buildApeclubImage(req.body.config);
         break;
       default:
         throw new Error("Invalid style");

@@ -13,6 +13,7 @@ const THEMES_BY_TYPE = {
     BannerStyle.PixelWizards,
     BannerStyle.Fantasy,
     BannerStyle.Jungle,
+    BannerStyle.Apeclub,
     BannerStyle.Gallery,
     BannerStyle.Street,
   ],

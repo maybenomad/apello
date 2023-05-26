@@ -26,21 +26,21 @@ export interface Config {
 }
 
 export enum BannerStyle {
-  // Implemented as Twitter banner only so far
   Fantasy = "fantasy",
   Gallery = "gallery",
   Street = "street",
   Jungle = "jungle",
+  Apeclub = "apeclub",
   // Collabs
   Coinflip = "coinflip",
   Gelotto = "gelotto",
   PixelWizards = "pixel wizards",
   // To be implemented
-  Cyberpunk = "cyberpunk",
-  Posters = "posters",
-  Synthwave = "synthwave",
-  Tron = "Tron",
-  Warpspeed = "warpspeed",
+  // Cyberpunk = "cyberpunk",
+  // Posters = "posters",
+  // Synthwave = "synthwave",
+  // Tron = "Tron",
+  // Warpspeed = "warpspeed",
 }
 
 export enum BannerType {
