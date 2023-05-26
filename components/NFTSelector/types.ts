@@ -53,3 +53,11 @@ export interface ImageRadioButtonProps {
   value: BannerStyle;
   handleChange(value: BannerStyle): void;
 }
+
+export interface ImageRadioButtonProps {
+  image: string;
+  selected: boolean;
+  value: BannerStyle;
+  isCollab: boolean;
+  handleChange(): void;
+}

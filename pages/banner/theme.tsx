@@ -6,11 +6,15 @@ import { BannerContext, BannerStyle } from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton";
 
+const COLLAB_THEMES = [
+  BannerStyle.Coinflip,
+  BannerStyle.Gelotto,
+  BannerStyle.PixelWizards,
+];
+
 const THEMES_BY_TYPE = {
   twitterHeader: [
-    BannerStyle.Coinflip,
-    BannerStyle.Gelotto,
-    BannerStyle.PixelWizards,
+    ...COLLAB_THEMES,
     BannerStyle.Fantasy,
     BannerStyle.Jungle,
     BannerStyle.Apeclub,
@@ -52,6 +56,7 @@ const ThemePage: NextPage = () => {
           {THEMES_BY_TYPE[config.type].map((style: BannerStyle) => (
             <ImageRadioButton
               key={style}
+              isCollab={COLLAB_THEMES.includes(style)}
               image={`/banners/${style}_thumb.jpg`}
               selected={config.style === style}
               handleChange={() => saveBannerStyle(style)}

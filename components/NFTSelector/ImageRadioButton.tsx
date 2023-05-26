@@ -1,10 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import type { ImageRadioButtonProps } from "./types";
 
-export const ImageRadioButton = ({ handleChange, image, selected, value }) => {
+export const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
+  handleChange,
+  image,
+  isCollab,
+  selected,
+  value,
+}) => {
   return (
     <label className=" cursor-pointer flex flex-col-reverse gap-2 items-center capitalize">
-      {value}
+      <span className={isCollab ? "text-indigo-300" : ""}>{value}</span>
       <input
         type="radio"
         value={value}
