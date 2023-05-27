@@ -53,8 +53,8 @@ export const buildGeneralPostersImage = async (config: Config) => {
   // Add Twitter username if provided
   if (config.twitterUsername?.length > 0) {
     const svgText = Buffer.from(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="70">
-      <text stroke="black" stroke-width="1" x="1060" y="48" font-size="50" font-weigh="bold" text-anchor="end" font-family="Arial, Helvetica, sans-serif" fill="white">@${config.twitterUsername}</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="70">
+      <text stroke="black" stroke-width="1" x="1260" y="48" font-size="46" font-weigh="bold" text-anchor="end" font-family="Arial, Helvetica, sans-serif" fill="white">@${config.twitterUsername}</text>
     </svg>
     `);
 
