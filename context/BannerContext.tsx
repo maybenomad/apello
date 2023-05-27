@@ -36,11 +36,6 @@ export enum BannerStyle {
   Coinflip = "coinflip",
   Gelotto = "gelotto",
   PixelWizards = "pixel wizards",
-  // To be implemented
-  // Cyberpunk = "cyberpunk",
-  // Synthwave = "synthwave",
-  // Tron = "Tron",
-  // Warpspeed = "warpspeed",
 }
 
 export enum BannerType {
@@ -153,11 +148,6 @@ export const BannerContextProvider: React.FC<{
       fetchData(wallet.adress);
     }
   }, [wallet]);
-
-  // log config if change
-  useEffect(() => {
-    console.log(config);
-  }, [config]);
 
   return (
     <BannerContext.Provider
