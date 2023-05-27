@@ -6,15 +6,21 @@ import { BannerContext, BannerStyle } from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton";
 
+// Themes added here will get different text color on selector
 const COLLAB_THEMES = [
   BannerStyle.Coinflip,
   BannerStyle.Gelotto,
   BannerStyle.PixelWizards,
 ];
 
+// Themes available to be selected by type
 const THEMES_BY_TYPE = {
   twitterHeader: [
-    ...COLLAB_THEMES,
+    // Collabs
+    BannerStyle.Coinflip,
+    BannerStyle.Gelotto,
+    BannerStyle.PixelWizards,
+    // General
     BannerStyle.Fantasy,
     BannerStyle.Jungle,
     BannerStyle.Apeclub,
@@ -22,7 +28,7 @@ const THEMES_BY_TYPE = {
     BannerStyle.Gallery,
     BannerStyle.Street,
   ],
-  socialRect: [],
+  general: [BannerStyle.Posters],
 };
 
 const ThemePage: NextPage = () => {

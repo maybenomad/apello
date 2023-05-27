@@ -7,7 +7,7 @@ import type { Config } from "../../../context/BannerContext";
 export const buildCoinflipImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners",
+    "public/banners/twitter_header",
     "coinflip.png"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);

@@ -45,7 +45,7 @@ export enum BannerStyle {
 
 export enum BannerType {
   TwitterHeader = "twitterHeader",
-  SocialRect = "socialRect",
+  General = "general",
   DEFAULT = "DEFAULT",
 }
 
@@ -153,6 +153,11 @@ export const BannerContextProvider: React.FC<{
       fetchData(wallet.adress);
     }
   }, [wallet]);
+
+  // log config if change
+  useEffect(() => {
+    console.log(config);
+  }, [config]);
 
   return (
     <BannerContext.Provider

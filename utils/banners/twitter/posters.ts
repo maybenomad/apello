@@ -7,7 +7,7 @@ import type { Config } from "../../../context/BannerContext";
 export const buildPostersImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners",
+    "public/banners/twitter_header",
     "posters.jpg"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);
@@ -15,7 +15,7 @@ export const buildPostersImage = async (config: Config) => {
 
   const overlayImagePath = path.join(
     process.cwd(),
-    "public/banners",
+    "public/banners/twitter_header",
     "posters_overlay.png"
   );
   const overlayImageBuffer = fs.readFileSync(overlayImagePath);

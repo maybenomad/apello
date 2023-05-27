@@ -4,21 +4,14 @@ import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
 import type { Config } from "../../../context/BannerContext";
 
-export const buildGalleryImage = async (config: Config) => {
+export const buildDefaultImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners/twitter_header",
-    "gallery.png"
+    "public/banners/general",
+    `${config.style}.jpg`
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
-
-  const overlayImagePath = path.join(
-    process.cwd(),
-    "public/banners/twitter_header",
-    "gallery_overlay.png"
-  );
-  const overlayImageBuffer = fs.readFileSync(overlayImagePath);
 
   const image1 = await axios.get(config.selectedNFTs[0].image, {
     responseType: "arraybuffer",
@@ -30,15 +23,14 @@ export const buildGalleryImage = async (config: Config) => {
     responseType: "arraybuffer",
   });
 
-  const imageBuffer1 = await sharp(image1.data).resize(244, 244).toBuffer();
-  const imageBuffer2 = await sharp(image2.data).resize(244, 244).toBuffer();
-  const imageBuffer3 = await sharp(image3.data).resize(244, 244).toBuffer();
+  const imageBuffer1 = await sharp(image1.data).resize(274, 274).toBuffer();
+  const imageBuffer2 = await sharp(image2.data).resize(274, 274).toBuffer();
+  const imageBuffer3 = await sharp(image3.data).resize(274, 274).toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
-    { input: imageBuffer1, left: 228, top: 86 },
-    { input: imageBuffer2, left: 628, top: 86 },
-    { input: imageBuffer3, left: 1027, top: 86 },
-    { input: overlayImageBuffer, left: 0, top: 0 },
+    { input: imageBuffer1, left: 464, top: 109 },
+    { input: imageBuffer2, left: 810, top: 109 },
+    { input: imageBuffer3, left: 1156, top: 109 },
   ];
 
   // Add Twitter username if provided
@@ -53,7 +45,7 @@ export const buildGalleryImage = async (config: Config) => {
       input: svgText,
       left: 0,
       top: 430,
-      blend: "overlay",
+      blend: "over",
     });
   }
 

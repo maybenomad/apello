@@ -1,4 +1,6 @@
-import { BannerStyle } from "../../context/BannerContext";
+import { BannerStyle, BannerType, Config } from "../../context/BannerContext";
+import { buildDefaultImage } from "../../utils/banners/general/default";
+import { buildGeneralPostersImage } from "../../utils/banners/general/posters";
 import { buildApeclubImage } from "../../utils/banners/twitter/apeclub";
 import { buildCoinflipImage } from "../../utils/banners/twitter/coinflip";
 import { buildFantasyImage } from "../../utils/banners/twitter/fantasy";
@@ -9,6 +11,43 @@ import { buildPixelWizardsImage } from "../../utils/banners/twitter/pixelwizards
 import { buildPostersImage } from "../../utils/banners/twitter/posters";
 import { buildStreetImage } from "../../utils/banners/twitter/street";
 import type { NextApiRequest, NextApiResponse } from "next";
+
+const getImage = async (config: Config) => {
+  if (config.type === BannerType.TwitterHeader) {
+    // ToDo: refactor this. It just supports 1 style and is too verbos
+    switch (config.style) {
+      case BannerStyle.Gallery:
+        return await buildGalleryImage(config);
+      case BannerStyle.Fantasy:
+        return await buildFantasyImage(config);
+      case BannerStyle.Street:
+        return await buildStreetImage(config);
+      case BannerStyle.Jungle:
+        return await buildJungleImage(config);
+      case BannerStyle.Coinflip:
+        return await buildCoinflipImage(config);
+      case BannerStyle.PixelWizards:
+        return await buildPixelWizardsImage(config);
+      case BannerStyle.Gelotto:
+        return await buildGelottoImage(config);
+      case BannerStyle.Apeclub:
+        return await buildApeclubImage(config);
+      case BannerStyle.Posters:
+        return await buildPostersImage(config);
+      default:
+        throw new Error("Invalid style");
+    }
+  }
+
+  if (config.type === BannerType.General) {
+    switch (config.style) {
+      case BannerStyle.Posters:
+        return await buildGeneralPostersImage(config);
+      default:
+        return await buildDefaultImage(config);
+    }
+  }
+};
 
 type ResponseData = { error: string } | string;
 
@@ -27,44 +66,11 @@ export default async function handler(
   }
 
   try {
-    let base64Image: string;
-
     if (!req.body.config) {
       throw new Error("Missing config");
     }
 
-    // ToDo: refactor this. It just supports 1 style and is too verbose
-    switch (req.body.config.style) {
-      case BannerStyle.Gallery:
-        base64Image = await buildGalleryImage(req.body.config);
-        break;
-      case BannerStyle.Fantasy:
-        base64Image = await buildFantasyImage(req.body.config);
-        break;
-      case BannerStyle.Street:
-        base64Image = await buildStreetImage(req.body.config);
-        break;
-      case BannerStyle.Jungle:
-        base64Image = await buildJungleImage(req.body.config);
-        break;
-      case BannerStyle.Coinflip:
-        base64Image = await buildCoinflipImage(req.body.config);
-        break;
-      case BannerStyle.PixelWizards:
-        base64Image = await buildPixelWizardsImage(req.body.config);
-        break;
-      case BannerStyle.Gelotto:
-        base64Image = await buildGelottoImage(req.body.config);
-        break;
-      case BannerStyle.Apeclub:
-        base64Image = await buildApeclubImage(req.body.config);
-        break;
-      case BannerStyle.Posters:
-        base64Image = await buildPostersImage(req.body.config);
-        break;
-      default:
-        throw new Error("Invalid style");
-    }
+    const base64Image = await getImage(req.body.config);
 
     res.setHeader("Content-Type", "text/plain");
     res.status(200).send(base64Image);

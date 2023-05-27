@@ -7,16 +7,16 @@ import type { Config } from "../../../context/BannerContext";
 export const buildJungleImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners",
-    "jungle1.jpg"
+    "public/banners/twitter_header",
+    "jungle.jpg"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
   const overlayImagePath = path.join(
     process.cwd(),
-    "public/banners",
-    "jungle2.png"
+    "public/banners/twitter_header",
+    "jungle_overlay.png"
   );
   const overlayImageBuffer = fs.readFileSync(overlayImagePath);
 

@@ -70,12 +70,8 @@ const SocialPage: NextPage = () => {
             <option value={BannerType.TwitterHeader}>
               Twitter Profile Header
             </option>
-            <option disabled value={BannerType.SocialRect}>
-              Social Media Post (coming soon)
-            </option>
-            <option disabled value={BannerType.SocialRect}>
-              Discord Server Banner (coming soon)
-            </option>
+            <option value={BannerType.General}>Social Media Post</option>
+            <option value={BannerType.General}>Discord Server Banner</option>
           </select>
         </label>
       </div>

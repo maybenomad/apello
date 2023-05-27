@@ -7,7 +7,7 @@ import type { Config } from "../../../context/BannerContext";
 export const buildGelottoImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners",
+    "public/banners/twitter_header",
     "gelotto.jpg"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);

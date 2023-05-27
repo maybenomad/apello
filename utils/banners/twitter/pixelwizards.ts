@@ -7,7 +7,7 @@ import type { Config } from "../../../context/BannerContext";
 export const buildPixelWizardsImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners",
+    "public/banners/twitter_header",
     "pixel wizards.png"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);

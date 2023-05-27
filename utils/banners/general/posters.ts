@@ -4,19 +4,19 @@ import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
 import type { Config } from "../../../context/BannerContext";
 
-export const buildGalleryImage = async (config: Config) => {
+export const buildGeneralPostersImage = async (config: Config) => {
   const baseImagePath = path.join(
     process.cwd(),
-    "public/banners/twitter_header",
-    "gallery.png"
+    "public/banners/general/",
+    "posters.jpg"
   );
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
   const overlayImagePath = path.join(
     process.cwd(),
-    "public/banners/twitter_header",
-    "gallery_overlay.png"
+    "public/banners/general/",
+    "posters_overlay.png"
   );
   const overlayImageBuffer = fs.readFileSync(overlayImagePath);
 
@@ -30,30 +30,38 @@ export const buildGalleryImage = async (config: Config) => {
     responseType: "arraybuffer",
   });
 
-  const imageBuffer1 = await sharp(image1.data).resize(244, 244).toBuffer();
-  const imageBuffer2 = await sharp(image2.data).resize(244, 244).toBuffer();
-  const imageBuffer3 = await sharp(image3.data).resize(244, 244).toBuffer();
+  const imageBuffer1 = await sharp(image1.data)
+    .resize(317, 317)
+    .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
+  const imageBuffer2 = await sharp(image2.data)
+    .resize(342, 342)
+    .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
+  const imageBuffer3 = await sharp(image3.data)
+    .resize(330, 330)
+    .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
-    { input: imageBuffer1, left: 228, top: 86 },
-    { input: imageBuffer2, left: 628, top: 86 },
-    { input: imageBuffer3, left: 1027, top: 86 },
+    { input: imageBuffer1, left: 47, top: 144 },
+    { input: imageBuffer2, left: 460, top: 174 },
+    { input: imageBuffer3, left: 882, top: 160 },
     { input: overlayImageBuffer, left: 0, top: 0 },
   ];
 
   // Add Twitter username if provided
   if (config.twitterUsername?.length > 0) {
     const svgText = Buffer.from(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="70">
-      <text opacity="0.5" x="1480" y="48" font-size="48" font-weigh="bold" text-anchor="end" font-family="Arial, Helvetica, sans-serif" fill="white">@${config.twitterUsername}</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="70">
+      <text stroke="black" stroke-width="1" x="1060" y="48" font-size="50" font-weigh="bold" text-anchor="end" font-family="Arial, Helvetica, sans-serif" fill="white">@${config.twitterUsername}</text>
     </svg>
     `);
 
     compositeOptions.push({
       input: svgText,
       left: 0,
-      top: 430,
-      blend: "overlay",
+      top: 660,
     });
   }
 
