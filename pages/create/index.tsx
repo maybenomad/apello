@@ -24,7 +24,7 @@ const BannerPage: NextPage = () => {
       <Head>
         <title>NFT Image Creator | Cosmos Ape Alliance x Apello</title>
         <meta
-          name="description"
+          name="og:description"
           content="Create a dynamic image using NFTs from your Stargaze wallet."
         />
         <meta
