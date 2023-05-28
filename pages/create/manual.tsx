@@ -41,7 +41,7 @@ const ManualAddressPage: NextPage = () => {
         <button
           className="block w-full min-w-[200px] py-2 rounded bg-indigo-600 text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-indigo-700 disabled:bg-slate-500 disabled:cursor-not-allowed"
           disabled={
-            !config.manualWalletAddress.startsWith("stars") &&
+            !config.manualWalletAddress.startsWith("stars") ||
             config.manualWalletAddress.length < STARGAZE_WALLET_ADDRESS_LENGTH
           }
           onClick={() => {

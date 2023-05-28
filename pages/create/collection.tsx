@@ -20,6 +20,13 @@ const CollectionPage: NextPage = () => {
     }
   }, [config, push]);
 
+  useEffect(() => {
+    // Redirect to start of flow if wallet not connected
+    if (wallet?.type !== "stargaze" && !config.manualWalletAddress?.length) {
+      push("/create/");
+    }
+  }, [config.manualWalletAddress, push, wallet]);
+
   if (config.type === "DEFAULT" || !config.style) {
     return null;
   }
