@@ -44,8 +44,8 @@ export const buildJungleImage = async (config: Config) => {
     .toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
-    { input: imageBuffer1, left: 470, top: 123 },
-    { input: imageBuffer2, left: 810, top: 94 },
+    { input: imageBuffer1, left: 470, top: 120 },
+    { input: imageBuffer2, left: 806, top: 94 },
     { input: imageBuffer3, left: 1176, top: 133 },
     { input: overlayImageBuffer, left: 0, top: 0 },
   ];
