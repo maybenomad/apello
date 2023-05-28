@@ -17,12 +17,40 @@ const ManualAddressPage: NextPage = () => {
       <Head>
         <title>NFT Image Creator | Cosmos Ape Alliance x Apello</title>
         <meta
-          name="og:description"
+          key="description"
+          name="description"
           content="Create a dynamic image using NFTs from your Stargaze wallet."
         />
         <meta
+          key="og-title"
+          property="og:title"
+          content="NFT Image Creator | Cosmos Ape Alliance x Apello"
+        />
+        <meta
           property="og:image"
+          key="og:image"
           content="https://www.apello.xyz/banners/og-img-banner.jpg"
+        />
+        <meta
+          key="og-description"
+          property="og:description"
+          content="Create a dynamic image using NFTs from your Stargaze wallet."
+        />
+        <meta
+          key="twitter-title"
+          name="twitter:title"
+          content="NFT Image Creator | Cosmos Ape Alliance x Apello"
+        />
+        <meta
+          key="twitter-description"
+          name="twitter:description"
+          content="Create a dynamic image using NFTs from your Stargaze wallet."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@apello_app" />
+        <meta
+          name="twitter:image"
+          content={`https://www.apello.xyz/banners/og-img-banner.jpg`}
         />
       </Head>
       <section className="m-10">
