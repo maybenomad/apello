@@ -45,7 +45,7 @@ const ThemePage: NextPage = () => {
     // If no "type", redirect to start
     // User needs to start from beginning
     if (config.type === "DEFAULT") {
-      push("/banner/social");
+      push("/create/social");
     }
   }, [config, push]);
 
@@ -82,7 +82,7 @@ const ThemePage: NextPage = () => {
           <button
             className="block w-full min-w-[100px] py-2 rounded border border-slate-500 bg- text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-slate-800 disabled:bg-slate-400 disabled:cursor-not-allowed"
             onClick={() => {
-              push("/banner/social");
+              push("/create/social");
             }}
           >
             Back
@@ -90,7 +90,7 @@ const ThemePage: NextPage = () => {
           <button
             className="block w-full min-w-[100px] py-2 rounded bg-indigo-600 text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-indigo-500 disabled:bg-slate-500 disabled:cursor-not-allowed"
             onClick={() => {
-              push("/banner/collection");
+              push("/create/collection");
             }}
           >
             Next

@@ -186,7 +186,7 @@ const NFTSelector = ({ address }: { address: string }) => {
           <button
             className="block w-full min-w-[100px] py-2 rounded border border-slate-500 bg- text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-slate-800 disabled:bg-slate-400 disabled:cursor-not-allowed"
             onClick={() => {
-              push("/banner/theme");
+              push("/create/theme");
             }}
           >
             Back

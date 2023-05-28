@@ -15,7 +15,7 @@ const CollectionPage: NextPage = () => {
     // If no "type" or "style", redirect to start
     // User needs to start from beginning
     if (config.type === "DEFAULT" || !config.style) {
-      push("/banner/social");
+      push("/create/social");
     }
   }, [config, push]);
 

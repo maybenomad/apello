@@ -15,7 +15,7 @@ const SocialPage: NextPage = () => {
   useEffect(() => {
     // Redirect to start of flow if wallet not connected
     if (wallet?.type !== "stargaze") {
-      push("/banner/");
+      push("/create/");
     }
   }, [push, wallet]);
 
@@ -87,7 +87,7 @@ const SocialPage: NextPage = () => {
           className="block w-full min-w-[200px] py-2 rounded bg-indigo-600 text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-indigo-700 disabled:bg-slate-500 disabled:cursor-not-allowed"
           disabled={config.type === BannerType.DEFAULT}
           onClick={() => {
-            push("/banner/theme");
+            push("/create/theme");
           }}
         >
           Next

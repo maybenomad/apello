@@ -12,7 +12,7 @@ const BannerPage: NextPage = () => {
 
   useEffect(() => {
     if (wallet?.type === "stargaze") {
-      push("/banner/social");
+      push("/create/social");
     }
   }, [push, wallet]);
 
