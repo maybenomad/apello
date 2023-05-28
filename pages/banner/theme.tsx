@@ -2,7 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Stepper } from "../../components/NFTSelector/Stepper";
-import { BannerContext, BannerStyle } from "../../context/BannerContext";
+import {
+  BannerContext,
+  BannerStyle,
+  BannerType,
+} from "../../context/BannerContext";
 import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { ImageRadioButton } from "../../components/NFTSelector/ImageRadioButton";
 
@@ -15,7 +19,7 @@ const COLLAB_THEMES = [
 
 // Themes available to be selected by type
 const THEMES_BY_TYPE = {
-  twitterHeader: [
+  [BannerType.TwitterHeader]: [
     // Collabs
     BannerStyle.Coinflip,
     BannerStyle.Gelotto,
@@ -28,7 +32,9 @@ const THEMES_BY_TYPE = {
     BannerStyle.Gallery,
     BannerStyle.Street,
   ],
-  general: [BannerStyle.Posters],
+  [BannerType.General]: [BannerStyle.Posters],
+  [BannerType.DiscordServer]: [BannerStyle.Posters],
+  [BannerType.ProfilePhoto]: [BannerStyle.ProfilePhotoCAA],
 };
 
 const ThemePage: NextPage = () => {

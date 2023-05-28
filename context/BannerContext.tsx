@@ -26,12 +26,15 @@ export interface Config {
 }
 
 export enum BannerStyle {
+  // Banners or Social Media
   Fantasy = "fantasy",
   Gallery = "gallery",
   Street = "street",
   Jungle = "jungle",
   Apeclub = "apeclub",
   Posters = "posters",
+  // PFPs
+  ProfilePhotoCAA = "pfp-caa",
   // Collabs
   Coinflip = "coinflip",
   Gelotto = "gelotto",
@@ -42,7 +45,7 @@ export enum BannerType {
   TwitterHeader = "twitterHeader",
   General = "general",
   DiscordServer = "discordServer",
-  PFP = "pfp",
+  ProfilePhoto = "profilePhoto",
   DEFAULT = "DEFAULT",
 }
 

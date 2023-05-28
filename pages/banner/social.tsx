@@ -76,7 +76,7 @@ const SocialPage: NextPage = () => {
             <option disabled value={BannerType.DiscordServer}>
               Discord Server Banner (coming soon)
             </option>
-            <option disabled value={BannerType.PFP}>
+            <option disabled value={BannerType.ProfilePhoto}>
               Profile Photo (coming soon)
             </option>
           </select>
