@@ -29,6 +29,7 @@
     "tsparticles": "^2.3.4"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/react": "18.2.6",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
