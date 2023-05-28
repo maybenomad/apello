@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -122,7 +123,7 @@ const NFTSelector = ({ address }: { address: string }) => {
   useEffect(() => {
     if (loadingBanner) {
       const timer1 = setTimeout(
-        () => setLoadingText("We're still creating..."),
+        () => setLoadingText("Still doing stuff..."),
         4000
       );
       const timer2 = setTimeout(
@@ -142,7 +143,23 @@ const NFTSelector = ({ address }: { address: string }) => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {errorFetchingCollections && <div>Error fetching data</div>}
+      {errorFetchingCollections && (
+        <div>
+          Error fetching data.{" "}
+          {config.manualWalletAddress?.length > 0 && (
+            <>
+              If you entered a manual address,{" "}
+              <Link
+                className="text-center text-lg underline hover:no-underline text-indigo-300"
+                href="/create/manual"
+              >
+                check for typos.
+              </Link>
+              .
+            </>
+          )}
+        </div>
+      )}
       {collections?.length > 0 && (
         <>
           <SelectCollection

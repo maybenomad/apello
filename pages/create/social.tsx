@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import React, { useContext, useEffect } from "react";
+
+import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
 import { Stepper } from "../../components/NFTSelector/Stepper";
 import { BannerContext, BannerType } from "../../context/BannerContext";
-import { SaveSnackbar } from "../../components/NFTSelector/SaveSnackbar";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const SocialPage: NextPage = () => {
   const { push } = useRouter();
@@ -14,10 +15,10 @@ const SocialPage: NextPage = () => {
 
   useEffect(() => {
     // Redirect to start of flow if wallet not connected
-    if (wallet?.type !== "stargaze") {
+    if (wallet?.type !== "stargaze" && !config.manualWalletAddress?.length) {
       push("/create/");
     }
-  }, [push, wallet]);
+  }, [config.manualWalletAddress, push, wallet]);
 
   return (
     <section className="m-10 mt-4">
@@ -32,7 +33,7 @@ const SocialPage: NextPage = () => {
         </p>
         <label className="max-w-sm w-full text-lg mb-6">
           Twitter Handle (optional)
-          <div className="h-[50px] relative">
+          <div className="h-[50px] relative mt-1">
             <input
               type="text"
               placeholder="username"
@@ -58,7 +59,7 @@ const SocialPage: NextPage = () => {
           Type of Banner*
           <select
             placeholder="username"
-            className=" border text-md rounded-lg block w-full p-2.5 mt-1 bg-gray-700 border-gray-500 text-white max-w-md"
+            className="border text-md rounded-lg block w-full p-2.5 mt-1 bg-gray-700 border-gray-500 text-white max-w-md"
             value={config.type}
             onChange={(event) => {
               saveBannerType(event.target.value as BannerType);

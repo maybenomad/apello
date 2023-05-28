@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { BannerContext } from "../../context/BannerContext";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import React, { useContext, useEffect } from "react";
+
 import NFTSelector from "../../components/NFTSelector";
 import { Stepper } from "../../components/NFTSelector/Stepper";
+import { BannerContext } from "../../context/BannerContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const CollectionPage: NextPage = () => {
   const { push } = useRouter();
@@ -33,7 +34,10 @@ const CollectionPage: NextPage = () => {
         <p className="text-center text-lg mb-10">
           Choose 3 NFTs from your collection to build into your banner image.
         </p>
-        {wallet?.type === "stargaze" && <NFTSelector address={wallet.adress} />}
+        {((wallet?.type === "stargaze" && wallet?.adress) ||
+          config.manualWalletAddress?.length > 0) && (
+          <NFTSelector address={wallet?.adress ?? config.manualWalletAddress} />
+        )}
       </div>
     </section>
   );

@@ -1,9 +1,10 @@
-import React, { createContext, useEffect, useCallback, useState } from "react";
 import axios from "axios";
+import React, { createContext, useCallback, useEffect, useState } from "react";
+
 import type {
   Collection,
-  Item,
   DataResponse,
+  Item,
 } from "../components/NFTSelector/types";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -12,6 +13,7 @@ export type BannerContextType = {
   isLoadingCollection: boolean;
   errorFetchingCollections: boolean;
   collections: Collection[];
+  saveManualWalletAddress: (address: string) => void;
   saveTwitterUsername: (username: string) => void;
   saveBannerStyle: (style: string) => void;
   saveBannerType: (type: BannerType) => void;
@@ -19,6 +21,7 @@ export type BannerContextType = {
 };
 
 export interface Config {
+  manualWalletAddress: string;
   twitterUsername: string;
   style: BannerStyle;
   selectedNFTs: Item[];
@@ -50,6 +53,7 @@ export enum BannerType {
 }
 
 const INITIAL_CONFIG: Config = {
+  manualWalletAddress: "",
   twitterUsername: "",
   style: null,
   selectedNFTs: [],
@@ -61,6 +65,7 @@ export const BannerContext = createContext<BannerContextType>({
   isLoadingCollection: false,
   errorFetchingCollections: false,
   collections: null,
+  saveManualWalletAddress: () => {},
   saveTwitterUsername: () => {},
   saveBannerStyle: () => {},
   saveBannerType: () => {},
@@ -76,6 +81,10 @@ export const BannerContextProvider: React.FC<{
   const [collections, setCollections] = useState<Collection[]>(null);
   const [errorFetchingCollections, setErrorFetchingCollections] =
     useState(false);
+
+  const saveManualWalletAddress = useCallback((address: string) => {
+    setConfig((state) => ({ ...state, manualWalletAddress: address }));
+  }, []);
 
   const saveNFTs = useCallback((nfts: Item[]) => {
     setConfig((state) => ({ ...state, selectedNFTs: nfts }));
@@ -149,15 +158,19 @@ export const BannerContextProvider: React.FC<{
   }, []);
 
   useEffect(() => {
+    // Fetch collection data with wallet address or manually entered address
     if (wallet?.type === "stargaze" && wallet?.adress) {
       fetchData(wallet.adress);
+    } else if (config.manualWalletAddress?.length > 0) {
+      fetchData(config.manualWalletAddress);
     }
-  }, [wallet]);
+  }, [wallet, config.manualWalletAddress]);
 
   return (
     <BannerContext.Provider
       value={{
         config,
+        saveManualWalletAddress,
         saveTwitterUsername,
         saveBannerStyle,
         saveBannerType,
