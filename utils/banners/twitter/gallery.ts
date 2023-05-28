@@ -1,8 +1,10 @@
+import axios from "axios";
 import fs from "fs";
 import path from "path";
-import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
+
 import type { Config } from "../../../context/BannerContext";
+import { RESIZE_OPTIONS } from "../constants";
 
 export const buildGalleryImage = async (config: Config) => {
   const baseImagePath = path.join(
@@ -30,9 +32,18 @@ export const buildGalleryImage = async (config: Config) => {
     responseType: "arraybuffer",
   });
 
-  const imageBuffer1 = await sharp(image1.data).resize(244, 244).toBuffer();
-  const imageBuffer2 = await sharp(image2.data).resize(244, 244).toBuffer();
-  const imageBuffer3 = await sharp(image3.data).resize(244, 244).toBuffer();
+  const imageBuffer1 = await sharp(image1.data)
+    .png()
+    .resize(244, 244, RESIZE_OPTIONS)
+    .toBuffer();
+  const imageBuffer2 = await sharp(image2.data)
+    .png()
+    .resize(244, 244, RESIZE_OPTIONS)
+    .toBuffer();
+  const imageBuffer3 = await sharp(image3.data)
+    .png()
+    .resize(244, 244, RESIZE_OPTIONS)
+    .toBuffer();
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 228, top: 86 },

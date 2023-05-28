@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
+import { RESIZE_OPTIONS } from "../constants";
+
 import type { Config } from "../../../context/BannerContext";
 
 export const buildFantasyImage = async (config: Config) => {
@@ -24,15 +26,18 @@ export const buildFantasyImage = async (config: Config) => {
   });
 
   const imageBuffer1 = await sharp(image1.data)
-    .resize(252, 252)
+    .png()
+    .resize(252, 252, RESIZE_OPTIONS)
     .rotate(-2.8, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer2 = await sharp(image2.data)
-    .resize(287, 287)
+    .png()
+    .resize(287, 287, RESIZE_OPTIONS)
     .rotate(1.2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer3 = await sharp(image3.data)
-    .resize(236, 236)
+    .png()
+    .resize(236, 236, RESIZE_OPTIONS)
     .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
 

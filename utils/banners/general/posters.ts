@@ -1,8 +1,10 @@
+import axios from "axios";
 import fs from "fs";
 import path from "path";
-import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
+
 import type { Config } from "../../../context/BannerContext";
+import { RESIZE_OPTIONS } from "../constants";
 
 export const buildGeneralPostersImage = async (config: Config) => {
   const baseImagePath = path.join(
@@ -31,15 +33,18 @@ export const buildGeneralPostersImage = async (config: Config) => {
   });
 
   const imageBuffer1 = await sharp(image1.data)
-    .resize(317, 317)
+    .png()
+    .resize(317, 317, RESIZE_OPTIONS)
     .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer2 = await sharp(image2.data)
-    .resize(342, 342)
+    .png()
+    .resize(342, 342, RESIZE_OPTIONS)
     .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer3 = await sharp(image3.data)
-    .resize(330, 330)
+    .png()
+    .resize(330, 330, RESIZE_OPTIONS)
     .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
 

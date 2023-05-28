@@ -1,8 +1,10 @@
+import axios from "axios";
 import fs from "fs";
 import path from "path";
-import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
+
 import type { Config } from "../../../context/BannerContext";
+import { RESIZE_OPTIONS } from "../constants";
 
 export const buildJungleImage = async (config: Config) => {
   const baseImagePath = path.join(
@@ -31,15 +33,18 @@ export const buildJungleImage = async (config: Config) => {
   });
 
   const imageBuffer1 = await sharp(image1.data)
-    .resize(271, 271)
+    .png()
+    .resize(271, 271, RESIZE_OPTIONS)
     .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer2 = await sharp(image2.data)
-    .resize(305, 305)
+    .png()
+    .resize(305, 305, RESIZE_OPTIONS)
     .rotate(2.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
   const imageBuffer3 = await sharp(image3.data)
-    .resize(245, 245)
+    .png()
+    .resize(245, 245, RESIZE_OPTIONS)
     .rotate(0.8, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
 

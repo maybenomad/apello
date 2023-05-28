@@ -200,7 +200,7 @@ const NFTSelector = ({ address }: { address: string }) => {
             }
             onClick={handleSubmit}
           >
-            Next
+            Create
           </button>
         </div>
         {loadingBanner && <AbsoluteSpinner />}
