@@ -1,14 +1,15 @@
-import Layout from '../containers/Layout'
-import { AuthContextProvider } from '../context/AuthContext'
+import Layout from "../containers/Layout";
+import { AuthContextProvider } from "../context/AuthContext";
 import {
   getChainOptions,
   StaticWalletProvider,
   WalletControllerChainOptions,
   WalletProvider,
-} from '@terra-money/wallet-provider';
-import { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
-import '../styles/globals.css'
+} from "@terra-money/wallet-provider";
+import { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
+import { BannerContextProvider } from "../context/BannerContext";
+import "../styles/globals.css";
 // import localFont from '@next/font';
 
 // const myFont = localFont({
@@ -16,19 +17,22 @@ import '../styles/globals.css'
 //   variable: '--font-azonix'
 // })
 
- export default function App({ Component,pageProps, defaultNetwork, walletConnectChainIds }= AppProps && WalletControllerChainOptions ) {
-  
+export default function App(
+  { Component, pageProps, defaultNetwork, walletConnectChainIds } = AppProps &&
+    WalletControllerChainOptions
+) {
   const main = (
-        <AuthContextProvider >
-            <Layout>
-              <Component {...pageProps} />
-              <Analytics />
-            </Layout>
-        </AuthContextProvider>
-  )
-  
-    
-  return typeof window !== 'undefined' ? (
+    <AuthContextProvider>
+      <Layout>
+        <BannerContextProvider>
+          <Component {...pageProps} />
+        </BannerContextProvider>
+        <Analytics />
+      </Layout>
+    </AuthContextProvider>
+  );
+
+  return typeof window !== "undefined" ? (
     <WalletProvider
       defaultNetwork={defaultNetwork}
       walletConnectChainIds={walletConnectChainIds}
@@ -40,7 +44,6 @@ import '../styles/globals.css'
       {main}
     </StaticWalletProvider>
   );
-  
 }
 App.getInitialProps = async () => {
   const chainOptions = await getChainOptions();
@@ -48,7 +51,6 @@ App.getInitialProps = async () => {
     ...chainOptions,
   };
 };
-
 
 /**
  * mport { ChainProvider } from '@cosmos-kit/react';
