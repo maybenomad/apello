@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import React, { useContext, useEffect, useState } from "react";
 
 import { BannerContext } from "../../context/BannerContext";
-import { Grid } from "./Grid";
-import { AbsoluteSpinner } from "../AbsoluteSpinner";
-import { SelectCollection } from "./SelectCollection";
-import { SaveSnackbar } from "./SaveSnackbar";
+import { InlineSpinner } from "../InlineSpinner";
 import { BannerModal } from "./BannerModal";
-
+import { Grid } from "./Grid";
+import { SaveSnackbar } from "./SaveSnackbar";
+import { SelectCollection } from "./SelectCollection";
 import type { Item as ItemType } from "./types";
 
 const Item: React.FC<{
@@ -70,6 +69,7 @@ const NFTSelector = ({ address }: { address: string }) => {
   const [selectedCollection, setSelectedCollection] = useState<string>(null);
   const [bannerBase64, setBannerBase64] = useState<string>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loadingText, setLoadingText] = useState("Creating your image...");
 
   const {
     config,
@@ -108,6 +108,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     }
   };
 
+  // Set NFTs to show by selected collection
   useEffect(() => {
     if (selectedCollection) {
       const associatedCollection = collections?.find(
@@ -116,6 +117,28 @@ const NFTSelector = ({ address }: { address: string }) => {
       setItems(associatedCollection.items);
     }
   }, [collections, selectedCollection]);
+
+  // Adjust loading text if image creation is taking a while
+  useEffect(() => {
+    if (loadingBanner) {
+      const timer1 = setTimeout(
+        () => setLoadingText("We're still creating..."),
+        4000
+      );
+      const timer2 = setTimeout(
+        () => setLoadingText("Just a bit more. Your NFTs are too cool..."),
+        8000
+      );
+
+      // Cleanup function
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else {
+      setLoadingText("Creating your image...");
+    }
+  }, [loadingBanner]);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -162,14 +185,6 @@ const NFTSelector = ({ address }: { address: string }) => {
           setBannerBase64(null);
         }}
       />
-      {loadingBanner && (
-        <div
-          className="absolute top-0 right-0 bottom-0 left-0 bg-slate-900 opacity-75"
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
-        />
-      )}
       <SaveSnackbar>
         <div className="flex gap-3 mb-3">
           <Item handleClick={handleRemove} item={config.selectedNFTs?.[0]}>
@@ -203,8 +218,13 @@ const NFTSelector = ({ address }: { address: string }) => {
             Create
           </button>
         </div>
-        {loadingBanner && <AbsoluteSpinner />}
       </SaveSnackbar>
+      {loadingBanner && (
+        <div className="fixed top-0 right-0 bottom-0 left-0 bg-slate-900 opacity-90 gap-2 flex items-center justify-center flex-col">
+          <InlineSpinner />
+          <p className="text-xl">{loadingText}</p>
+        </div>
+      )}
     </div>
   );
 };

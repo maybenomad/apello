@@ -1,14 +1,11 @@
 import React from "react";
 
-export const AbsoluteSpinner = () => {
+export const InlineSpinner = () => {
   return (
-    <div
-      role="status"
-      className="flex justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-lg bg-slate-700/80"
-    >
+    <div role="status" className="inline-flex">
       <svg
         aria-hidden="true"
-        className="inline w-10 h-10 mr-2 text-gray-400 animate-spin fill-indigo-600"
+        className="inline w-10 h-10 text-gray-400 animate-spin fill-indigo-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
