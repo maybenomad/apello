@@ -41,6 +41,8 @@ export enum BannerStyle {
 export enum BannerType {
   TwitterHeader = "twitterHeader",
   General = "general",
+  DiscordServer = "discordServer",
+  PFP = "pfp",
   DEFAULT = "DEFAULT",
 }
 

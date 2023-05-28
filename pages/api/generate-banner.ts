@@ -39,7 +39,10 @@ const getImage = async (config: Config) => {
     }
   }
 
-  if (config.type === BannerType.General) {
+  if (
+    config.type === BannerType.General ||
+    config.type === BannerType.DiscordServer
+  ) {
     switch (config.style) {
       case BannerStyle.Posters:
         return await buildGeneralPostersImage(config);
