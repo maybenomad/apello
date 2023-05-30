@@ -5,6 +5,7 @@ import type {
   Collection,
   DataResponse,
   Item,
+  ItemWithNextImage,
 } from "../components/NFTSelector/types";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -17,14 +18,14 @@ export type BannerContextType = {
   saveTwitterUsername: (username: string) => void;
   saveBannerStyle: (style: string) => void;
   saveBannerType: (type: BannerType) => void;
-  saveNFTs: (nfts: Item[]) => void;
+  saveNFTs: (nfts: ItemWithNextImage[]) => void;
 };
 
 export interface Config {
   manualWalletAddress: string;
   twitterUsername: string;
   style: BannerStyle;
-  selectedNFTs: Item[];
+  selectedNFTs: ItemWithNextImage[];
   type: BannerType;
 }
 

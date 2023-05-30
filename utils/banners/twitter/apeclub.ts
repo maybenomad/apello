@@ -15,28 +15,19 @@ export const buildApeclubImage = async (config: Config) => {
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
-  const image1 = await axios.get(config.selectedNFTs[0].image, {
-    responseType: "arraybuffer",
-  });
-  const image2 = await axios.get(config.selectedNFTs[1].image, {
-    responseType: "arraybuffer",
-  });
-  const image3 = await axios.get(config.selectedNFTs[2].image, {
-    responseType: "arraybuffer",
-  });
+  const [image1, image2, image3] = await Promise.all(
+    config.selectedNFTs.map((item) =>
+      axios.get(item.nextURL, {
+        responseType: "arraybuffer",
+      })
+    )
+  );
 
-  const imageBuffer1 = await sharp(image1.data)
-    .png()
-    .resize(274, 274, RESIZE_OPTIONS)
-    .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .png()
-    .resize(274, 274, RESIZE_OPTIONS)
-    .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .png()
-    .resize(274, 274, RESIZE_OPTIONS)
-    .toBuffer();
+  const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
+    sharp(image1.data).png().resize(274, 274, RESIZE_OPTIONS).toBuffer(),
+    sharp(image2.data).png().resize(274, 274, RESIZE_OPTIONS).toBuffer(),
+    sharp(image3.data).png().resize(274, 274, RESIZE_OPTIONS).toBuffer(),
+  ]);
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 464, top: 109 },

@@ -131,6 +131,7 @@ const ThemePage: NextPage = () => {
             </button>
             <button
               className="block w-full min-w-[100px] py-2 rounded bg-indigo-600 text-md font-medium  text-white transition duration-150 ease-in-out hover:bg-indigo-500 disabled:bg-slate-500 disabled:cursor-not-allowed"
+              disabled={!config.style}
               onClick={() => {
                 push("/create/collection");
               }}

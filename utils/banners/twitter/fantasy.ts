@@ -1,10 +1,10 @@
+import axios from "axios";
 import fs from "fs";
 import path from "path";
-import axios from "axios";
 import sharp, { OverlayOptions } from "sharp";
-import { RESIZE_OPTIONS } from "../constants";
 
 import type { Config } from "../../../context/BannerContext";
+import { RESIZE_OPTIONS } from "../constants";
 
 export const buildFantasyImage = async (config: Config) => {
   const baseImagePath = path.join(
@@ -15,31 +15,31 @@ export const buildFantasyImage = async (config: Config) => {
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
-  const image1 = await axios.get(config.selectedNFTs[0].image, {
-    responseType: "arraybuffer",
-  });
-  const image2 = await axios.get(config.selectedNFTs[1].image, {
-    responseType: "arraybuffer",
-  });
-  const image3 = await axios.get(config.selectedNFTs[2].image, {
-    responseType: "arraybuffer",
-  });
+  const [image1, image2, image3] = await Promise.all(
+    config.selectedNFTs.map((item) =>
+      axios.get(item.nextURL, {
+        responseType: "arraybuffer",
+      })
+    )
+  );
 
-  const imageBuffer1 = await sharp(image1.data)
-    .png()
-    .resize(252, 252, RESIZE_OPTIONS)
-    .rotate(-2.8, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .png()
-    .resize(287, 287, RESIZE_OPTIONS)
-    .rotate(1.2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .png()
-    .resize(236, 236, RESIZE_OPTIONS)
-    .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
+  const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
+    await sharp(image1.data)
+      .png()
+      .resize(252, 252, RESIZE_OPTIONS)
+      .rotate(-2.8, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image2.data)
+      .png()
+      .resize(287, 287, RESIZE_OPTIONS)
+      .rotate(1.2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image3.data)
+      .png()
+      .resize(236, 236, RESIZE_OPTIONS)
+      .rotate(-2, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+  ]);
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 477, top: 121 },

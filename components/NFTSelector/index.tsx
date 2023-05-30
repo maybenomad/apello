@@ -10,7 +10,7 @@ import { BannerModal } from "./BannerModal";
 import { Grid } from "./Grid";
 import { SaveSnackbar } from "./SaveSnackbar";
 import { SelectCollection } from "./SelectCollection";
-import type { Item as ItemType } from "./types";
+import type { Item as ItemType, ItemWithNextImage } from "./types";
 
 const Item: React.FC<{
   children?: React.ReactNode;
@@ -80,7 +80,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     errorFetchingCollections,
   } = useContext(BannerContext);
 
-  const handleSelect = (newItem: ItemType) => {
+  const handleSelect = (newItem: ItemWithNextImage) => {
     // If max 3 already selected, replace last with new selection
     if (config.selectedNFTs.length === 3) {
       saveNFTs([...config.selectedNFTs.slice(0, 2), newItem]);
@@ -90,8 +90,10 @@ const NFTSelector = ({ address }: { address: string }) => {
     saveNFTs([...config.selectedNFTs, newItem]);
   };
 
-  const handleRemove = (oldItem: ItemType) => {
-    saveNFTs(config.selectedNFTs.filter((item) => item !== oldItem));
+  const handleRemove = (oldItem: ItemWithNextImage) => {
+    saveNFTs(
+      config.selectedNFTs.filter((item) => item.tokenId !== oldItem.tokenId)
+    );
   };
 
   const handleSubmit = async () => {

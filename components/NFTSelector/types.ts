@@ -18,6 +18,10 @@ export interface Item {
   image: string;
 }
 
+export interface ItemWithNextImage extends Item {
+  nextURL?: string;
+}
+
 export interface Collection {
   name: string;
   items: Item[];
@@ -25,9 +29,9 @@ export interface Collection {
 
 export interface GridProps {
   items: Item[];
-  handleRemove(oldItem: Item): void;
-  handleSelect(newItem: Item): void;
-  selected: Item[];
+  handleRemove(oldItem: ItemWithNextImage): void;
+  handleSelect(newItem: ItemWithNextImage): void;
+  selected: ItemWithNextImage[];
   collectionName: string;
 }
 

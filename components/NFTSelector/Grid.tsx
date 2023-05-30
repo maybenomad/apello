@@ -1,6 +1,7 @@
-import React from "react";
 import Image from "next/image";
-import type { GridProps } from "./types";
+import React from "react";
+
+import type { GridProps, Item } from "./types";
 
 export const Grid: React.FC<GridProps> = ({
   items,
@@ -9,11 +10,40 @@ export const Grid: React.FC<GridProps> = ({
   selected,
   collectionName,
 }) => {
+  const handleClick = (
+    target: HTMLElement,
+    item: Item,
+    isSelected: boolean
+  ) => {
+    if (isSelected) {
+      handleRemove(item);
+    } else {
+      /**
+       * This needs some explanation.
+       * The free Vercel Hobby plan has execution time of 10s for Next.js API Routes
+       * If we pass the URLs of the full res NFTs to the server,
+       * it takes too much time to download and resize them.
+       * So we are instead passing the Next.js generated 384w version of the NFT image,
+       * extracting that url from the srcset of the related next/image component
+       * DO NOT TRY THIS AT HOME, KIDS :D
+       */
+      const siblingImageElement = target.previousElementSibling;
+      const srcset = siblingImageElement.getAttribute("srcset");
+      const sources = srcset.split(", ");
+      const source384 = sources.find((source) => source.endsWith("384w"));
+      const nextImageSrc = source384.slice(0, source384.lastIndexOf(" "));
+      handleSelect({
+        ...item,
+        nextURL: `${window.location.origin || ""}${nextImageSrc}`,
+      });
+    }
+  };
+
   return items ? (
     <div className="w-full h-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 justify-center items-center mt-12 mb-6 max-w-7xl">
       {items.map((item) => {
         const { tokenId, image } = item;
-        const isSelected = Boolean(selected.includes(item));
+        const isSelected = !!selected.find((i) => i.tokenId === tokenId);
         return (
           <div
             key={tokenId}
@@ -42,8 +72,8 @@ export const Grid: React.FC<GridProps> = ({
             />
             <div
               className="absolute w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
-              onClick={() => {
-                isSelected ? handleRemove(item) : handleSelect(item);
+              onClick={(event) => {
+                handleClick(event.currentTarget, item, isSelected);
               }}
             >
               {isSelected ? (
