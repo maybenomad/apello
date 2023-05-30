@@ -30,7 +30,6 @@ export const Grid: React.FC<GridProps> = ({
       const siblingImageElement =
         target.previousElementSibling.querySelector("img");
       const srcset = siblingImageElement.getAttribute("srcset");
-      console.log(srcset);
       const sources = srcset.split(", ");
       const source384 = sources.find((source) => source.endsWith("1x"));
       const nextImageSrc = source384.slice(0, source384.lastIndexOf(" "));
