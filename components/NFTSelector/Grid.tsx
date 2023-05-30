@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import type { GridProps, Item } from "./types";
@@ -20,17 +20,18 @@ export const Grid: React.FC<GridProps> = ({
     } else {
       /**
        * This needs some explanation.
-       * The free Vercel Hobby plan has execution time of 10s for Next.js API Routes
+       * The free Vercel Hobby plan has an execution time of 10s for Next.js API Routes
        * If we pass the URLs of the full res NFTs to the server,
        * it takes too much time to download and resize them.
-       * So we are instead passing the Next.js generated 384w version of the NFT image,
+       * So we are instead passing the Next.js generated 1x version of the NFT image,
        * extracting that url from the srcset of the related next/image component
        * DO NOT TRY THIS AT HOME, KIDS :D
        */
-      const siblingImageElement = target.previousElementSibling;
+      const siblingImageElement =
+        target.previousElementSibling.querySelector("img");
       const srcset = siblingImageElement.getAttribute("srcset");
       const sources = srcset.split(", ");
-      const source384 = sources.find((source) => source.endsWith("384w"));
+      const source384 = sources.find((source) => source.endsWith("1x"));
       const nextImageSrc = source384.slice(0, source384.lastIndexOf(" "));
       handleSelect({
         ...item,
@@ -40,14 +41,14 @@ export const Grid: React.FC<GridProps> = ({
   };
 
   return items ? (
-    <div className="w-full h-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 justify-center items-center mt-12 mb-6 max-w-7xl">
+    <div className="w-full h-full flex flex-wrap gap-4 justify-center items-center mt-12 mb-6 max-w-7xl">
       {items.map((item) => {
         const { tokenId, image } = item;
         const isSelected = !!selected.find((i) => i.tokenId === tokenId);
         return (
           <div
             key={tokenId}
-            className={`cursor-pointer relative w-full pb-full object-cover rounded-md overflow-hidden self-center justify-self-center bg-gray-800 outline outline-4 outline-offset-2 ${
+            className={`cursor-pointer relative w-[150px] h-[150px] rounded-md overflow-hidden self-center justify-self-center bg-gray-800 outline outline-4 outline-offset-2 ${
               isSelected ? "outline-pink-500" : " outline-transparent"
             }`}
           >
@@ -63,15 +64,16 @@ export const Grid: React.FC<GridProps> = ({
               </svg>
             </div>
             <Image
-              fill
               priority
+              width={150}
+              height={150}
+              layout="fixed"
               src={image}
               alt={`${collectionName} ${tokenId}`}
-              className="transition-transform duration-175 ease-out hover:scale-105"
-              sizes="(max-width: 640px) 30vw, (max-width: 768px) 20vw, 12vw"
+              className="transition-transform duration-175 ease-out hover:scale-105 object-cover object-center w-full h-full"
             />
             <div
-              className="absolute w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
+              className="absolute top-0 left-0 w-full h-full flex justify-center items-center transition-opacity ease-out opacity-0 hover:opacity-100 hover:bg-slate-900/75"
               onClick={(event) => {
                 handleClick(event.currentTarget, item, isSelected);
               }}

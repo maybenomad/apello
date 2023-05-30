@@ -1,5 +1,6 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
 import type { ImageRadioButtonProps } from "./types";
 
 export const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
@@ -25,6 +26,7 @@ export const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
         }`}
       >
         <Image
+          unoptimized
           src={image}
           alt={`${value} style banner`}
           width={120}
