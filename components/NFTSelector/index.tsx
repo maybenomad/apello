@@ -32,6 +32,7 @@ const Item: React.FC<{
             <Image
               fill
               priority
+              unoptimized // We are using the already optimised, pre-generated 384w of the image here
               src={item.image}
               alt={item.tokenId}
               className="transition-transform duration-175 ease-out hover:scale-105"
@@ -91,7 +92,9 @@ const NFTSelector = ({ address }: { address: string }) => {
   };
 
   const handleRemove = (oldItem: ItemType) => {
-    saveNFTs(config.selectedNFTs.filter((item) => item !== oldItem));
+    saveNFTs(
+      config.selectedNFTs.filter((item) => item.tokenId !== oldItem.tokenId)
+    );
   };
 
   const handleSubmit = async () => {
