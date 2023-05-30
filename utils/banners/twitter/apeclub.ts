@@ -15,11 +15,13 @@ export const buildApeclubImage = async (config: Config) => {
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
-  const [image1, image2, image3] = await Promise.all([
-    axios.get(config.selectedNFTs[0].image, { responseType: "arraybuffer" }),
-    axios.get(config.selectedNFTs[1].image, { responseType: "arraybuffer" }),
-    axios.get(config.selectedNFTs[2].image, { responseType: "arraybuffer" }),
-  ]);
+  const [image1, image2, image3] = await Promise.all(
+    config.selectedNFTs.map((item) =>
+      axios.get(item.nextURL, {
+        responseType: "arraybuffer",
+      })
+    )
+  );
 
   const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
     sharp(image1.data).png().resize(274, 274, RESIZE_OPTIONS).toBuffer(),

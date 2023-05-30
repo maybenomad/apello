@@ -34,7 +34,7 @@ export const Grid: React.FC<GridProps> = ({
       const nextImageSrc = source384.slice(0, source384.lastIndexOf(" "));
       handleSelect({
         ...item,
-        image: `${window.location.origin || ""}${nextImageSrc}`,
+        nextURL: `${window.location.origin || ""}${nextImageSrc}`,
       });
     }
   };

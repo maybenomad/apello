@@ -10,7 +10,7 @@ import { BannerModal } from "./BannerModal";
 import { Grid } from "./Grid";
 import { SaveSnackbar } from "./SaveSnackbar";
 import { SelectCollection } from "./SelectCollection";
-import type { Item as ItemType } from "./types";
+import type { Item as ItemType, ItemWithNextImage } from "./types";
 
 const Item: React.FC<{
   children?: React.ReactNode;
@@ -32,7 +32,6 @@ const Item: React.FC<{
             <Image
               fill
               priority
-              unoptimized // We are using the already optimised, pre-generated 384w of the image here
               src={item.image}
               alt={item.tokenId}
               className="transition-transform duration-175 ease-out hover:scale-105"
@@ -81,7 +80,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     errorFetchingCollections,
   } = useContext(BannerContext);
 
-  const handleSelect = (newItem: ItemType) => {
+  const handleSelect = (newItem: ItemWithNextImage) => {
     // If max 3 already selected, replace last with new selection
     if (config.selectedNFTs.length === 3) {
       saveNFTs([...config.selectedNFTs.slice(0, 2), newItem]);
@@ -91,7 +90,7 @@ const NFTSelector = ({ address }: { address: string }) => {
     saveNFTs([...config.selectedNFTs, newItem]);
   };
 
-  const handleRemove = (oldItem: ItemType) => {
+  const handleRemove = (oldItem: ItemWithNextImage) => {
     saveNFTs(
       config.selectedNFTs.filter((item) => item.tokenId !== oldItem.tokenId)
     );

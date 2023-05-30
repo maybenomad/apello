@@ -22,11 +22,13 @@ export const buildGeneralPostersImage = async (config: Config) => {
   );
   const overlayImageBuffer = fs.readFileSync(overlayImagePath);
 
-  const [image1, image2, image3] = await Promise.all([
-    axios.get(config.selectedNFTs[0].image, { responseType: "arraybuffer" }),
-    axios.get(config.selectedNFTs[1].image, { responseType: "arraybuffer" }),
-    axios.get(config.selectedNFTs[2].image, { responseType: "arraybuffer" }),
-  ]);
+  const [image1, image2, image3] = await Promise.all(
+    config.selectedNFTs.map((item) =>
+      axios.get(item.nextURL, {
+        responseType: "arraybuffer",
+      })
+    )
+  );
 
   const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
     await sharp(image1.data)
