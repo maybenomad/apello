@@ -103,6 +103,7 @@ const NFTSelector = ({ address }: { address: string }) => {
       va.track("CreateBanner", {
         theme: config.type,
         style: config.style,
+        twitterUsername: config.twitterUsername,
       });
     } catch (error: unknown) {
       console.log("Error tracking event");
