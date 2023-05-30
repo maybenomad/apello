@@ -22,31 +22,29 @@ export const buildGeneralPostersImage = async (config: Config) => {
   );
   const overlayImageBuffer = fs.readFileSync(overlayImagePath);
 
-  const image1 = await axios.get(config.selectedNFTs[0].image, {
-    responseType: "arraybuffer",
-  });
-  const image2 = await axios.get(config.selectedNFTs[1].image, {
-    responseType: "arraybuffer",
-  });
-  const image3 = await axios.get(config.selectedNFTs[2].image, {
-    responseType: "arraybuffer",
-  });
+  const [image1, image2, image3] = await Promise.all([
+    axios.get(config.selectedNFTs[0].image, { responseType: "arraybuffer" }),
+    axios.get(config.selectedNFTs[1].image, { responseType: "arraybuffer" }),
+    axios.get(config.selectedNFTs[2].image, { responseType: "arraybuffer" }),
+  ]);
 
-  const imageBuffer1 = await sharp(image1.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .png()
-    .resize(342, 342, RESIZE_OPTIONS)
-    .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .png()
-    .resize(330, 330, RESIZE_OPTIONS)
-    .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
+  const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
+    await sharp(image1.data)
+      .png()
+      .resize(317, 317, RESIZE_OPTIONS)
+      .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image2.data)
+      .png()
+      .resize(342, 342, RESIZE_OPTIONS)
+      .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image3.data)
+      .png()
+      .resize(330, 330, RESIZE_OPTIONS)
+      .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+  ]);
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 47, top: 144 },

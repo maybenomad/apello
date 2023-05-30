@@ -15,46 +15,42 @@ export const buildStreetImage = async (config: Config) => {
   const baseImageBuffer = fs.readFileSync(baseImagePath);
   const baseImage = sharp(baseImageBuffer);
 
-  const image1 = await axios.get(config.selectedNFTs[0].image, {
-    responseType: "arraybuffer",
-  });
-  const image2 = await axios.get(config.selectedNFTs[1].image, {
-    responseType: "arraybuffer",
-  });
-  const image3 = await axios.get(config.selectedNFTs[2].image, {
-    responseType: "arraybuffer",
-  });
+  const [image1, image2, image3] = await Promise.all([
+    axios.get(config.selectedNFTs[0].image, { responseType: "arraybuffer" }),
+    axios.get(config.selectedNFTs[1].image, { responseType: "arraybuffer" }),
+    axios.get(config.selectedNFTs[2].image, { responseType: "arraybuffer" }),
+  ]);
 
-  const imageBuffer1 = await sharp(image1.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .toBuffer();
-  const imageBufferReflection1 = await sharp(image1.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .flip()
-    .blur(3)
-    .toBuffer();
-  const imageBufferReflection2 = await sharp(image2.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .flip()
-    .blur(3)
-    .toBuffer();
-  const imageBufferReflection3 = await sharp(image3.data)
-    .png()
-    .resize(317, 317, RESIZE_OPTIONS)
-    .flip()
-    .blur(3)
-    .toBuffer();
+  const [
+    imageBuffer1,
+    imageBuffer2,
+    imageBuffer3,
+    imageBufferReflection1,
+    imageBufferReflection2,
+    imageBufferReflection3,
+  ] = await Promise.all([
+    await sharp(image1.data).png().resize(317, 317, RESIZE_OPTIONS).toBuffer(),
+    await sharp(image2.data).png().resize(317, 317, RESIZE_OPTIONS).toBuffer(),
+    await sharp(image3.data).png().resize(317, 317, RESIZE_OPTIONS).toBuffer(),
+    await sharp(image1.data)
+      .png()
+      .resize(317, 317, RESIZE_OPTIONS)
+      .flip()
+      .blur(3)
+      .toBuffer(),
+    await sharp(image2.data)
+      .png()
+      .resize(317, 317, RESIZE_OPTIONS)
+      .flip()
+      .blur(3)
+      .toBuffer(),
+    await sharp(image3.data)
+      .png()
+      .resize(317, 317, RESIZE_OPTIONS)
+      .flip()
+      .blur(3)
+      .toBuffer(),
+  ]);
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 404, top: 91 },

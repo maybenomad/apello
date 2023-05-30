@@ -32,21 +32,23 @@ export const buildPostersImage = async (config: Config) => {
     responseType: "arraybuffer",
   });
 
-  const imageBuffer1 = await sharp(image1.data)
-    .png()
-    .resize(290, 290, RESIZE_OPTIONS)
-    .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer2 = await sharp(image2.data)
-    .png()
-    .resize(308, 308, RESIZE_OPTIONS)
-    .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
-  const imageBuffer3 = await sharp(image3.data)
-    .png()
-    .resize(302, 302, RESIZE_OPTIONS)
-    .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .toBuffer();
+  const [imageBuffer1, imageBuffer2, imageBuffer3] = await Promise.all([
+    await sharp(image1.data)
+      .png()
+      .resize(290, 290, RESIZE_OPTIONS)
+      .rotate(5.3, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image2.data)
+      .png()
+      .resize(308, 308, RESIZE_OPTIONS)
+      .rotate(-1.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+    await sharp(image3.data)
+      .png()
+      .resize(302, 302, RESIZE_OPTIONS)
+      .rotate(4, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer(),
+  ]);
 
   const compositeOptions: OverlayOptions[] = [
     { input: imageBuffer1, left: 329, top: 46 },
