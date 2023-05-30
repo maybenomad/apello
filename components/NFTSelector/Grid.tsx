@@ -20,7 +20,7 @@ export const Grid: React.FC<GridProps> = ({
     } else {
       /**
        * This needs some explanation.
-       * The free Vercel Hobby plan has execution time of 10s for Next.js API Routes
+       * The free Vercel Hobby plan has an execution time of 10s for Next.js API Routes
        * If we pass the URLs of the full res NFTs to the server,
        * it takes too much time to download and resize them.
        * So we are instead passing the Next.js generated 1x version of the NFT image,
