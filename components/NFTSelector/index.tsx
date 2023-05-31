@@ -1,3 +1,4 @@
+import va from "@vercel/analytics";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -97,6 +98,17 @@ const NFTSelector = ({ address }: { address: string }) => {
   };
 
   const handleSubmit = async () => {
+    // ToDo: remove this event 28.06.2023
+    try {
+      va.track("CreateBanner", {
+        theme: config.type,
+        style: config.style,
+        twitterUsername: config.twitterUsername,
+      });
+    } catch (error: unknown) {
+      console.log("Error tracking event");
+    }
+
     try {
       setLoadingBanner(true);
       const response = await axios.post("/api/generate-banner", {
