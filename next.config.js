@@ -12,6 +12,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/create", // When banner creator moved to subdomain
+        destination: "https://zeus.apello.xyz/create",
+        permanent: true,
+      },
+      {
         source: "/create/:slug", // When banner creator moved to subdomain
         destination: "https://zeus.apello.xyz/create",
         permanent: true,
