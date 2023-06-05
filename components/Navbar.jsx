@@ -143,7 +143,7 @@ const Navbar = () => {
           </li>
           <li className="text-xl font-bold">
             <Link
-              href="/create"
+              href="https://zeus.apello.xyz/create"
               onClick={toggleClick}
               className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
             >
