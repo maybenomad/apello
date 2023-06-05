@@ -1,15 +1,16 @@
-import Layout from "../containers/Layout";
-import { AuthContextProvider } from "../context/AuthContext";
 import {
-  getChainOptions,
   StaticWalletProvider,
   WalletControllerChainOptions,
   WalletProvider,
+  getChainOptions,
 } from "@terra-money/wallet-provider";
-import { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
-import { BannerContextProvider } from "../context/BannerContext";
+import { AppProps } from "next/app";
+
+import Layout from "../containers/Layout";
+import { AuthContextProvider } from "../context/AuthContext";
 import "../styles/globals.css";
+
 // import localFont from '@next/font';
 
 // const myFont = localFont({
@@ -24,9 +25,7 @@ export default function App(
   const main = (
     <AuthContextProvider>
       <Layout>
-        <BannerContextProvider>
-          <Component {...pageProps} />
-        </BannerContextProvider>
+        <Component {...pageProps} />
         <Analytics />
       </Layout>
     </AuthContextProvider>
