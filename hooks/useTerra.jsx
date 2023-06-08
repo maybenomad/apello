@@ -1,17 +1,10 @@
-import { useWallet, WalletStatus } from "@terra-money/wallet-provider";
+import { WalletStatus, useWallet } from "@terra-money/wallet-provider";
+
 import { useAddWallet } from "./useAddWallet";
 
 export const useTerra = () => {
-  const { addWallet, isLoading } = useAddWallet();
-  //console.log('terra',isLoading)
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    connect,
-    disconnect,
-  } = useWallet();
+  const { addWallet } = useAddWallet();
+  const { status, wallets, availableConnectTypes, connect } = useWallet();
 
   // terra cnx
   const connecterra = async () => {
@@ -27,31 +20,31 @@ export const useTerra = () => {
   };
 
   //stargaze cnx
-  const connectStargaze = async () => {
-    if (!window.keplr) {
-      alert("Please install keplr extension");
-    } else {
-      const chainId = "stargaze-1";
+  // const connectStargaze = async () => {
+  //   if (!window?.keplr) {
+  //     alert("Please install keplr extension");
+  //   } else {
+  //     const chainId = "stargaze-1";
 
-      // Enabling before using the Keplr is recommended.
-      // This method will ask the user whether to allow access if they haven't visited this website.
-      // Also, it will request that the user unlock the wallet if the wallet is locked.
-      await window.keplr.enable(chainId);
+  //     // Enabling before using the Keplr is recommended.
+  //     // This method will ask the user whether to allow access if they haven't visited this website.
+  //     // Also, it will request that the user unlock the wallet if the wallet is locked.
+  //     await window.keplr.enable(chainId);
 
-      const offlineSigner = window.keplr.getOfflineSigner(chainId);
+  //     const offlineSigner = window.keplr.getOfflineSigner(chainId);
 
-      // You can get the address/public keys by `getAccounts` method.
-      // It can return the array of address/public key.
-      // But, currently, Keplr extension manages only one address/public key pair.
-      // XXX: This line is needed to set the sender address for SigningCosmosClient.
-      const accounts = await offlineSigner.getAccounts();
-      console.log(accounts[0]);
+  //     // You can get the address/public keys by `getAccounts` method.
+  //     // It can return the array of address/public key.
+  //     // But, currently, Keplr extension manages only one address/public key pair.
+  //     // XXX: This line is needed to set the sender address for SigningCosmosClient.
+  //     const accounts = await offlineSigner.getAccounts();
+  //     console.log(accounts[0]);
 
-      await addWallet("stargaze", accounts[0].address);
-    }
-  };
+  //     await addWallet("stargaze", accounts[0].address);
+  //   }
+  // };
   const connectJuno = async () => {
-    if (!window.keplr) {
+    if (!window?.keplr) {
       alert("Please install keplr extension");
     } else {
       const chainId = "juno-1";
@@ -112,7 +105,7 @@ export const useTerra = () => {
     }
   };
   const connectTeritori = async () => {
-    if (!window.keplr) {
+    if (!window?.keplr) {
       alert("Please install keplr extension");
     } else {
       const chainId = "teritori-1";
@@ -187,7 +180,6 @@ export const useTerra = () => {
 
   return {
     connecterra,
-    connectStargaze,
     connectJuno,
     connectPetra,
     connectMartian,
