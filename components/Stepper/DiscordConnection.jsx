@@ -35,6 +35,7 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
         .then((response) => {
           //signBytes();
           //console.log("test is connected",txResult, txError, verifyResult);
+          console.log("RESPONSE https://discord.com/api/users/@me", response);
 
           const { adress, type } = wallet;
           const { username, discriminator, id, avatar } = response;
@@ -46,6 +47,7 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
           authorizeDiscord(username, id, avatar, { adress, type }, token).then(
             (res) => {
               if (res) {
+                console.log("RESPONSE: /api/users", res);
                 setcurrentStep(2);
               }
             }
