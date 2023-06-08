@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.1.1",
     "@noahsaso/cosmodal": "^0.11.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@terra-money/wallet-provider": "^3.11.1",
