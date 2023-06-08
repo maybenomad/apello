@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+
 import { useAuthContext } from "./useAuthContext";
 
 export const useAddWallet = () => {
@@ -23,6 +24,7 @@ export const useAddWallet = () => {
 
       // save the wallet to the local storage
       localStorage.setItem("auth", JSON.stringify(json));
+      console.log("new wallet added", json);
       //update the auth context
       dispatch({ type: "CONNECT_WALLET", payload: json });
       setIsloading(false);
