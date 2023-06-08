@@ -68,10 +68,15 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
   }, [fetchDiscord]);
 
   const hundleClick = () => {
+    // window.open(
+    //   "https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello.xyz%2Fholder&response_type=token&scope=identify",
+    //   "_self"
+    // );
     window.open(
-      "https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello.xyz%2Fholder&response_type=token&scope=identify",
+      "https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello-git-feat-cosmodal-stargaze-ylafrimi-gmailcom-s-team.vercel.app%2Fholder&response_type=token&scope=identify",
       "_self"
     );
+    //https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2Fapello-git-feat-cosmodal-stargaze-ylafrimi-gmailcom-s-team.vercel.app%2Fholder&response_type=token&scope=identify
     //https://discord.com/api/oauth2/authorize?client_id=998693764178657342&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fholder&response_type=token&scope=identify
   };
 
