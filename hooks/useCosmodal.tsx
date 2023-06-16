@@ -32,7 +32,7 @@ export const useCosmodal = () => {
         : address.startsWith("juno")
         ? "juno"
         : address.startsWith("tori")
-        ? "tori"
+        ? "teritori"
         : null;
 
       if (!chainName) {
