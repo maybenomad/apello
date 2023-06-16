@@ -31,8 +31,8 @@ export const useCosmodal = () => {
         ? "stargaze"
         : address.startsWith("juno")
         ? "juno"
-        : address.startsWith("teritori")
-        ? "teritori"
+        : address.startsWith("tori")
+        ? "tori"
         : null;
 
       if (!chainName) {
