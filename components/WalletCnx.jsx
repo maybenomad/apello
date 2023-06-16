@@ -1,17 +1,17 @@
+import { useWalletManager } from "@noahsaso/cosmodal";
 import { useWallet } from "@terra-money/wallet-provider";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { useAddWallet } from "../hooks/useAddWallet";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useCosmos } from "../hooks/useCosmos";
 import { useDisconnectWallet } from "../hooks/useDisconnectWallet";
 import ModalConnection from "./ModalConnection";
 
 const WalletCnx = () => {
   //call the isconnecting
   const { isLoading } = useAddWallet();
-  const { wallet, token } = useAuthContext();
+  const { wallet } = useAuthContext();
   const { disconnectWallet } = useDisconnectWallet();
 
   const [show, setshow] = useState(false);
@@ -32,23 +32,16 @@ const WalletCnx = () => {
     };
   }, [show]);
 
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    connect,
-    disconnect,
-  } = useWallet();
+  const { disconnect } = useWallet();
 
-  const { cosmosDisconnect } = useCosmos();
+  const { disconnect: cosmodalDisconnect } = useWalletManager();
 
   const connectClick = () => {
     setOpen(true);
   };
 
   const disconnectClick = () => {
-    cosmosDisconnect();
+    cosmodalDisconnect();
     disconnect();
     setshow(false);
     disconnectWallet();
@@ -212,7 +205,12 @@ const WalletCnx = () => {
           </ul>
         </div>
       )}
-      <ModalConnection open={open} close={setOpen} />
+      <ModalConnection
+        open={open}
+        close={() => {
+          setOpen(false);
+        }}
+      />
     </div>
   );
 };

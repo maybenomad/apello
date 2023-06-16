@@ -1,50 +1,45 @@
+import { ChainInfoID } from "@noahsaso/cosmodal";
 import Image from "next/image";
 
-import { useCosmos } from "../hooks/useCosmos";
+import { useCosmodal } from "../hooks/useCosmodal";
 import { useTerra } from "../hooks/useTerra";
 
 const ModalConnection = ({ open, close }) => {
-  const {
-    connecterra,
-    connectJuno,
-    connectPetra,
-    connectMartian,
-    connectTeritori,
-  } = useTerra();
+  const { connecterra, connectPetra, connectMartian } = useTerra();
+  const { connectToChain } = useCosmodal();
 
-  const { connectStargaze } = useCosmos();
-
-  const closeModel = () => {
-    close(false);
-  };
-  if (!open) {
-    return;
-  }
-
-  const terraClick = () => {
-    connecterra();
-    closeModel();
-  };
-  const stargazeClick = async () => {
-    connectStargaze();
-    closeModel();
+  // @noahsaso/cosmodal
+  const stargazeClick = () => {
+    connectToChain(ChainInfoID.Stargaze1);
+    close();
   };
   const junoClick = () => {
-    connectJuno();
-    closeModel();
+    connectToChain(ChainInfoID.Juno1);
+    close();
+  };
+  const teritoriClick = () => {
+    connectToChain("teritori-1");
+    close();
+  };
+
+  // @terra-money/wallet-provider
+  const terraClick = () => {
+    connecterra();
+    close();
   };
   const petraClick = () => {
     connectPetra();
-    closeModel();
+    close();
   };
   const martianClick = () => {
     connectMartian();
-    closeModel();
+    close();
   };
-  const teritoriClick = () => {
-    connectTeritori();
-    closeModel();
-  };
+
+  if (!open) {
+    return null;
+  }
+
   return (
     <div
       className="fixed inset-0 w-full h-full bg-black/50  z-50  flex justify-center items-center opacity-100 transition-opacity duration-1000"
@@ -56,7 +51,7 @@ const ModalConnection = ({ open, close }) => {
           <button
             className="absolute top-0 right-0 p-1 rounded-full transition-colors hover:bg-black/20"
             aria-label="close modal"
-            onClick={closeModel}
+            onClick={close}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

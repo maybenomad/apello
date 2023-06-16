@@ -12,6 +12,8 @@ export const useAddWallet = () => {
     setError(null);
     setIsloading(true);
 
+    console.log("addWallet", type, adress);
+
     try {
       const response = await axios.post(
         "https://apello-api.xyz:4000/api/wallets",
