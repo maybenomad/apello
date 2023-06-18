@@ -65,45 +65,6 @@ export const useTerra = () => {
       await addWallet("juno", accounts[0].address);
     }
   };
-  const connectPetra = async () => {
-    const getAptosWallet = () => {
-      if ("aptos" in window) {
-        return window.aptos;
-      } else {
-        window.open("https://petra.app/", `_blank`);
-      }
-    };
-    const wallet = getAptosWallet();
-    try {
-      const response = await wallet.connect();
-      //console.log(response,response.address); // { address: string, address: string }
-
-      await addWallet("petra", response.address);
-      /*const account = await wallet.account();
-            console.log(account); // { address: string, address: string }*/
-    } catch (error) {
-      // { code: 4001, message: "User rejected the request."}
-    }
-  };
-  const connectMartian = async () => {
-    const getProvider = () => {
-      if ("martian" in window) {
-        return window.martian;
-      }
-      window.open("https://www.martianwallet.xyz/", "_blank");
-    };
-
-    const wallet = getProvider();
-    try {
-      const response = await wallet.connect(); //window.martian
-      //console.log(response.address); // { address: string, address: string }
-
-      //connect & add wallet to db
-      await addWallet("martian", response.address);
-    } catch (error) {
-      // { code: 4001, message: "User rejected the request."}
-    }
-  };
   const connectTeritori = async () => {
     if (!window?.keplr) {
       alert("Please install keplr extension");
@@ -181,8 +142,6 @@ export const useTerra = () => {
   return {
     connecterra,
     connectJuno,
-    connectPetra,
-    connectMartian,
     connectTeritori,
   };
 };
