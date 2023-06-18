@@ -16,8 +16,7 @@ export default function FileHeader({ appPath, title, keywords, description }) {
       <meta
         property="og:image"
         key="og:image"
-        content="https://apello-git-feat-cosmodal-stargaze-ylafrimi-gmailcom-s-team.vercel.app/og-image.jpg"
-        // content="https://apello.xyz/og-image.jpg"
+        content="https://apello.xyz/og-image.jpg"
       />
       <meta
         key="og-description"
@@ -37,10 +36,7 @@ export default function FileHeader({ appPath, title, keywords, description }) {
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@apello_app" />
-      <meta
-        name="twitter:image"
-        content="https://apello-git-feat-cosmodal-stargaze-ylafrimi-gmailcom-s-team.vercel.app/og-image.jpg"
-      />
+      <meta name="twitter:image" content="https://apello.xyz/og-image.jpg" />
     </Head>
   );
 }
