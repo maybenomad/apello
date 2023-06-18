@@ -72,7 +72,7 @@ export default function Home() {
                 </Modal>
               )}
               <a
-                href="https://apello.gitbook.io/apello"
+                href="https://use.apello.xyz/"
                 target="_blank"
                 rel="license noreferrer"
                 className=" block max-w-fit bg-black rounded text-base font-medium uppercase tracking-wide text-center  text-white px-2 py-3  hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc  my-9 shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_144.4px_0_0_rgba(108,99,255,0.99)] border-solid border-violet border-2"
