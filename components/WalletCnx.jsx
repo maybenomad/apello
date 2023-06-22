@@ -46,13 +46,15 @@ const BlockchainIcon = (wallet) => {
         </div>
       );
     case "teritori":
-      <div className="relative h-6 w-6">
-        <img
-          src="/chains/teritori.png"
-          className="absolute h-full"
-          alt="Teritori logo"
-        />
-      </div>;
+      return (
+        <div className="relative h-6 w-6">
+          <img
+            src="/chains/teritori.png"
+            className="absolute h-full"
+            alt="Teritori logo"
+          />
+        </div>
+      );
     default:
       return null;
   }
