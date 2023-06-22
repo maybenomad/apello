@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 import { useAuthContext } from "../hooks/useAuthContext";
+import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 
 const Navbar = () => {
@@ -38,11 +39,11 @@ const Navbar = () => {
             menuOpen ? "translate-x-0 " : "-translate-x-full bg-transparent"
           }  md:translate-x-0 ease-in-out duration-300`}
         >
-          <li className="text-xl ml-0 font-bold  ">
+          <li className="text-xl ml-0 font-bold">
             <Link
               href="/holder"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected  "
+              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected"
             >
               Holders
             </Link>
@@ -145,20 +146,26 @@ const Navbar = () => {
             <Link
               href="https://zeus.apello.xyz/create"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className="hover:text-violet p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected"
             >
               Image Creator
             </Link>
           </li>
-          <li className="text-xl font-bold">
+          <li className="text-xl font-bold group-hover:text-violet">
             <Link
               href="#"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className="hover:text-violet p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected"
             >
               Snapshot
             </Link>
           </li>
+
+          {wallet && (
+            <li className="text-xl font-bold md:hidden">
+              <DisconnectButton showText />
+            </li>
+          )}
         </ul>
 
         <WalletCnx />
@@ -171,34 +178,19 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-menu"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 128L216 128"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 64L216 64"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 192L216 192"
-              ></path>{" "}
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
         )}
@@ -210,27 +202,18 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-x"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 56L56 200"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 200L56 56"
-              ></path>{" "}
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         )}
@@ -261,16 +244,26 @@ const Navbar = () => {
               className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
-          <a href="f" className="px-1 lg:px-3 ">
+          {/* <a
+            href="f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3 "
+          >
             <FaTelegramPlane
               size={20}
               className="cursor-pointer hover:scale-110 hover:text-white "
             />
-          </a>
-          <a href="f" className="px-1 lg:px-3">
+          </a> */}
+          <a
+            href="https://discord.gg/apello"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3"
+          >
             <FaDiscord
               size={20}
-              className=" cursor-pointer hover:scale-110 hover:text-white"
+              className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
         </div>

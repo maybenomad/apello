@@ -1,17 +1,10 @@
-import { useWallet, WalletStatus } from "@terra-money/wallet-provider";
+import { WalletStatus, useWallet } from "@terra-money/wallet-provider";
+
 import { useAddWallet } from "./useAddWallet";
 
 export const useTerra = () => {
-  const { addWallet, isLoading } = useAddWallet();
-  //console.log('terra',isLoading)
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    connect,
-    disconnect,
-  } = useWallet();
+  const { addWallet } = useAddWallet();
+  const { status, wallets, availableConnectTypes, connect } = useWallet();
 
   // terra cnx
   const connecterra = async () => {
@@ -27,31 +20,31 @@ export const useTerra = () => {
   };
 
   //stargaze cnx
-  const connectStargaze = async () => {
-    if (!window.keplr) {
-      alert("Please install keplr extension");
-    } else {
-      const chainId = "stargaze-1";
+  // const connectStargaze = async () => {
+  //   if (!window?.keplr) {
+  //     alert("Please install keplr extension");
+  //   } else {
+  //     const chainId = "stargaze-1";
 
-      // Enabling before using the Keplr is recommended.
-      // This method will ask the user whether to allow access if they haven't visited this website.
-      // Also, it will request that the user unlock the wallet if the wallet is locked.
-      await window.keplr.enable(chainId);
+  //     // Enabling before using the Keplr is recommended.
+  //     // This method will ask the user whether to allow access if they haven't visited this website.
+  //     // Also, it will request that the user unlock the wallet if the wallet is locked.
+  //     await window.keplr.enable(chainId);
 
-      const offlineSigner = window.keplr.getOfflineSigner(chainId);
+  //     const offlineSigner = window.keplr.getOfflineSigner(chainId);
 
-      // You can get the address/public keys by `getAccounts` method.
-      // It can return the array of address/public key.
-      // But, currently, Keplr extension manages only one address/public key pair.
-      // XXX: This line is needed to set the sender address for SigningCosmosClient.
-      const accounts = await offlineSigner.getAccounts();
-      console.log(accounts[0]);
+  //     // You can get the address/public keys by `getAccounts` method.
+  //     // It can return the array of address/public key.
+  //     // But, currently, Keplr extension manages only one address/public key pair.
+  //     // XXX: This line is needed to set the sender address for SigningCosmosClient.
+  //     const accounts = await offlineSigner.getAccounts();
+  //     console.log(accounts[0]);
 
-      await addWallet("stargaze", accounts[0].address);
-    }
-  };
+  //     await addWallet("stargaze", accounts[0].address);
+  //   }
+  // };
   const connectJuno = async () => {
-    if (!window.keplr) {
+    if (!window?.keplr) {
       alert("Please install keplr extension");
     } else {
       const chainId = "juno-1";
@@ -72,47 +65,8 @@ export const useTerra = () => {
       await addWallet("juno", accounts[0].address);
     }
   };
-  const connectPetra = async () => {
-    const getAptosWallet = () => {
-      if ("aptos" in window) {
-        return window.aptos;
-      } else {
-        window.open("https://petra.app/", `_blank`);
-      }
-    };
-    const wallet = getAptosWallet();
-    try {
-      const response = await wallet.connect();
-      //console.log(response,response.address); // { address: string, address: string }
-
-      await addWallet("petra", response.address);
-      /*const account = await wallet.account();
-            console.log(account); // { address: string, address: string }*/
-    } catch (error) {
-      // { code: 4001, message: "User rejected the request."}
-    }
-  };
-  const connectMartian = async () => {
-    const getProvider = () => {
-      if ("martian" in window) {
-        return window.martian;
-      }
-      window.open("https://www.martianwallet.xyz/", "_blank");
-    };
-
-    const wallet = getProvider();
-    try {
-      const response = await wallet.connect(); //window.martian
-      //console.log(response.address); // { address: string, address: string }
-
-      //connect & add wallet to db
-      await addWallet("martian", response.address);
-    } catch (error) {
-      // { code: 4001, message: "User rejected the request."}
-    }
-  };
   const connectTeritori = async () => {
-    if (!window.keplr) {
+    if (!window?.keplr) {
       alert("Please install keplr extension");
     } else {
       const chainId = "teritori-1";
@@ -187,10 +141,7 @@ export const useTerra = () => {
 
   return {
     connecterra,
-    connectStargaze,
     connectJuno,
-    connectPetra,
-    connectMartian,
     connectTeritori,
   };
 };
