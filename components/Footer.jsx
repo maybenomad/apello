@@ -1,7 +1,11 @@
 const Fotter = () => {
   return (
     <footer className="relative md:absolute md:bottom-3 flex  sm:flex-row justify-center items-start gap-y-3 gap-x-3 sm:gap-x-9 sm:justify-start md:items-center bg-black md:bg-transparent text-[currentColor] p-3 pt-6 md:pt-1  px-4 md:pl-10 ">
-      <a href="https://www.junonetwork.io/" className="">
+      <a
+        href="https://www.junonetwork.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="30"
@@ -41,7 +45,9 @@ const Fotter = () => {
       </a>
 
       <a
-        href=""
+        href="https://www.terra.money/"
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center hover:scale-110 transition-all duration-200"
       >
         <svg
@@ -72,6 +78,8 @@ const Fotter = () => {
 
       <a
         href="https://www.stargaze.zone/"
+        target="_blank"
+        rel="noopener noreferrer"
         className="pl-2 hover:scale-110 transition-all duration-200"
       >
         <div className="flex gap-x-1 items-center">
@@ -123,7 +131,9 @@ const Fotter = () => {
         </div>
       </a>
       <a
-        href=""
+        href="https://teritori.com/"
+        target="_blank"
+        rel="noopener noreferrer"
         className="hidden md:flex items-center hover:scale-110 transition-all duration-200  "
       >
         <img
