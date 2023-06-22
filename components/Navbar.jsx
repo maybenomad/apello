@@ -39,11 +39,11 @@ const Navbar = () => {
             menuOpen ? "translate-x-0 " : "-translate-x-full bg-transparent"
           }  md:translate-x-0 ease-in-out duration-300`}
         >
-          <li className="text-xl ml-0 font-bold  ">
+          <li className="text-xl ml-0 font-bold">
             <Link
               href="/holder"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected  "
+              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected"
             >
               Holders
             </Link>
@@ -146,16 +146,16 @@ const Navbar = () => {
             <Link
               href="https://zeus.apello.xyz/create"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className="hover:text-violet p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected"
             >
               Image Creator
             </Link>
           </li>
-          <li className="text-xl font-bold">
+          <li className="text-xl font-bold group-hover:text-violet">
             <Link
               href="#"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className="hover:text-violet p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected"
             >
               Snapshot
             </Link>
@@ -244,16 +244,26 @@ const Navbar = () => {
               className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
-          <a href="f" className="px-1 lg:px-3 ">
+          {/* <a
+            href="f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3 "
+          >
             <FaTelegramPlane
               size={20}
               className="cursor-pointer hover:scale-110 hover:text-white "
             />
-          </a>
-          <a href="f" className="px-1 lg:px-3">
+          </a> */}
+          <a
+            href="https://discord.gg/apello"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3"
+          >
             <FaDiscord
               size={20}
-              className=" cursor-pointer hover:scale-110 hover:text-white"
+              className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
         </div>
