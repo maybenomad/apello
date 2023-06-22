@@ -160,9 +160,12 @@ const Navbar = () => {
               Snapshot
             </Link>
           </li>
-          <li className="text-xl font-bold md:hidden">
-            <DisconnectButton showText />
-          </li>
+
+          {wallet && (
+            <li className="text-xl font-bold md:hidden">
+              <DisconnectButton showText />
+            </li>
+          )}
         </ul>
 
         <WalletCnx />
