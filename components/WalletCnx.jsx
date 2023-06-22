@@ -1,55 +1,16 @@
-import { useWalletManager } from "@noahsaso/cosmodal";
-import { useWallet } from "@terra-money/wallet-provider";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useAddWallet } from "../hooks/useAddWallet";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useDisconnectWallet } from "../hooks/useDisconnectWallet";
+import { DisconnectButton } from "./DisconnectButton";
 import ModalConnection from "./ModalConnection";
 
-const WalletCnx = () => {
-  //call the isconnecting
-  const { isLoading } = useAddWallet();
-  const { wallet } = useAuthContext();
-  const { disconnectWallet } = useDisconnectWallet();
-
-  const [show, setshow] = useState(false);
-  const [open, setOpen] = useState(false); // to open the modal
-
-  const ref = useRef(null);
-
-  //click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setshow(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, [show]);
-
-  const { disconnect } = useWallet();
-
-  const { disconnect: cosmodalDisconnect } = useWalletManager();
-
-  const connectClick = () => {
-    setOpen(true);
-  };
-
-  const disconnectClick = () => {
-    cosmodalDisconnect();
-    disconnect();
-    setshow(false);
-    disconnectWallet();
-  };
-
-  //to chose the blockchain logo svg to render : Terra station / Keplr
-  const Blockchain = () => {
-    if (wallet.type.toLowerCase() === "terra") {
+//to chose the blockchain logo svg to render : Terra station / Keplr
+const BlockchainIcon = (wallet) => {
+  const type = wallet.wallet.type;
+  switch (type) {
+    case "terra":
       return (
         <svg
           className="h-6"
@@ -72,36 +33,60 @@ const WalletCnx = () => {
           <path fill="none" d="M186 43H986V843H186z"></path>
         </svg>
       );
-    } else if (wallet.type.toLowerCase() === "stargaze") {
+    case "stargaze":
       return (
         <div className="relative h-6 w-6">
           <Image src="/chains/stargaze.png" fill alt="Stargaze logo" />
         </div>
       );
-    } else if (wallet.type.toLowerCase() === "juno") {
+    case "juno":
       return (
         <div className="relative h-6 w-6">
           <Image src="/chains/juno.png" fill alt="Juno logo" />
         </div>
       );
-    }
-
-    return (
+    case "teritori":
       <div className="relative h-6 w-6">
         <img
           src="/chains/teritori.png"
           className="absolute h-full"
           alt="Teritori logo"
         />
-      </div>
-    );
+      </div>;
+    default:
+      return null;
+  }
+};
+
+const WalletCnx = () => {
+  const { isLoading } = useAddWallet();
+  const { wallet } = useAuthContext();
+
+  const [hasCopied, setHasCopied] = useState(false); // to show tick on copy
+  const [open, setOpen] = useState(false); // to open the modal
+
+  const connectClick = () => {
+    setOpen(true);
   };
 
+  // To show tick icon for x seconds after copying wallet address
+  useEffect(() => {
+    let timerId;
+    if (hasCopied) {
+      timerId = setTimeout(() => {
+        setHasCopied(false);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [hasCopied]);
+
   return (
-    <div className="absolute top-1 right-[50px] md:relative md:inset-0">
+    <div className="absolute top-1 right-[50px] md:relative md:inset-0 inline-flex gap-1">
       {!wallet ? (
         <button
-          className="select-none  flex items-center px-2 py-1 rounded-md border-solid border-violet md:border-2  "
+          className="select-none  flex items-center px-2 py-1 rounded-md border-violet border-2  "
           onClick={connectClick}
         >
           <svg
@@ -118,75 +103,68 @@ const WalletCnx = () => {
               d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
             />
           </svg>
-          <span className="hidden md:block whitespace-nowrap  ml-1">
+          <span className="whitespace-nowrap  ml-1">
             {isLoading ? "isConnecting..." : "Connect Wallet"}
           </span>
         </button>
       ) : (
         <button
-          className="select-none  flex items-center px-2 py-1 rounded-md border-solid border-violet md:border-2  "
-          onClick={() => setshow(true)}
+          className="select-none flex items-center gap-1 px-2 py-1 rounded-md border-violet border-2  "
+          onClick={() => {
+            navigator?.clipboard
+              .writeText(wallet?.adress)
+              .then(() => setHasCopied(true))
+              .catch((e) => setHasCopied(false));
+          }}
         >
-          <Blockchain />
-          <span className="hidden md:block whitespace-nowrap  ml-1">{`${wallet.adress.substring(
+          <BlockchainIcon wallet={wallet} />
+          <span className="whitespace-nowrap ml-1">{`${wallet.adress.substring(
             0,
             5
           )}***${wallet.adress.substring(
             wallet.adress.length - 3,
             wallet.adress.length
           )}`}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            width="20"
-            height="10"
-            viewBox="0 0 256 256"
-          >
-            {" "}
-            <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-            <path d="M215.4 92.9A8 8 0 00208 88H48a8 8 0 00-7.4 4.9 8.4 8.4 0 001.7 8.8l80 80a8.2 8.2 0 0011.4 0l80-80a8.4 8.4 0 001.7-8.8z"></path>
-          </svg>
+          {hasCopied ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="ml-1"
+            >
+              <title>Copied wallet address successfully</title>
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="ml-1"
+            >
+              <title>Copy wallet address</title>
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          )}
         </button>
       )}
-      {show && (
-        <div
-          ref={ref}
-          className="absolute z-50 right-0 top-0 opacity-100 popIn rounded-md px-2 py-1 bg-[#09061A] w-72 md:w-80 min-h-fit"
-        >
-          <ul className="">
-            <div className="inline-flex items-center font-azonix">
-              <Blockchain />
-              <div className="flex flex-col pl-1 ">
-                <span className="text-sm">wallet profile</span>
-                <span className="text-[#e5e5e5] font-sans text-xs">{`${wallet.adress.substring(
-                  0,
-                  5
-                )}***${wallet.adress.substring(
-                  wallet.adress.length - 4,
-                  wallet.adress.length
-                )}`}</span>
-              </div>
-            </div>
-            <hr className="text-[#e5e5e5]" />
-            <div className="mt-3 inline-flex items-center gap-x-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <button className="" onClick={disconnectClick}>
-                Disconnect
-              </button>
-            </div>
-          </ul>
-        </div>
+      {wallet && (
+        <span className="hidden md:inline-flex">
+          <DisconnectButton />
+        </span>
       )}
       <ModalConnection
         open={open}

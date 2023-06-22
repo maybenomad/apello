@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 import { useAuthContext } from "../hooks/useAuthContext";
+import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 
 const Navbar = () => {
@@ -159,6 +160,9 @@ const Navbar = () => {
               Snapshot
             </Link>
           </li>
+          <li className="text-xl font-bold md:hidden">
+            <DisconnectButton showText />
+          </li>
         </ul>
 
         <WalletCnx />
@@ -171,34 +175,19 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-menu"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 128L216 128"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 64L216 64"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 192L216 192"
-              ></path>{" "}
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
         )}
@@ -210,27 +199,18 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-x"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 56L56 200"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 200L56 56"
-              ></path>{" "}
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         )}
