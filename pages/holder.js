@@ -13,10 +13,10 @@ const HolderSection = () => {
       >
         <Image
           width={673}
-          height={164}
+          height={188}
           alt="Join the Apello Discord server"
           className="object-contain"
-          src="/discord-banner.webp"
+          src="/banner-apelleons.webp"
         />
       </a>
       <Stepper />
