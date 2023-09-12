@@ -254,7 +254,7 @@ const Navbar = () => {
             />
           </a> */}
           <a
-            href="https://discord.gg/apello"
+            href="https://discord.gg/apelloxyz"
             target="_blank"
             rel="noopener noreferrer"
             className="px-1 lg:px-3"
