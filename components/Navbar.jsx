@@ -92,7 +92,7 @@ const Navbar = () => {
                   </span>
                 </Link>
                 <Link
-                  href={"/sales?chain=Injective"}
+                  href={"/sales?chain=injective"}
                   onClick={toggleClick}
                   className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
@@ -102,7 +102,7 @@ const Navbar = () => {
                   
                 </Link>
                 <Link
-                  href={"/sales?chain=Teritori"}
+                  href={"/sales?chain=teritori"}
                   onClick={toggleClick}
                   className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
