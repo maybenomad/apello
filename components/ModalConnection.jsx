@@ -13,6 +13,14 @@ const ModalConnection = ({ open, close }) => {
     connectToChain(ChainInfoID.Stargaze1);
     close();
   };
+  const injectiveClick = () => {
+    connectToChain(ChainInfoID.Injective1);
+    close();
+  };
+  const chihuahuaClick = () => {
+    connectToChain(ChainInfoID.Chihuahua1);
+    close();
+  };
   const junoClick = () => {
     connectToChain(ChainInfoID.Juno1);
     close();
@@ -88,6 +96,33 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Stargaze</span>
           </button>
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={injectiveClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="injective logo"
+            />
+            <span className="font-azonix ">Injective</span>
+          </button>
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={chihuahuaClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="stargaze logo"
+            />
+            <span className="font-azonix ">Chihuahua</span>
+          </button>
+
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
             onClick={junoClick}

@@ -30,7 +30,7 @@ export default function App(
       walletConnectClientMeta={{
         name: "Apello.xyz",
         description: "A platform for Cosmos tooling",
-        url: "https://apello.xyz",
+        url: "http://localhost:3000",
         icons: ["https://apello.xyz/lyre-08.png"],
       }}
       chainInfoOverrides={[
@@ -86,6 +86,58 @@ export default function App(
           ],
           beta: true,
         },
+        {
+          chainId: "injective-1",
+          chainName: "Injective",
+          rpc: "https://injective-rpc.polkachu.com",
+          rest: "https://injective-api.polkachu.com",
+          stakeCurrency: {
+            coinDenom: "INJ",
+            coinMinimalDenom: "uinj",
+            coinDecimals: 6,
+            coinGeckoId: "injective",
+          },
+          bip44: {
+            coinType: 118,
+          },
+          bech32Config: {
+            bech32PrefixAccAddr: "inj",
+            bech32PrefixAccPub: "injpub",
+            bech32PrefixValAddr: "injvaloper",
+            bech32PrefixValPub: "injvaloperpub",
+            bech32PrefixConsAddr: "injvalcons",
+            bech32PrefixConsPub: "injvalconspub",
+          },
+          currencies: [
+            {
+              coinDenom: "INJ",
+              coinMinimalDenom: "uinj",
+              coinDecimals: 6,
+              coinGeckoId: "injective",
+            },
+          ],
+          feeCurrencies: [
+            {
+              coinDenom: "INJ",
+              coinMinimalDenom: "uinj",
+              coinDecimals: 6,
+              coinGeckoId: "injective",
+              gasPriceStep: {
+                low: 0,
+                average: 0.025,
+                high: 0.04,
+              },
+            },
+          ],
+          features: [
+            "stargate",
+            "ibc-transfer",
+            "cosmwasm",
+            "no-legacy-stdTx",
+            "ibc-go",
+          ],
+          beta: true,
+        }
       ]}
     >
       <AuthContextProvider>

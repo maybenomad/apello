@@ -142,6 +142,18 @@ const Fotter = () => {
           className="h-7"
         />
       </a>
+      <a
+        href="https://teritori.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hidden md:flex items-center hover:scale-110 transition-all duration-200  "
+      >
+        <img
+          alt="Injective chain"
+          src="/injlogo.png"
+          className="h-16"
+        />
+      </a>
     </footer>
   );
 };
