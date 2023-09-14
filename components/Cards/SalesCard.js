@@ -53,8 +53,12 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
             <div className={`p-4 ${show ? 'block' : 'hidden'} flex justify-between`}>
                 <span className="font-jura">Buyer</span>
                 <div className="flex gap-x-2">
-                    
-                    { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) }
+                    {chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
+                    : chain === "juno" ? (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
+                    : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
+                    : chain === "teritori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
+                    : (<Image src="/tokens/atom.png" alt=" coin" className="h-5" width={20} height={20}  />)}
+                    {/* { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) } */}
                     <p className="">{buyer.substring(0,5)+'...'+buyer.substring(buyer.length-5,buyer.length)}</p>
                 </div>
             </div>
