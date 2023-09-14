@@ -37,6 +37,8 @@ export const useCosmodal = () => {
         ? "injective"
         : address.startsWith("chihuahua")
         ? "chihuahua"
+        : address.startsWith("pasg")
+        ? "passage"
         : null;
 
       if (!chainName) {

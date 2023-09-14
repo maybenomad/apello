@@ -10,6 +10,7 @@ import {
 import { useAuthContext } from "../hooks/useAuthContext";
 import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
+import { CoinImage } from "./Cards/SalesCard";
 
 const Navbar = () => {
   const { wallet } = useAuthContext();
@@ -68,22 +69,47 @@ const Navbar = () => {
             </div>
             <div
               aria-label="drop_down"
-              className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-auto absolute top-9 left-0 py-3 rounded shadow  z-20 `}
+              className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-40 absolute top-9 left-0 py-3 rounded shadow  z-20 `}
             >
               <div className="px-4  ">
                 <Link
                   href={"/sales?chain=juno"}
                   onClick={toggleClick}
-                  className="block p-1 mb-2 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
-                  Juno chain
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="juno" /> Juno
+                  </span>
+                  
                 </Link>
                 <Link
                   href={"/sales?chain=stargaze"}
                   onClick={toggleClick}
-                  className="p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                  className="block p-1 pr-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
-                  stargaze chain
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="stargaze" /> Stargaze
+                  </span>
+                </Link>
+                <Link
+                  href={"/sales?chain=Injective"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1  items-center" >
+                    <CoinImage chain="injective" /> Injective
+                  </span>
+                  
+                </Link>
+                <Link
+                  href={"/sales?chain=Teritori"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="teritori" token="Tori" /> Teritori 
+                  </span>
+                  
                 </Link>
               </div>
             </div>

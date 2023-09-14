@@ -143,7 +143,7 @@ const Fotter = () => {
         />
       </a>
       <a
-        href="https://teritori.com/"
+        href="https://injective.com/"
         target="_blank"
         rel="noopener noreferrer"
         className="hidden md:flex items-center hover:scale-110 transition-all duration-200  "

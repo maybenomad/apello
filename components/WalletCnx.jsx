@@ -48,7 +48,13 @@ const BlockchainIcon = (wallet) => {
     case "chihuahua":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg" fill alt="Chihuahua logo" />
+          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg" fill alt="Chihuahua logo" />
+        </div>
+      );
+    case "passage":
+      return (
+        <div className="relative h-6 w-6">
+          <Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" fill alt="Passage logo" />
         </div>
       );
     case "juno":

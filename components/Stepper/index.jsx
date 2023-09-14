@@ -12,9 +12,9 @@ const Stepper = () => {
     const steps = [
         {
             name:"Connect your wallet",
-            p: "Connect your crypto wallets to let all of your assets shine. Join diverse Discord communities and become an active part of making them great.",
+            p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
             btn: {
-                text : "connect wallet",
+                text : "Connect Wallet",
                 click : ()=>{
                     console.log(connect(availableConnectTypes[0]));
                     console.log(wallets);
@@ -26,14 +26,14 @@ const Stepper = () => {
         },
         {
             name:"Connect to Discord",
-            p: "Lunar HQ links Discord to your crypto wallet. Unlock the community potential of your crypto assets with server roles, token weighted voting and other powerful features.",
+            p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
             btn: {
-                text : "connect Discord",
+                text : "Connect Discord",
             }
         },
         {
             name:"Confirm & go to Discord",
-            p: "Lunar HQ links Discord to your crypto wallet. Unlock the community potential of your crypto assets with server roles, token weighted voting and other powerful features.",
+            p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
             btn: {
                 text : "Confirm",
                 click : ()=>console.log("done!"),

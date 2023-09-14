@@ -16,7 +16,7 @@ const HolderSection = () => {
           height={188}
           alt="Join the Apello Discord server"
           className="object-contain"
-          src="/banner-apelleons.webp"
+          src="/discord-banner.webp"
         />
       </a>
       <Stepper />

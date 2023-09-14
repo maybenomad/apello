@@ -29,6 +29,10 @@ const ModalConnection = ({ open, close }) => {
     connectToChain("teritori-1");
     close();
   };
+  const passageClick = () => {
+    connectToChain("passage-2");
+    close();
+  };
 
   // @terra-money/wallet-provider
   const terraClick = () => {
@@ -70,19 +74,7 @@ const ModalConnection = ({ open, close }) => {
           </button>
         </div>
         <div className="pt-12  flex flex-col justify-center items-center gap-y-4">
-          <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
-            onClick={terraClick}
-          >
-            <Image
-              src="/terra_station.png"
-              height="24"
-              width="24"
-              className="h-6"
-              alt="tera station logo"
-            />
-            <span className="font-azonix ">Terra</span>
-          </button>
+
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
             onClick={stargazeClick}
@@ -95,6 +87,19 @@ const ModalConnection = ({ open, close }) => {
               alt="stargaze logo"
             />
             <span className="font-azonix ">Stargaze</span>
+          </button>
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={teritoriClick}
+          >
+            <Image
+              src="/chains/teritori.png"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="Teritori wallet logo"
+            />
+            <span className="font-azonix ">Teritori</span>
           </button>
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
@@ -125,6 +130,20 @@ const ModalConnection = ({ open, close }) => {
 
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={passageClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="passage logo"
+            />
+            <span className="font-azonix ">Passage</span>
+          </button>
+
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
             onClick={junoClick}
           >
             <Image
@@ -136,19 +155,21 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Juno</span>
           </button>
+          
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
-            onClick={teritoriClick}
+            onClick={terraClick}
           >
             <Image
-              src="/chains/teritori.png"
+              src="/terra_station.png"
               height="24"
               width="24"
               className="h-6"
-              alt="Teritori wallet logo"
+              alt="tera station logo"
             />
-            <span className="font-azonix ">Teritori</span>
+            <span className="font-azonix ">Terra</span>
           </button>
+
         </div>
       </div>
     </div>

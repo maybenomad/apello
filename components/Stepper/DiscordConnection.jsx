@@ -97,9 +97,9 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
       >
         <>
           <p className="text-gray-500  step-parag">
-            Terra services links Discord to your crypto wallet. Unlock the
-            community potential of your crypto assets with server roles, token
-            weighted voting and other powerful features.
+          Apello is a set of tools for cosmos NFTs, 100% free and open source. 
+          We provide a package of services 
+          for cosmos NFT projects to help them manage and grow their communities.
           </p>
           <div
             data-tip="Connect your wallet first."

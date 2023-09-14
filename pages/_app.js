@@ -30,7 +30,7 @@ export default function App(
       walletConnectClientMeta={{
         name: "Apello.xyz",
         description: "A platform for Cosmos tooling",
-        url: "http://localhost:3000",
+        url: "https://apello.xyz/",
         icons: ["https://apello.xyz/lyre-08.png"],
       }}
       chainInfoOverrides={[
@@ -122,6 +122,58 @@ export default function App(
               coinMinimalDenom: "uinj",
               coinDecimals: 6,
               coinGeckoId: "injective",
+              gasPriceStep: {
+                low: 0,
+                average: 0.025,
+                high: 0.04,
+              },
+            },
+          ],
+          features: [
+            "stargate",
+            "ibc-transfer",
+            "cosmwasm",
+            "no-legacy-stdTx",
+            "ibc-go",
+          ],
+          beta: true,
+        },
+        {
+          chainId: "passage-2",
+          chainName: "Passage",
+          rpc: "https://passage-rpc.polkachu.com",
+          rest: "https://passage-api.polkachu.com",
+          stakeCurrency: {
+            coinDenom: "pasg",
+            coinMinimalDenom: "upasg",
+            coinDecimals: 6,
+            coinGeckoId: "passage",
+          },
+          bip44: {
+            coinType: 118,
+          },
+          bech32Config: {
+            bech32PrefixAccAddr: "pasg",
+            bech32PrefixAccPub: "pasgpub",
+            bech32PrefixValAddr: "pasgvaloper",
+            bech32PrefixValPub: "pasgvaloperpub",
+            bech32PrefixConsAddr: "pasgvalcons",
+            bech32PrefixConsPub: "pasgvalconspub",
+          },
+          currencies: [
+            {
+              coinDenom: "PASG",
+              coinMinimalDenom: "upasg",
+              coinDecimals: 6,
+              coinGeckoId: "passage",
+            },
+          ],
+          feeCurrencies: [
+            {
+              coinDenom: "pasg",
+              coinMinimalDenom: "upasg",
+              coinDecimals: 6,
+              coinGeckoId: "passage",
               gasPriceStep: {
                 low: 0,
                 average: 0.025,
