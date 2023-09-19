@@ -34,7 +34,7 @@ const Top5 = () => {
                     <input type="button" onClick={()=>setQuery(1)} className={`cursor-pointer ${query===1 && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="1 Day" />
                     <input type="button" onClick={()=>setQuery(7)} className={`cursor-pointer ${query===7 && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="7 Days" />
                     <input type="button" onClick={()=>setQuery(30)} className={`cursor-pointer ${query===30 && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="30 Days" />
-                    <input type="button" onClick={()=>setQuery(null)} className={`cursor-pointer ${query===null && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="All Time" />
+                    {/* <input type="button" onClick={()=>setQuery(null)} className={`cursor-pointer ${query===null && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="All Time" /> */}
                 </div>
             </div>
             <div className={` px-2 mx-auto flex flex-col md:flex-row ${(list.length<=3 ? "justify-start  gap-x-10" : "justify-between" )}  `}>
@@ -47,7 +47,12 @@ const Top5 = () => {
                             <span className="md:text-center text-lg truncate capitalize">{sale.CollectionName}</span>
                             <div className="flex items-center justify-start md:justify-center gap-x-1">
                                 <span className="text-lg ">{(Math.round(sale.amountSum * 100) / 100).toFixed(2)} </span>
-                                <CoinImage chain={router.query.chain} />
+                                {
+                                    router.query.chain==="teritori"? 
+                                        <span className="" ></span>
+                                    :
+                                        <CoinImage chain={router.query.chain} />
+                                }
                             </div>
                         </div>
                     </div>))

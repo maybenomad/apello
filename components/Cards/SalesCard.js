@@ -2,9 +2,17 @@ import { useState } from "react";
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
 import Image from "next/image";
 
-export const CoinImage = ({chain}) => chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) : (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />)
+export const CoinImage = ({chain, token}) => 
+chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
+: chain === "juno" ? (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
+: chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
+: chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
+: chain === "teritori" && token ==="Tori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
+: (<Image src="/tokens/atom.png" alt=" coin" className="h-5" width={20} height={20}  />)
+
 const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactionID, CollectionName, collectionImage, nftImage}) => {
     const [ show, setShow ] = useState(false);
+    // console.log(nftID.split(' ')[1]);
     return ( 
         <div>
             <div className="p-2 py-4 sm:p-4 flex gap-4">
@@ -17,7 +25,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                 </div>
                 <div className="basis-40 flex flex-col justify-around items-end">
                     <div className="flex gap-x-2">
-                        <CoinImage chain={chain} />
+                        <CoinImage chain={chain} token={nftID.split(' ')[1]} />
                         <p className="">{(Math.round(amount * 100) / 100).toFixed(2)}</p>
                         <button onClick={()=>setShow(!show)} className="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-4 h-4 ${show ? 'hidden' : 'block'}`}>
@@ -46,8 +54,13 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
             <div className={`p-4 ${show ? 'block' : 'hidden'} flex justify-between`}>
                 <span className="font-jura">Buyer</span>
                 <div className="flex gap-x-2">
-                    
-                    { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) }
+                    {chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
+                    : chain === "juno" ? (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
+                    : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
+                    : chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
+                    : chain === "teritori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
+                    : (<Image src="/tokens/atom.png" alt="atom coin" className="h-5" width={20} height={20}  />)}
+                    {/* { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) } */}
                     <p className="">{buyer.substring(0,5)+'...'+buyer.substring(buyer.length-5,buyer.length)}</p>
                 </div>
             </div>

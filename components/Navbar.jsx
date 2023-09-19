@@ -8,7 +8,9 @@ import {
 } from "react-icons/fa";
 
 import { useAuthContext } from "../hooks/useAuthContext";
+import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
+import { CoinImage } from "./Cards/SalesCard";
 
 const Navbar = () => {
   const { wallet } = useAuthContext();
@@ -38,11 +40,11 @@ const Navbar = () => {
             menuOpen ? "translate-x-0 " : "-translate-x-full bg-transparent"
           }  md:translate-x-0 ease-in-out duration-300`}
         >
-          <li className="text-xl ml-0 font-bold  ">
+          <li className="text-xl ml-0 font-bold">
             <Link
               href="/holder"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected  "
+              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-xl pb-3 selected"
             >
               Holders
             </Link>
@@ -67,22 +69,57 @@ const Navbar = () => {
             </div>
             <div
               aria-label="drop_down"
-              className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-auto absolute top-9 left-0 py-3 rounded shadow  z-20 `}
+              className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-40 absolute top-9 left-0 py-3 rounded shadow  z-20 `}
             >
               <div className="px-4  ">
                 <Link
                   href={"/sales?chain=juno"}
                   onClick={toggleClick}
-                  className="block p-1 mb-2 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
-                  Juno chain
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="juno" /> Juno
+                  </span>
+                  
                 </Link>
                 <Link
                   href={"/sales?chain=stargaze"}
                   onClick={toggleClick}
-                  className="p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                  className="block p-1 pr-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
-                  stargaze chain
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="stargaze" /> Stargaze
+                  </span>
+                </Link>
+                <Link
+                  href={"/sales?chain=injective"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1  items-center" >
+                    <CoinImage chain="injective" /> Injective
+                  </span>
+                  
+                </Link>
+                <Link
+                  href={"/sales?chain=teritori"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="teritori" token="Tori" /> Teritori 
+                  </span>
+                  
+                </Link>
+                <Link
+                  href={"/sales?chain=passage"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="passage"/> Passage 
+                  </span>
+                  
                 </Link>
               </div>
             </div>
@@ -145,20 +182,26 @@ const Navbar = () => {
             <Link
               href="https://zeus.apello.xyz/create"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className="hover:text-violet p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected"
             >
               Image Creator
             </Link>
           </li>
-          <li className="text-xl font-bold">
+          <li className="text-xl font-bold group-hover:text-violet">
             <Link
               href="#"
               onClick={toggleClick}
-              className="p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
+              className=" p-1 focus:outline-none focus-visible:ring-4 ring-violet rounded-full pb-3 selected selected-dis"
             >
               Snapshot
             </Link>
           </li>
+
+          {wallet && (
+            <li className="text-xl font-bold md:hidden">
+              <DisconnectButton showText />
+            </li>
+          )}
         </ul>
 
         <WalletCnx />
@@ -171,34 +214,18 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 128L216 128"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 64L216 64"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M40 192L216 192"
-              ></path>{" "}
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
         )}
@@ -210,27 +237,17 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              viewBox="0 0 256 256"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {" "}
-              <path fill="none" d="M0 0H256V256H0z"></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 56L56 200"
-              ></path>{" "}
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-                d="M200 200L56 56"
-              ></path>{" "}
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         )}
@@ -261,16 +278,26 @@ const Navbar = () => {
               className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
-          <a href="f" className="px-1 lg:px-3 ">
+          {/* <a
+            href="f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3 "
+          >
             <FaTelegramPlane
               size={20}
               className="cursor-pointer hover:scale-110 hover:text-white "
             />
-          </a>
-          <a href="f" className="px-1 lg:px-3">
+          </a> */}
+          <a
+            href="https://discord.gg/apelloxyz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 lg:px-3"
+          >
             <FaDiscord
               size={20}
-              className=" cursor-pointer hover:scale-110 hover:text-white"
+              className="cursor-pointer hover:scale-110 hover:text-white"
             />
           </a>
         </div>

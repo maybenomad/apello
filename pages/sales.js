@@ -9,7 +9,7 @@ import SalesCardGrid from "../components/Cards/SalesCardGrid";
 
 const GridView = ({list, lastElemet}) => (
     list && <div class="w-full px-5 py-2 grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 4xl:grid-cols-6">
-         <TopSale />
+         {/* <TopSale /> */}
          {list?.map((sale,i) => 
             ( list.length === i+1 ) ? 
             ( 
