@@ -117,7 +117,7 @@ const Navbar = () => {
                   className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
                   <span className="inline-flex gap-1 items-center" >
-                    <CoinImage chain="passage" token="Tori" /> Passage 
+                    <CoinImage chain="passage"/> Passage 
                   </span>
                   
                 </Link>
