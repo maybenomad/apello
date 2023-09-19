@@ -4,6 +4,50 @@ import SalesCard from "../components/Cards/SalesCard";
 import Top5 from "../components/Top5";
 import useAxios from "../hooks/useAxios";
 import useFetch from "../hooks/useFetch";
+import TopSale from "../components/Cards/TopSale";
+import SalesCardGrid from "../components/Cards/SalesCardGrid";
+
+const GridView = ({list, lastElemet}) => (
+    list && <div class="w-full px-5 py-2 grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 4xl:grid-cols-6">
+         <TopSale />
+         {list?.map((sale,i) => 
+            ( list.length === i+1 ) ? 
+            ( 
+            <div key={i} className="" ref={lastElemet} >
+                <SalesCardGrid {...sale} />
+                
+            </div> 
+            ) :
+            (
+                <div key={i} className=""  >
+                    <SalesCardGrid {...sale} />
+                </div> 
+            )
+        )}     
+    </div>
+)
+
+const ListView = ({list, lastElemet}) => (
+    list && <div className="rounded-2xl bg-noir my-2">
+             
+        {list?.map((sale,i) => 
+            ( list.length === i+1 ) ? 
+            ( 
+            <div key={i} className="" ref={lastElemet} >
+                <SalesCard {...sale} />
+                
+            </div> 
+            ) :
+            (
+                <div key={i} className=""  >
+                    <SalesCard {...sale} />
+                    <hr className="mx-4" /> 
+                </div> 
+            )
+        )}
+        
+    </div>
+)
 
 const Sales = () => {
     const [query, setQuery] = useState("");
@@ -53,17 +97,35 @@ const Sales = () => {
           setPageNumber(0);
         }, 1000);
       }
+      const [ isGrid, setGrid ] = useState(true);
     // border-b-2 last:border-b-0
     return ( 
         <section className="h-full w-full px-7 md:px-[10%] " aria-label="tracking sales transactions">
             <Top5 />
+            
+            
             <div className="flex justify-between items-end mb-5">
-                <h1 className="capitalize font-mono font-semibold text-2xl ">sales feed</h1>
+                <div className="flex flex-col md:flex-row gap-1 md:gap-3">
+                    <h1 className="capitalize font-mono font-semibold text-2xl ">sales feed</h1>
+                    {/* here the user can select the card's type(grid/list)  */}
+                    <div className="inline-flex" aria-label="grid/list buttons">
+                        <button className={`p-1.5 rounded-l border-noir ${isGrid ? "bg-violet" : "bg-noir hover:bg-noir/40"}`} onClick={()=>setGrid(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                            </svg>
+                        </button>
+                        <button className={`p-1.5 rounded-r border-noir ${isGrid===false ? "bg-violet" : "bg-noir hover:bg-noir/40"}`} onClick={()=>setGrid(false)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
                 <div  aria-label="search by name" className="max-w-[10rem] sm:max-w-sm w-full flex items-center rounded-xl border-[1px]  focus:shadow focus:outline-none focus-visible:border-violet h-12  p-1 cursor-text ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
-                    <input type="text" placeholder="Collection Name"  onChange={handleChange} 
+                    <input type="text" placeholder="Collection Name" name="query"   onChange={handleChange} 
                         className="px-1 bg-transparent outline-none w-full "
                           />
                     {query.length>0 && (<button className="" onClick={()=>setQuery('')}>
@@ -73,24 +135,13 @@ const Sales = () => {
                     </button>)}
                 </div>
             </div>
-            {list && <div className="rounded-2xl bg-noir my-2">
-                {list?.map((sale,i) => 
-                    ( list.length === i+1 ) ? 
-                    ( 
-                    <div key={i} className="" ref={lastElemet} >
-                        <SalesCard {...sale} />
-                        
-                    </div> 
-                    ) :
-                    (
-                        <div key={i} className=""  >
-                            <SalesCard {...sale} />
-                            <hr className="mx-4" /> 
-                        </div> 
-                    )
-                )}
+            {
+                isGrid ?
+                <GridView list={list} lastElemet={lastElemet}/> :
+                <ListView list={list} lastElemet={lastElemet}/>
                 
-            </div>}
+            }
+
             {loading && <div className="inline-flex items-center m-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24" >
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" ></circle>
