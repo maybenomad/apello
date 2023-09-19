@@ -111,6 +111,16 @@ const Navbar = () => {
                   </span>
                   
                 </Link>
+                <Link
+                  href={"/sales?chain=passage"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="passage" token="Tori" /> Passage 
+                  </span>
+                  
+                </Link>
               </div>
             </div>
           </li>
