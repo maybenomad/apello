@@ -17,6 +17,7 @@
     "@keplr-wallet/stores": "^0.12.25",
     "@noahsaso/cosmodal": "^0.11.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@terra-money/terra.js": "^3.1.10",
     "@terra-money/wallet-provider": "^3.11.1",
     "@types/node": "^20.6.3",
     "@vercel/analytics": "^1.0.1",
