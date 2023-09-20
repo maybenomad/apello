@@ -13,9 +13,9 @@ const TopSale = ({chain, query}) => {
           try{
               
           const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top1?day=${query}${ (router.query.chain) && "&chain="+router.query.chain}`);
-          console.log(res)
+          // console.log(res)
           const {topSale} = res.data;
-          console.log(topSale);
+          // console.log(topSale);
           setTopSale(topSale[0])
 
           } catch (err) {
@@ -53,7 +53,7 @@ const TopSale = ({chain, query}) => {
         <p className="drop-shadow-lg text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "day" : query+" Days"}  `}</p>
         <span className="font-extrabold text-xl md:text-2xl ">{topSale && `${topSale.amount} $${coinName(router.query.chain, topSale.nftID.split(" ")[1])}`}</span>
       </div>
-      <button className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm">Details</button>
+      <a href={`https://www.mintscan.io/${router.query.chain}/txs/${topSale && topSale.transactionID}`} target="_blank" rel="noreferrer" className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm">Details</a>
     </div>
      );
 }
