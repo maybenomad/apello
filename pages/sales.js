@@ -7,9 +7,9 @@ import useFetch from "../hooks/useFetch";
 import TopSale from "../components/Cards/TopSale";
 import SalesCardGrid from "../components/Cards/SalesCardGrid";
 
-const GridView = ({list, lastElemet}) => (
+const GridView = ({list, lastElemet, query, chain}) => (
     list && <div class="w-full px-5 py-2 grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 4xl:grid-cols-6">
-         {/* <TopSale /> */}
+         <TopSale query={query} chain={chain} />
          {list?.map((sale,i) => 
             ( list.length === i+1 ) ? 
             ( 
@@ -53,6 +53,8 @@ const Sales = () => {
     const [query, setQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const router = useRouter();
+    // for the top5 sales collections and the top sale
+    const [queryDay,setDayQuery] = useState(7)
     const { loading, error, list , hasMore, sendQuery } = useFetch('sales/search', query, pageNumber,(router.query.chain) && `&chain=${router.query.chain}`);
     //console.log("rerender",list,pageNumber)
     //create a useeffect for the page initaialisation after the changing the chain
@@ -101,7 +103,7 @@ const Sales = () => {
     // border-b-2 last:border-b-0
     return ( 
         <section className="h-full w-full px-7 md:px-[10%] " aria-label="tracking sales transactions">
-            <Top5 />
+            <Top5 query={queryDay} setQuery={setDayQuery} />
             
             
             <div className="flex justify-between items-end mb-5">
@@ -137,7 +139,7 @@ const Sales = () => {
             </div>
             {
                 isGrid ?
-                <GridView list={list} lastElemet={lastElemet}/> :
+                <GridView query={queryDay} chain={router.query.chain} list={list} lastElemet={lastElemet}/> :
                 <ListView list={list} lastElemet={lastElemet}/>
                 
             }

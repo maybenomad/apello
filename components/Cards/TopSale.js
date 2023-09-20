@@ -1,8 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { coinName } from "./SalesCardGrid";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-const TopSale = () => {
+const TopSale = ({chain, query}) => {
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
+    const [topSale, setTopSale] = useState(null);
+    const router = useRouter();
+    console.log("topsale", router.query.chain, query, chain, topSale);
+    useEffect(()=>{
+      const fetchData = async() =>{
+          try{
+              
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top1?day=${query}${ (router.query.chain) && "&chain="+router.query.chain}`);
+          console.log(res)
+          const {topSale} = res.data;
+          console.log(topSale);
+          setTopSale(topSale[0])
 
+          } catch (err) {
+              console.log(err)
+          }
+      }
+      fetchData();
+    },[query, router.query.chain])
     const handleMouseMove = (e) => {
         const { clientX, clientY } = e;
         const card = e.target;
@@ -17,19 +38,20 @@ const TopSale = () => {
     const handleMouseLeave = () => {
         setTilt({ x: 0, y: 0 });
     };
+    return (
 
-    return ( 
         <div 
-      className="tilt-card flex flex-col justify-center items-center gap-1 p-5 w-full min-h-[200px] bg-slate-800 shadow-inner bg-cover card bg-[url('https://ipfs-gw.stargaze-apis.com/ipfs/bafybeibs4bln5recdqpaqo5e4nt55kll35asn2d3aa2xskxq4ntqxfjjjm/images/2106.png')]"
+      className={`tilt-card flex flex-col justify-center items-center gap-1 p-5 w-full min-h-[200px] bg-slate-800 shadow-inner bg-cover card`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+        backgroundImage: topSale && `url("${topSale.nftImage}")`
       }}
     >
 
-      <p className="text-white font-medium text-sm md:text-base">Today&rsquo;s Top Sale</p>
-      <span className="font-extrabold text-xl md:text-2xl ">50000$ stars</span>
+      <p className="text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "day" : query+" Days"}  `}</p>
+      <span className="font-extrabold text-xl md:text-2xl ">{topSale && `${topSale.amount} $${coinName(router.query.chain)}`}</span>
       <button className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm">Details</button>
     </div>
      );

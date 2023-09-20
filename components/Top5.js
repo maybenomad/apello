@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CoinImage } from "./Cards/SalesCard";
 
-const Top5 = () => {
+const Top5 = ({ query, setQuery}) => {
     const [list, setList ] = useState([]);
-    const [query,setQuery] = useState(7)
+    
     const router = useRouter();
     //console.log("ch",router.query.chain);
     useEffect(()=>{
