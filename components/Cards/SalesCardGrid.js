@@ -1,6 +1,6 @@
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
 
-export const coinName = (chain) => chain === "stargaze" ? "Stars" : chain === "juno" ? "Usdc" : chain === "passage" ? "Pasg" : chain === "injective" ? "Inj" : chain === "teritori" && token ==="Tori" ? "Tori" : "Atom"
+export const coinName = (chain, token) => chain === "stargaze" ? "Stars" : chain === "juno" ? "Usdc" : chain === "passage" ? "Pasg" : chain === "injective" ? "Inj" : chain === "teritori" && token === "Tori" ? "Tori" : "Atom"
 
 const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transactionID, CollectionName, collectionImage, nftImage}) => {
     // console.log(createdAt);
@@ -20,8 +20,8 @@ const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transa
                     </div>
                     <p className="text-[#85848b] whitespace-nowrap">{formatDistanceToNowStrict(new Date(createdAt), { addSuffix: true })}</p>
                     <div className="flex flex-col sm:flex-row items-start justify-start sm:justify-between sm:items-center gap-2 mt-1">
-                        <span className="">{`${(Math.round(amount * 100) / 100).toFixed(2)} $${coinName(chain)}`}</span>
-                        <a class="rounded-md text-xs md:text-sm hover:opacity-80 bg-noir  transition-all  my-1  p-1 border-[1px] border-violet mr-auto" href={`https://www.mintscan.io/${chain}/txs/${transactionID}`} target="_blank" rel="noreferrer">Details</a>
+                        <span className="">{`${(Math.round(amount * 100) / 100).toFixed(2)} $${coinName(chain, nftID.split(" ")[1])}`}</span>
+                        <a className="rounded-md text-xs md:text-sm hover:opacity-80 bg-noir  transition-all  my-1  p-1 border-[1px] border-violet mr-auto" href={`https://www.mintscan.io/${chain}/txs/${transactionID}`} target="_blank" rel="noreferrer">Details</a>
                         
                             {/* <div className="flex-shrink-0 py-1 px-2 rounded text-sm bg-violet/40">
                                 <div className="first-letter:uppercase lowercase">

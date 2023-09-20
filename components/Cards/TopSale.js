@@ -7,7 +7,7 @@ const TopSale = ({chain, query}) => {
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const [topSale, setTopSale] = useState(null);
     const router = useRouter();
-    console.log("topsale", router.query.chain, query, chain, topSale);
+    console.log("topsale", router.query.chain, query, chain, topSale, topSale.nftID.split(" ")[1]);
     useEffect(()=>{
       const fetchData = async() =>{
           try{
@@ -49,9 +49,10 @@ const TopSale = ({chain, query}) => {
         backgroundImage: topSale && `url("${topSale.nftImage}")`
       }}
     >
-
-      <p className="text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "day" : query+" Days"}  `}</p>
-      <span className="font-extrabold text-xl md:text-2xl ">{topSale && `${topSale.amount} $${coinName(router.query.chain)}`}</span>
+      <div className=" shadow-black" >
+        <p className="drop-shadow-lg text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "day" : query+" Days"}  `}</p>
+        <span className="font-extrabold text-xl md:text-2xl ">{topSale && `${topSale.amount} $${coinName(router.query.chain, topSale.nftID.split(" ")[1])}`}</span>
+      </div>
       <button className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm">Details</button>
     </div>
      );
