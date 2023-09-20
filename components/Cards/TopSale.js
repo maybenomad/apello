@@ -7,7 +7,7 @@ const TopSale = ({chain, query}) => {
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const [topSale, setTopSale] = useState(null);
     const router = useRouter();
-    console.log("topsale", router.query.chain, query, chain, topSale, topSale.nftID.split(" ")[1]);
+    // console.log("topsale", router.query.chain, query, chain, topSale, topSale.nftID.split(" ")[1]);
     useEffect(()=>{
       const fetchData = async() =>{
           try{
