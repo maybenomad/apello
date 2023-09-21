@@ -36,12 +36,19 @@ export default function Home() {
               Take your DAO to the next level with APELLO!
             </p>
             <div className="flex gap-x-8 ">
-              <button
+            
+            <button  onClick={() => setBotModalOpen(!botModalOpen)} className class="relative inline-block uppercase tracking-wide text-center px-4 py-2 my-9 font-medium group">
+              <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+              <span class="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
+              <span class="relative text-black group-hover:text-white">invite apello</span>
+            </button>
+        
+              {/* <button
                 onClick={() => setBotModalOpen(!botModalOpen)}
                 className=" block max-w-fit bg-violet rounded text-base font-medium uppercase tracking-wide text-center  text-white px-2 py-3  hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc  my-9 shadow-[inset_0_0_0_rgba(0,0,0,0.6)] ease-out duration-500 hover:shadow-[inset_144.4px_0_0_rgba(0,0,0,0.99)] border-solid border-violet border-2"
               >
                 invite apello
-              </button>
+              </button> */}
               {botModalOpen && (
                 <Modal
                   title="invite bot"
@@ -71,14 +78,20 @@ export default function Home() {
                   </div>
                 </Modal>
               )}
-              <a
+              <a  href="https://use.apello.xyz/" target="_blank"
+                rel="license noreferrer" className class="relative inline-block uppercase tracking-wide text-center px-4 py-2 md:py-3 my-9 font-medium group">
+                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
+                <span class="relative text-black group-hover:text-white">Apello Docs</span>
+              </a>
+              {/* <a
                 href="https://use.apello.xyz/"
                 target="_blank"
                 rel="license noreferrer"
                 className=" block max-w-fit bg-black rounded text-base font-medium uppercase tracking-wide text-center  text-white px-2 py-3  hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc  my-9 shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_144.4px_0_0_rgba(108,99,255,0.99)] border-solid border-violet border-2"
               >
                 Apello Docs
-              </a>
+              </a> */}
             </div>
             {/*<div className="flex justify-evenly ">
                       <input type="button" value={'Add to server'} className="bg-bleu rounded-md text-base font-medium uppercase tracking-wide text-center text-noir px-2 py-3  hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc hover:bg-orange/90 " />
@@ -128,7 +141,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
