@@ -100,14 +100,42 @@ const Sales = () => {
         }, 1000);
       }
       const [ isGrid, setGrid ] = useState(true);
+
+    //   for the search bar expension
+    const [isExpanded, setIsExpanded] = useState(false);
+
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const toggleSearch = () => {
+    setIsExpanded(!isExpanded);
+    // Focus the input when it becomes visible
+    if (!isExpanded) {
+        searchInputRef.current.focus();
+      }
+  };
+
     // border-b-2 last:border-b-0
     return ( 
         <section className="h-full w-full px-7 md:px-[10%] " aria-label="tracking sales transactions">
             <Top5 query={queryDay} setQuery={setDayQuery} />
             
             
-            <div className="flex justify-between items-end mb-5">
-                <div className="flex flex-col md:flex-row gap-1 md:gap-3">
+            <div className="flex justify-between items-end md:items-center mb-5">
+                <div className="flex flex-col-reverse md:flex-row gap-1 md:gap-3">
                     <h1 className="capitalize font-mono font-semibold text-2xl ">sales feed</h1>
                     {/* here the user can select the card's type(grid/list)  */}
                     <div className="inline-flex" aria-label="grid/list buttons">
@@ -123,18 +151,24 @@ const Sales = () => {
                         </button>
                     </div>
                 </div>
-                <div  aria-label="search by name" className="max-w-[10rem] sm:max-w-sm w-full flex items-center rounded-xl border-[1px]  focus:shadow focus:outline-none focus-visible:border-violet h-12  p-1 cursor-text ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                    <input type="text" placeholder="Collection Name" name="query"   onChange={handleChange} 
-                        className="px-1 bg-transparent outline-none w-full "
-                          />
-                    {query.length>0 && (<button className="" onClick={()=>setQuery('')}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                {/* className="max-w-[10rem] sm:max-w-sm w-full flex items-center rounded-xl border-[1px]  focus:shadow focus:outline-none focus-visible:border-violet h-12  p-1 cursor-text " */}
+                <div  aria-label="search by name" className={ ` max-w-[40%]  flex items-center ${isExpanded && "border-b"} border-[#aaa] focus:shadow focus:outline-none h-10  cursor-text` }
+ >
+                    <button className="" onClick={toggleSearch} >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
-                    </button>)}
+                    </button>
+                    <div ref={searchInputRef} className={`${ isExpanded ? "visible" : "hidden"} inline-flex w-full`}>
+                        <input type="text" placeholder="Collection Name" name="query"   onChange={handleChange} 
+                            className="px-1 bg-transparent outline-none w-full "
+                            />
+                        {query.length>0 && (<button className="" onClick={()=>setQuery('')}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>)}
+                    </div>
                 </div>
             </div>
             {

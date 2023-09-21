@@ -46,11 +46,11 @@ const TopSale = ({chain, query}) => {
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
-        backgroundImage: topSale && `url("${topSale.nftImage}")`
+        backgroundImage: topSale && (topSale?.CollectionName!=='rektbulls' && !topSale?.CollectionName.includes("levana")) ? `url("${topSale.nftImage}")` : `url("${topSale?.collectionImage}")` 
       }}
     >
       <div className=" shadow-black" >
-        <p className="drop-shadow-lg text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "day" : query+" Days"}  `}</p>
+        <p className="drop-shadow-lg text-white font-medium text-sm md:text-base capitalize ">{`Top Sale in ${query === 1 ? "1 Day" : query+" Days"}  `}</p>
         <span className="font-extrabold text-xl md:text-2xl ">{topSale && `${topSale.amount} $${coinName(router.query.chain, topSale.nftID.split(" ")[1])}`}</span>
       </div>
       <a href={`https://www.mintscan.io/${router.query.chain}/txs/${topSale && topSale.transactionID}`} target="_blank" rel="noreferrer" className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm">Details</a>
