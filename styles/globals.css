@@ -331,8 +331,8 @@
   overflow: hidden;
 }
 
-.loop-slider {
-  .inner {
+.loop-slider .inner {
+ 
     display: flex;
     width: fit-content;
     animation-name: loop;
@@ -340,7 +340,7 @@
     animation-iteration-count: infinite;
     animation-direction: var(--direction);
     animation-duration: var(--duration);
-  }
+  
 }
 
 .tag {
@@ -358,10 +358,12 @@
     0 0.1rem 0.5rem rgb(0 0 0 / 30%),
     0 0.2rem 1.5rem rgb(0 0 0 / 40%);
   
-  span {
-    font-size: 1.2rem;
+  
+}
+.tag span {
+    /* font-size: 1.2rem; */
     color: #64748b;
-  }
+  
 }
 
 .fade {

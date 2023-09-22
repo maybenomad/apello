@@ -37,10 +37,10 @@ export default function Home() {
             </p>
             <div className="flex gap-x-8 ">
             
-            <button  onClick={() => setBotModalOpen(!botModalOpen)} className class="relative inline-block uppercase tracking-wide text-center px-4 py-2 my-9 font-medium group">
-              <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-              <span class="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
-              <span class="relative text-black group-hover:text-white">invite apello</span>
+            <button  onClick={() => setBotModalOpen(!botModalOpen)} className="relative inline-block uppercase tracking-wide text-center px-4 py-2 my-9 font-medium group">
+              <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+              <span className="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
+              <span className="relative text-black group-hover:text-white">invite apello</span>
             </button>
         
               {/* <button
@@ -79,10 +79,10 @@ export default function Home() {
                 </Modal>
               )}
               <a  href="https://use.apello.xyz/" target="_blank"
-                rel="license noreferrer" className class="relative inline-block uppercase tracking-wide text-center px-4 py-2 md:py-3 my-9 font-medium group">
-                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                <span class="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
-                <span class="relative text-black group-hover:text-white">Apello Docs</span>
+                rel="license noreferrer" className="relative inline-block uppercase tracking-wide text-center px-4 py-2 md:py-3 my-9 font-medium group">
+                <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-violet group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span className="absolute inset-0 w-full h-full bg-white border-2 border-violet group-hover:bg-violet"></span>
+                <span className="relative text-black group-hover:text-white">Apello Docs</span>
               </a>
               {/* <a
                 href="https://use.apello.xyz/"
