@@ -1,6 +1,7 @@
+import { useMemo } from "react";
 
 export const Tag = ({ text }) => (
-    <div className='tag'><span>#</span> {text}</div>
+    <div className='tag '><span>#</span> {text}</div>
 );
 const InfiniteLoopSlider = ({children, duration, reverse = false}) => {
 return (
@@ -8,7 +9,7 @@ return (
         '--duration': `${duration}ms`,
         '--direction': reverse ? 'reverse' : 'normal'
     }}>
-    <div className='inner'>
+    <div className='inner flex'>
         {children}
         {children}
     </div>
@@ -25,16 +26,18 @@ const ChainNames = () => {
 
     const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
     const shuffle = (arr) => [...arr].sort( () => .5 - Math.random() );
+    const shuffledTags = useMemo(() => shuffle(TAGS), [TAGS])
+    // shuffle(TAGS).slice(0, TAGS_PER_ROW).map(tag
         return (
-            <div className='tag-list'>
+            <div className='tag-list bg-transparent'>
                 {[...new Array(ROWS)].map((_, i) => (
                 <InfiniteLoopSlider key={i} duration={random(DURATION - 5000, DURATION + 5000)} reverse={i % 2}>
-                    {shuffle(TAGS).slice(0, TAGS_PER_ROW).map(tag => (
+                    {TAGS.map(tag => (
                     <Tag text={tag} key={tag}/>
                     ))}
                 </InfiniteLoopSlider>
                 ))}
-                <div className='fade absolute inset-0 '/>
+                <div className='fade '/>
             </div>
         )
       
