@@ -72,16 +72,7 @@ const Navbar = () => {
               className={`hidden group-hover:flex hover:flex bg-noir overflow-visible w-40 absolute top-9 left-0 py-3 rounded shadow  z-20 `}
             >
               <div className="px-4  ">
-                <Link
-                  href={"/sales?chain=juno"}
-                  onClick={toggleClick}
-                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
-                >
-                  <span className="inline-flex gap-1 items-center" >
-                    <CoinImage chain="juno" /> Juno
-                  </span>
-                  
-                </Link>
+
                 <Link
                   href={"/sales?chain=stargaze"}
                   onClick={toggleClick}
@@ -112,12 +103,32 @@ const Navbar = () => {
                   
                 </Link>
                 <Link
+                  href={"/sales?chain=juno"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="juno" /> Juno
+                  </span>
+                  
+                </Link>
+                <Link
                   href={"/sales?chain=passage"}
                   onClick={toggleClick}
                   className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
                 >
                   <span className="inline-flex gap-1 items-center" >
                     <CoinImage chain="passage"/> Passage 
+                  </span>
+                  
+                </Link>
+                <Link
+                  href={"/sales?chain=chihuahua"}
+                  onClick={toggleClick}
+                  className="block p-1 text-base text-white whitespace-nowrap hover:text-violet transition-colors"
+                >
+                  <span className="inline-flex gap-1 items-center" >
+                    <CoinImage chain="chihuahua"/> CHIHUAHUA 
                   </span>
                   
                 </Link>
