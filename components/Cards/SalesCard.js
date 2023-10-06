@@ -4,9 +4,10 @@ import Image from "next/image";
 
 export const CoinImage = ({chain, token}) => 
 chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
-: chain === "juno" ? (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
+: chain === "juno" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/juno.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
 : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
 : chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
+: chain === "chihuahua" ? (<Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg" alt="chihuahua coin" className="h-5" width={20} height={20}  />)
 : chain === "teritori" && token ==="Tori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
 : (<Image src="/tokens/atom.png" alt=" coin" className="h-5" width={20} height={20}  />)
 
@@ -55,9 +56,10 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                 <span className="font-jura">Buyer</span>
                 <div className="flex gap-x-2">
                     {chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
-                    : chain === "juno" ? (<Image src="/usdc.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
+                    : chain === "juno" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/juno.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
                     : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
                     : chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
+                    : chain === "chihuahua" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/chihuahua/images/huahua.png" alt="chihuahua coin" className="h-5" width={20} height={20}  />)
                     : chain === "teritori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
                     : (<Image src="/tokens/atom.png" alt="atom coin" className="h-5" width={20} height={20}  />)}
                     {/* { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) } */}

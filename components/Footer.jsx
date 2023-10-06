@@ -1,7 +1,9 @@
+import ChainNames from "./ChainNames";
+
 const Fotter = () => {
   return (
     <footer className="relative md:absolute md:bottom-3 flex  sm:flex-row justify-center items-start gap-y-3 gap-x-3 sm:gap-x-9 sm:justify-start md:items-center bg-black md:bg-transparent text-[currentColor] p-3 pt-6 md:pt-1  px-4 md:pl-10 ">
-      <a
+      {/* <a
         href="https://www.junonetwork.io/"
         target="_blank"
         rel="noopener noreferrer"
@@ -153,7 +155,9 @@ const Fotter = () => {
           src="/injlogo.png"
           className="h-16"
         />
-      </a>
+      </a> */}
+      
+      <ChainNames />
     </footer>
   );
 };
