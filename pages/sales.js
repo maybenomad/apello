@@ -136,7 +136,8 @@ const Sales = () => {
             
             <div className="flex justify-between items-end md:items-center mb-5">
                 <div className="flex flex-col-reverse md:flex-row gap-1 md:gap-3">
-                    <h1 className="capitalize font-mono font-semibold text-2xl ">sales feed</h1>
+                    {/* capitalize font-mono font-semibold text-2xl */}
+                    <h1 className="capitalize basis-full text-2xl font-mono text-blanc ">sales feed</h1>
                     {/* here the user can select the card's type(grid/list)  */}
                     <div className="inline-flex" aria-label="grid/list buttons">
                         <button className={`p-1.5 rounded-l border-noir ${isGrid ? "bg-violet" : "bg-noir hover:bg-noir/40"}`} onClick={()=>setGrid(true)}>
