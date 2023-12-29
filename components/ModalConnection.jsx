@@ -124,7 +124,7 @@ const ModalConnection = ({ open, close }) => {
             onClick={ninjaInjClick}
           >
             <Image
-              src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg"
+              src="https://ipfs-gw.stargaze-apis.com/ipfs/Qme2Ha4MxnA5rXDb5iGTioxDk5qXvqGkjJLg7PUytFkgRt"
               height="24"
               width="24"
               className="h-6"
