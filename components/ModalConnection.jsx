@@ -5,7 +5,7 @@ import { useCosmodal } from "../hooks/useCosmodal";
 import { useTerra } from "../hooks/useTerra";
 
 const ModalConnection = ({ open, close }) => {
-  const { connecterra } = useTerra();
+  const { connecterra,connectInjNinji } = useTerra();
   const { connectToChain } = useCosmodal();
 
   // @noahsaso/cosmodal
@@ -34,6 +34,10 @@ const ModalConnection = ({ open, close }) => {
     close();
   };
 
+   const ninjaInjClick = () => {
+    connectInjNinji();
+    close();
+  };
   // @terra-money/wallet-provider
   const terraClick = () => {
     connecterra();
@@ -114,6 +118,21 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Injective</span>
           </button>
+
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={ninjaInjClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="injective logo"
+            />
+            <span className="font-azonix ">Injective Ninji</span>
+          </button>
+          
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
             onClick={chihuahuaClick}
