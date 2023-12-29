@@ -64,7 +64,7 @@ export const useTerra = () => {
       // It can return the array of address/public key.
       // But, currently, Keplr extension manages only one address/public key pair.
       // XXX: This line is needed to set the sender address for SigningCosmosClient.
-      const accounts = await offlineSigner.getAccounts();
+
 
       await addWallet("injective", accounts[0].address);
     }
