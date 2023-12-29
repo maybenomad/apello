@@ -301,7 +301,7 @@ const Navbar = () => {
             />
           </a> */}
           <a
-            href="https://discord.gg/apelloxyz"
+            href="https://discord.gg/caalabs"
             target="_blank"
             rel="noopener noreferrer"
             className="px-1 lg:px-3"
