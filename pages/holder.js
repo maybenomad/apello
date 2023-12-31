@@ -7,7 +7,7 @@ const HolderSection = () => {
     <section>
       <a
         className="relative block w-full max-w-xl px-5 md:mx-auto"
-        href="https://discord.gg/apello"
+        href="https://discord.gg/caalabs"
         target="_blank"
         rel="noreferrer"
       >
