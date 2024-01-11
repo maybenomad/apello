@@ -78,8 +78,8 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
 
   return (
     <div
-      className={`step-item ${currentStep === 1 && "active"} ${
-        1 < currentStep && "complete"
+      className={`step-item ${currentStep === 1 && "!active"} ${
+        1 < currentStep && "!complete"
       } `}
       aria-label="step 1: connet to your Discord"
     >
@@ -109,7 +109,7 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
           >
             <button
               disabled={!wallet}
-              className="clip-button p-2  bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible "
+              className="clip-button p-2 w-full bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible "
               onClick={hundleClick}
             >
               <span className="font-azonix ">connect Discord</span>
