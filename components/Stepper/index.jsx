@@ -71,7 +71,7 @@ const Stepper = () => {
                         </div>
                         
                         <div className={`max-h-80 overflow-hidden ${(currentStep !== 2 || !complete) && "max-h-0"} transition-[max-height] `}>
-                            <><p className="text-gray-500  step-parag">Almost there! After you click "Confirm", Go back to discord and click "Verify"</p>
+                            <><p className="text-gray-500  step-parag">Almost there! After you click Confirm, Go back to discord and click Verify</p>
                             <a href="https://discord.gg/caalabs"  className="clip-button p-2 px-4 ml-14 bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:bg-black " 
                                 
                                 onClick={()=>{
