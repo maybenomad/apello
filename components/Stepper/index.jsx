@@ -70,16 +70,16 @@ const Stepper = () => {
                             <h3 className="font-bold font-azonix">Confirm & go to Discord</h3>   
                         </div>
                         
-                        <div className={`max-h-80 overflow-hidden ${(currentStep !== 2 || complete) && "max-h-0"} transition-[max-height] `}>
+                        <div className={`max-h-80 overflow-hidden ${(currentStep !== 2 || !complete) && "max-h-0"} transition-[max-height] `}>
                             <><p className="text-gray-500  step-parag">Congratulations! you&apos;ve completed the register, now you can go to Discord</p>
-                            <button  className="clip-button p-2 ml-14 bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:bg-black " 
+                            <a href="https://discord.com"  className="clip-button p-2 px-4 ml-14 bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:bg-black " 
                                 
                                 onClick={()=>{
                                     setcomplete(true);
                                     }}>
                                     
-                                    <span className="font-azonix">Go to Discord</span>
-                            </button></>
+                                    <span className="font-azonix">Confirm</span>
+                            </a></>
                         </div>
                     </div>
                 
