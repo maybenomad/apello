@@ -5,12 +5,16 @@ import { useCosmodal } from "../hooks/useCosmodal";
 import { useTerra } from "../hooks/useTerra";
 
 const ModalConnection = ({ open, close }) => {
-  const { connecterra,connectInjNinji } = useTerra();
+  const { connecterra,connectInjNinji,connectOsmo } = useTerra();
   const { connectToChain } = useCosmodal();
 
   // @noahsaso/cosmodal
   const stargazeClick = () => {
     connectToChain(ChainInfoID.Stargaze1);
+    close();
+  };
+  const osmosisClick = () => {
+    connectOsmo();
     close();
   };
   const injectiveClick = () => {
@@ -104,7 +108,23 @@ const ModalConnection = ({ open, close }) => {
               alt="Teritori wallet logo"
             />
             <span className="font-azonix ">Teritori</span>
+            
           </button>
+          
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={osmosisClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/osmosis/chainImg/_chainImg.svg"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="osmo wallet logo"
+            />
+            <span className="font-azonix ">Teritori</span>
+          </button>
+          
           <button
             className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
             onClick={injectiveClick}
