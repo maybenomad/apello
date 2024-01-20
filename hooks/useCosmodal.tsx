@@ -33,6 +33,8 @@ export const useCosmodal = () => {
         ? "juno"
         : address.startsWith("tori")
         ? "teritori"
+        : address.startsWith("osmo")
+        ? "osmosis"
         : address.startsWith("inj")
         ? "injective"
         : address.startsWith("chihuahua")
