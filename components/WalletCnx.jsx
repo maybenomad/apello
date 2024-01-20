@@ -39,6 +39,12 @@ const BlockchainIcon = (wallet) => {
           <Image src="/chains/stargaze.png" fill alt="Stargaze logo" />
         </div>
       );
+    case "osmosis":
+      return (
+        <div className="relative h-6 w-6">
+          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/osmosis/chainImg/_chainImg.svg" fill alt="Stargaze logo" />
+        </div>
+      );
     case "injective":
       return (
         <div className="relative h-6 w-6">
