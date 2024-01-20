@@ -122,7 +122,7 @@ const ModalConnection = ({ open, close }) => {
               className="h-6"
               alt="osmo wallet logo"
             />
-            <span className="font-azonix ">Teritori</span>
+            <span className="font-azonix ">Osmosis</span>
           </button>
           
           <button
