@@ -16,7 +16,7 @@ const HolderSection = () => {
           height={188}
           alt="Join the Apello Discord server"
           className="object-contain"
-          src="/discord-banner.webp"
+          src="https://ipfs-gw.stargaze-apis.com/ipfs/QmcwMvucXk9RoL6fQsG29uS5Rh15q72hmwbuMx4onpJYD1"
         />
       </a>
       <Stepper />
