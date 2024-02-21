@@ -12,11 +12,11 @@ const HolderSection = () => {
         rel="noreferrer"
       >
         <Image
-          width={673}
-          height={188}
+          width={800}
+          height={150}
           alt="Join the Apello Discord server"
           className="object-contain"
-          src="https://ipfs-gw.stargaze-apis.com/ipfs/QmcwMvucXk9RoL6fQsG29uS5Rh15q72hmwbuMx4onpJYD1"
+          src="https://ipfs-gw.stargaze-apis.com/ipfs/QmZkBV3aGdyt5TPbp1PcTFcFaBoqTsMaUrxFC7ete3AFNH"
         />
       </a>
       <Stepper />

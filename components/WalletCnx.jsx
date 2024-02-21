@@ -51,6 +51,12 @@ const BlockchainIcon = (wallet) => {
           <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg" fill alt="Injective logo" />
         </div>
       );
+    case "omniflix":
+      return (
+        <div className="relative h-6 w-6">
+          <Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.svg" fill alt="Omniflix logo" />
+        </div>
+      );
     case "chihuahua":
       return (
         <div className="relative h-6 w-6">

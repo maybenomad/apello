@@ -5,7 +5,7 @@ import { useCosmodal } from "../hooks/useCosmodal";
 import { useTerra } from "../hooks/useTerra";
 
 const ModalConnection = ({ open, close }) => {
-  const { connecterra,connectInjNinji,connectOsmo } = useTerra();
+  const { connecterra,connectInjNinji,connectOsmo,connectOmniFlix } = useTerra();
   const { connectToChain } = useCosmodal();
 
   // @noahsaso/cosmodal
@@ -27,6 +27,10 @@ const ModalConnection = ({ open, close }) => {
   };
   const junoClick = () => {
     connectToChain(ChainInfoID.Juno1);
+    close();
+  };
+  const omniClick = () => {
+    connectOmniFlix();
     close();
   };
   const teritoriClick = () => {
@@ -108,6 +112,20 @@ const ModalConnection = ({ open, close }) => {
               alt="Teritori wallet logo"
             />
             <span className="font-azonix ">Teritori</span>
+            
+          </button>
+          <button
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            onClick={omniClick}
+          >
+            <Image
+              src="https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.svg"
+              height="24"
+              width="24"
+              className="h-6"
+              alt="OmniFlix wallet logo"
+            />
+            <span className="font-azonix ">OmniFlix</span>
             
           </button>
           
