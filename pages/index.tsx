@@ -6,7 +6,55 @@ import Button from "../components/Button";
 import Modal from "../components/Modal";
 import SocialLinks from "../components/SocialLinks";
 
+const BotInviteURL = {
+  TokenGating:
+    "https://discord.com/api/oauth2/authorize?client_id=1047250675324690592&permissions=268527680&scope=bot",
+  SalesTracking: "https://bit.ly/ApelloSalesTracker",
+};
+
+function InviteLink({ text, href }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={csx(
+        "w-60 px-3 py-3",
+        "bg-black rounded",
+        "border-solid border-apello border-2",
+        "text-base font-medium uppercase tracking-wide text-center text-white",
+        "hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc",
+        "shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-700",
+        "hover:shadow-[inset_240px_0_0_rgba(230,150,0,1)]"
+      )}
+    >
+      {text}
+    </a>
+  );
+}
+
+function InviteBotModal({ close }) {
+  return (
+    <Modal title="invite bot" isOpen={true} handleClose={close}>
+      <div className="flex flex-col justify-between mx-auto">
+        <div className="flex flex-col justify-center items-center py-8 gap-y-4 ">
+          <InviteLink
+            text="Apello Token Gating"
+            href={BotInviteURL.TokenGating}
+          />
+          <InviteLink
+            text="Apello Sales Tracker"
+            href={BotInviteURL.SalesTracking}
+          />
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 function Main() {
+  const [botModalOpen, setBotModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div
@@ -17,36 +65,7 @@ function Main() {
           backgroundImage: "url(/apello-astronaut.png)",
           backgroundSize: "cover",
         }}
-      >
-        {/* <Image
-          src="/juno-home.png"
-          alt="terra blockchain"
-          className="absolute top-[35%] left-[22%] w-[12%] animate-bounce-float"
-          width={60}
-          height={80}
-        />
-        <Image
-          src="/tokens/tori.png"
-          alt="teritori blockchain"
-          className="absolute top-[41%] right-[10%] w-[12%] border-white border-2 rounded-full animate-bounce-float"
-          width={60}
-          height={80}
-        />
-        <Image
-          src="/stargaze-home.png"
-          alt="stargaze blockchain"
-          className="absolute bottom-[20%] right-[22%] w-[12%] animate-bounce-float"
-          width={60}
-          height={80}
-        />
-        <Image
-          src="/terra sdt.png"
-          alt="juno blackchain"
-          className="absolute bottom-[20%] left-[22%] w-[12%] animate-bounce-float"
-          width={60}
-          height={80}
-        /> */}
-      </div>
+      />
       <h2
         className={csx(
           "text-center",
@@ -60,15 +79,12 @@ function Main() {
       <p className="mb-2 text-center text-[#e5e5e5] font-jura text-3xl selection:bg-violet ">
         The Premier Toolkit for <b>Cosmos</b> NFT Communities
       </p>
-      {/* <p className="text-center text-[#e5e5e5] font-jura font-bold text-lg selection:bg-violet ">
-        Free and Open Source, Forever
-      </p> */}
       <div className="flex flex-row mt-4">
         <Metric description="Servers Using Apello" value={42069} />
         <Metric description="Holders Verified" value={69420} />
       </div>
       <div className="flex flex-row mt-8 gap-x-8 text-2xl">
-        <Button>
+        <Button onClick={() => setBotModalOpen(!botModalOpen)}>
           <span className="leading-8">Invite Apello</span>
           <Image
             src="/discord-mark-white.svg"
@@ -86,6 +102,7 @@ function Main() {
         </Button>
       </div>
       <SocialLinks />
+      {botModalOpen && <InviteBotModal close={() => setBotModalOpen(false)} />}
     </div>
   );
 }
