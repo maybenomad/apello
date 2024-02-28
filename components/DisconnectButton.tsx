@@ -9,7 +9,7 @@ export const DisconnectButton: React.FC<{ showText?: boolean }> = ({
 
   return (
     <button
-      className="flex items-center gap-1 px-3 py-1 rounded-md border-violet border-2"
+      className="flex items-center gap-1 px-3 py-1 rounded-md border-apello border-2"
       onClick={disconnectWallet}
     >
       {showText && "Disconnect"}

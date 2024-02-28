@@ -82,10 +82,8 @@ export default function Navbar(props) {
       </Header.Menu>
 
       <div className="ml-2 text-lg">
-        <Button variant="outline">Connect Wallet</Button>
+        <WalletCnx />
       </div>
-
-      {/* <WalletCnx /> */}
     </Header>
   );
 }

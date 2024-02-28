@@ -5,7 +5,11 @@ const ButtonVariant = {
   Outline: "outline",
 };
 
-export default function Button({ variant = ButtonVariant.Standard, children }) {
+export default function Button({
+  variant = ButtonVariant.Standard,
+  onClick = () => {},
+  children,
+}) {
   return (
     <button
       className={csx(
@@ -20,6 +24,7 @@ export default function Button({ variant = ButtonVariant.Standard, children }) {
         variant === ButtonVariant.Standard && "bg-apello",
         variant === ButtonVariant.Outline ? "text-apello" : "text-fauxblack"
       )}
+      onClick={onClick}
     >
       {children}
     </button>

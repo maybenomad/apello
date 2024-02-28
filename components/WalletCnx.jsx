@@ -5,6 +5,7 @@ import { useAddWallet } from "../hooks/useAddWallet";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { DisconnectButton } from "./DisconnectButton";
 import ModalConnection from "./ModalConnection";
+import Button from "./Button";
 
 //to chose the blockchain logo svg to render : Terra station / Keplr
 const BlockchainIcon = (wallet) => {
@@ -42,31 +43,51 @@ const BlockchainIcon = (wallet) => {
     case "osmosis":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/osmosis/chainImg/_chainImg.svg" fill alt="Stargaze logo" />
+          <Image
+            src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/osmosis/chainImg/_chainImg.svg"
+            fill
+            alt="Stargaze logo"
+          />
         </div>
       );
     case "injective":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg" fill alt="Injective logo" />
+          <Image
+            src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/injective/chainImg/_chainImg.svg"
+            fill
+            alt="Injective logo"
+          />
         </div>
       );
     case "omniflix":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.svg" fill alt="Omniflix logo" />
+          <Image
+            src="https://raw.githubusercontent.com/cosmos/chain-registry/master/omniflixhub/images/flix.svg"
+            fill
+            alt="Omniflix logo"
+          />
         </div>
       );
     case "chihuahua":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg" fill alt="Chihuahua logo" />
+          <Image
+            src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg"
+            fill
+            alt="Chihuahua logo"
+          />
         </div>
       );
     case "passage":
       return (
         <div className="relative h-6 w-6">
-          <Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" fill alt="Passage logo" />
+          <Image
+            src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png"
+            fill
+            alt="Passage logo"
+          />
         </div>
       );
     case "juno":
@@ -117,31 +138,14 @@ const WalletCnx = () => {
   return (
     <div className="absolute top-1 right-[50px] md:relative md:inset-0 inline-flex gap-1">
       {!wallet ? (
-        <button
-          className="select-none  flex items-center px-2 py-1 rounded-md border-violet border-2  "
-          onClick={connectClick}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-8 md:w-5 h-8 md:h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
-            />
-          </svg>
+        <Button variant="outline" onClick={connectClick}>
           <span className="whitespace-nowrap  ml-1">
-            {isLoading ? "isConnecting..." : "Connect Wallet"}
+            {isLoading ? "Connecting..." : "Connect Wallet"}
           </span>
-        </button>
+        </Button>
       ) : (
         <button
-          className="select-none flex items-center gap-1 px-2 py-1 rounded-md border-violet border-2  "
+          className="select-none flex items-center gap-1 px-2 py-1 rounded-md border-apello border-2  "
           onClick={() => {
             navigator?.clipboard
               .writeText(wallet?.adress)
@@ -165,9 +169,9 @@ const WalletCnx = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="ml-1"
             >
               <title>Copied wallet address successfully</title>
@@ -181,9 +185,9 @@ const WalletCnx = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="ml-1"
             >
               <title>Copy wallet address</title>
