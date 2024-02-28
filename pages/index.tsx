@@ -1,17 +1,15 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import csx from "../util/csx";
+import Button from "../components/Button";
 import Modal from "../components/Modal";
-
-const csx = (...args) => args.filter(Boolean).join(" ");
-
-const APELLO_COLOR = "rgb(250, 197, 0)";
 
 function Main() {
   return (
     <div className="flex flex-col items-center justify-center">
       <div
-        className="relative mb-12"
+        className="relative mb-12 mt-8"
         style={{
           width: 500,
           height: 500,
@@ -19,7 +17,7 @@ function Main() {
           backgroundSize: "cover",
         }}
       >
-        <Image
+        {/* <Image
           src="/juno-home.png"
           alt="terra blockchain"
           className="absolute top-[35%] left-[22%] w-[12%] animate-bounce-float"
@@ -46,7 +44,7 @@ function Main() {
           className="absolute bottom-[20%] left-[22%] w-[12%] animate-bounce-float"
           width={60}
           height={80}
-        />
+        /> */}
       </div>
       <h2
         className={csx(
@@ -68,7 +66,7 @@ function Main() {
         <Metric description="Servers Using Apello" value={42069} />
         <Metric description="Holders Verified" value={69420} />
       </div>
-      <div className="flex flex-row mt-8 gap-x-8">
+      <div className="flex flex-row mt-8 gap-x-8 text-2xl">
         <Button>
           <span className="leading-8">Invite Apello</span>
           <Image
@@ -87,28 +85,6 @@ function Main() {
         </Button>
       </div>
     </div>
-  );
-}
-
-function Button({ children }) {
-  return (
-    <button
-      className="relative flex items-center gap-x-4 justify-center text-2xl pt-4 pb-4 pl-8 pr-8 text-fauxblack tracking-wider bg-apello rounded-xl"
-      style={{}}
-    >
-      {children}
-    </button>
-  );
-}
-
-function OutlineButton({ children }) {
-  return (
-    <button
-      className="text-2xl pt-4 pb-4 pl-8 pr-8 text-apello tracking-wider border-apello rounded-xl border-2"
-      style={{}}
-    >
-      {children}
-    </button>
   );
 }
 
