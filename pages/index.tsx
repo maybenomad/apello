@@ -4,6 +4,7 @@ import { useState } from "react";
 import csx from "../util/csx";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
+import SocialLinks from "../components/SocialLinks";
 
 function Main() {
   return (
@@ -84,6 +85,7 @@ function Main() {
           />
         </Button>
       </div>
+      <SocialLinks />
     </div>
   );
 }
