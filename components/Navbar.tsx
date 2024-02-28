@@ -16,6 +16,7 @@ function SalesDropdown({ chains }: { chains: Chain[] }) {
     <Header.MenuDropdown text="Sales">
       {chains.map((chain) => (
         <Header.MenuDropdownLink
+          key={chain.name}
           href={`/sales?chain=${chain.name.toLowerCase()}`}
         >
           <CoinImage chain={chain.name.toLowerCase()} token={chain.token} />
