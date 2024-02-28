@@ -1,8 +1,20 @@
-@keyframes animStar
+@keyframes animStarFast
   from	
-    transform: translateY(0px)
+    transform: translateY(0px) translateX(0px)
   to		
-    transform: translateY(-2000px)
+    transform: translateY(-2000px) translateX(-200px)
+
+@keyframes animStarMedium
+  from	
+    transform: translateY(0px) translateX(0px)
+  to		
+    transform: translateY(-1500px) translateX(-150px)
+
+@keyframes animStarSlow
+  from	
+    transform: translateY(0px) translateX(0px)
+  to		
+    transform: translateY(-1000px) translateX(-50px)
   
 @function multiple-box-shadow ($n, $color) 
   $value: '#{random(3000)}px #{random(3000)}px #{$color}'
@@ -11,20 +23,21 @@
 
   @return unquote($value)
 
-$shadows-small: multiple-box-shadow(700, #fff)
-$shadows-medium: multiple-box-shadow(300, #c39431)
-$shadows-large: multiple-box-shadow(100, #fff)
+$shadows-small: multiple-box-shadow(800, #fff)
+$shadows-medium: multiple-box-shadow(400, #c39431)
+$shadows-large: multiple-box-shadow(150, #fff)
 
 #stars
   width: 1px
   height: 1px
   background: transparent
   box-shadow: $shadows-small
-  animation: animStar 120s linear infinite
-  animation-direction: normal, reverse
+  animation: animStarFast 20s ease-in-out infinite
+  animation-direction: alternate-reverse
   position: absolute
   left: 0px
   top: 0px
+  z-index: 1
     
   &:after
     content: " "
@@ -39,10 +52,12 @@ $shadows-large: multiple-box-shadow(100, #fff)
   height: 2px
   background: transparent
   box-shadow: $shadows-medium
-  animation: animStar 240s linear infinite
+  animation: animStarMedium 20s ease-in-out infinite
+  animation-direction: alternate-reverse
   position: absolute
   left: 0px
   top: 0px
+  z-index: 1
     
   &:after
     content: " "
@@ -57,10 +72,12 @@ $shadows-large: multiple-box-shadow(100, #fff)
   height: 3px
   background: transparent
   box-shadow: $shadows-large
-  animation: animStar 360s linear infinite
+  animation: animStarSlow 20s ease-in-out infinite
+  animation-direction: alternate-reverse
   position: absolute
   left: 0px
   top: 0px
+  z-index: 1
     
   &:after
     content: " "

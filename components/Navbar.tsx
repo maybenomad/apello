@@ -89,7 +89,7 @@ export default function Navbar(props) {
         )}
       </Header.Menu>
 
-      <div className="ml-2 text-lg">
+      <div className="ml-2 text-md">
         <WalletCnx />
       </div>
     </Header>

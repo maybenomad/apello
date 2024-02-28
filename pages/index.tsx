@@ -56,13 +56,20 @@ function Main() {
   const [botModalOpen, setBotModalOpen] = useState(false);
 
   return (
-    <div className="relative flex flex-col items-center justify-center pb-16 overflow-hidden">
+    <div
+      className={csx(
+        "relative flex flex-col items-center justify-center",
+        "pb-16 overflow-hidden",
+        "border-b-2 border-bwhite"
+      )}
+    >
       <div id="stars" />
       <div id="stars2" />
       <div id="stars3" />
       <div
         className="relative mb-12 mt-8"
         style={{
+          zIndex: 5,
           height: "35vh",
           width: "35vh",
           backgroundImage: "url(/apellodemotrans2.png)",
@@ -119,10 +126,77 @@ function Metric({ description, value }) {
   );
 }
 
+function SupportedChains() {
+  return (
+    <div
+      className={csx(
+        "relative flex flex-col items-center justify-center",
+        "pb-16 overflow-hidden"
+      )}
+    >
+      <div
+        className={csx(
+          "text-center",
+          "pt-16 pb-6 text-4xl tracking-wide",
+          "font-bold uppercase",
+          "selection:bg-bleu selection:text-[#171819]"
+        )}
+      >
+        Supported Chains
+      </div>
+      <div className={csx("flex flex-row")}>
+        <Image
+          src="/chains/injective.svg"
+          alt="Injective"
+          width={100}
+          height={100}
+        />
+        {/* <Image
+          src="/chains/stargaze.svg"
+          alt="Stargaze"
+          width={75}
+          height={75}
+        />
+        <Image src="/chains/terra.svg" alt="Terra" width={75} height={75} />
+        <Image src="/chains/juno.svg" alt="Juno" width={80} height={80} />
+        <Image
+          src="/chains/chihuahua.svg"
+          alt="Chihuahua"
+          width={100}
+          height={100}
+        />
+        <Image
+          src="/chains/teritori.svg"
+          alt="Teritori"
+          width={100}
+          height={100}
+        />
+        <Image
+          src="/chains/passage.png"
+          alt="Passage"
+          width={100}
+          height={100}
+        />
+        <Image
+          src="/chains/omniflix.svg"
+          alt="Omniflix"
+          width={100}
+          height={100}
+        /> */}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <section className="flex flex-col">
-      <Main />
-    </section>
+    <>
+      <section className="flex flex-col">
+        <Main />
+      </section>
+      <section className="flex flex-col">
+        <SupportedChains />
+      </section>
+    </>
   );
 }
