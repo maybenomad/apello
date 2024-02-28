@@ -72,7 +72,7 @@ Header.MenuLink = function HeaderMenuLink({
   );
 };
 
-Header.MenuDropdown = function HeaderMenuSelect({ text = "", children }) {
+Header.MenuDropdown = function HeaderMenuDropdown({ text = "", children }) {
   return (
     <Header.MenuItem>
       <div className="flex items-center gap-x-1">
@@ -105,7 +105,7 @@ Header.MenuDropdownLink = function HeaderMenuDropdownLink({
       className={csx(
         "block inline-flex gap-1 items-center",
         "p-1 pr-1",
-        "text-base text-white whitespace-nowrap hover:text-violet",
+        "text-base text-white whitespace-nowrap hover:text-apello",
         "transition-colors",
         disabled && "cursor-not-allowed"
       )}

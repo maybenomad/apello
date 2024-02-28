@@ -5,7 +5,8 @@ import { useCosmodal } from "../hooks/useCosmodal";
 import { useTerra } from "../hooks/useTerra";
 
 const ModalConnection = ({ open, close }) => {
-  const { connecterra,connectInjNinji,connectOsmo,connectOmniFlix } = useTerra();
+  const { connecterra, connectInjNinji, connectOsmo, connectOmniFlix } =
+    useTerra();
   const { connectToChain } = useCosmodal();
 
   // @noahsaso/cosmodal
@@ -42,7 +43,7 @@ const ModalConnection = ({ open, close }) => {
     close();
   };
 
-   const ninjaInjClick = () => {
+  const ninjaInjClick = () => {
     connectInjNinji();
     close();
   };
@@ -86,9 +87,8 @@ const ModalConnection = ({ open, close }) => {
           </button>
         </div>
         <div className="pt-12  flex flex-col justify-center items-center gap-y-4">
-
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={stargazeClick}
           >
             <Image
@@ -101,7 +101,7 @@ const ModalConnection = ({ open, close }) => {
             <span className="font-azonix ">Stargaze</span>
           </button>
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={teritoriClick}
           >
             <Image
@@ -112,10 +112,9 @@ const ModalConnection = ({ open, close }) => {
               alt="Teritori wallet logo"
             />
             <span className="font-azonix ">Teritori</span>
-            
           </button>
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={omniClick}
           >
             <Image
@@ -126,11 +125,10 @@ const ModalConnection = ({ open, close }) => {
               alt="OmniFlix wallet logo"
             />
             <span className="font-azonix ">OmniFlix</span>
-            
           </button>
-          
+
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={osmosisClick}
           >
             <Image
@@ -142,9 +140,9 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Osmosis</span>
           </button>
-          
+
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={injectiveClick}
           >
             <Image
@@ -158,7 +156,7 @@ const ModalConnection = ({ open, close }) => {
           </button>
 
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={ninjaInjClick}
           >
             <Image
@@ -170,9 +168,9 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Injective Ninji</span>
           </button>
-          
+
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={chihuahuaClick}
           >
             <Image
@@ -186,7 +184,7 @@ const ModalConnection = ({ open, close }) => {
           </button>
 
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={passageClick}
           >
             <Image
@@ -200,7 +198,7 @@ const ModalConnection = ({ open, close }) => {
           </button>
 
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={junoClick}
           >
             <Image
@@ -212,9 +210,9 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Juno</span>
           </button>
-          
+
           <button
-            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(108,99,255,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(108,99,255,0.99)]"
+            className="inline-flex gap-x-2 px-3 py-3 w-60 rounded bg-[#212529] shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-500 hover:shadow-[inset_240.4px_0_0_rgba(230,150,0,1)]"
             onClick={terraClick}
           >
             <Image
@@ -226,7 +224,6 @@ const ModalConnection = ({ open, close }) => {
             />
             <span className="font-azonix ">Terra</span>
           </button>
-
         </div>
       </div>
     </div>

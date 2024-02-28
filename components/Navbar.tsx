@@ -4,7 +4,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 import { CoinImage } from "./Cards/SalesCard";
-import Button from "./Button";
 import Header from "./Header";
 
 type Chain = {
