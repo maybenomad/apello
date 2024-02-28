@@ -14,6 +14,7 @@ import { AppProps } from "next/app";
 import Layout from "../containers/Layout";
 import { AuthContextProvider } from "../context/AuthContext";
 import "../styles/globals.css";
+import "../styles/starfield.sass";
 
 export default function App(
   { Component, pageProps, defaultNetwork, walletConnectChainIds } = AppProps &&
@@ -189,7 +190,7 @@ export default function App(
             "ibc-go",
           ],
           beta: true,
-        }
+        },
       ]}
     >
       <AuthContextProvider>

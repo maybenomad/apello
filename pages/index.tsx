@@ -56,26 +56,29 @@ function Main() {
   const [botModalOpen, setBotModalOpen] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="relative flex flex-col items-center justify-center pb-16 overflow-hidden">
+      <div id="stars" />
+      <div id="stars2" />
+      <div id="stars3" />
       <div
         className="relative mb-12 mt-8"
         style={{
-          width: 500,
-          height: 500,
-          backgroundImage: "url(/apello-astronaut.png)",
+          height: "35vh",
+          width: "35vh",
+          backgroundImage: "url(/apellodemotrans2.png)",
           backgroundSize: "cover",
         }}
       />
-      <h2
+      <div
         className={csx(
           "text-center",
-          "mb-3 sm:mb-6 text-4xl sm:text-6xl tracking-wide",
+          "mb-3 sm:mb-6 text-6xl tracking-wide",
           "font-bold uppercase drop-shadow-text-sm lg:drop-shadow-apello",
           "selection:bg-bleu selection:text-[#171819]"
         )}
       >
         Evolving The Cosmos
-      </h2>
+      </div>
       <p className="mb-2 text-center text-[#e5e5e5] font-jura text-3xl selection:bg-violet ">
         The Premier Toolkit for <b>Cosmos</b> NFT Communities
       </p>
@@ -83,7 +86,7 @@ function Main() {
         <Metric description="Servers Using Apello" value={42069} />
         <Metric description="Holders Verified" value={69420} />
       </div>
-      <div className="flex flex-row mt-8 gap-x-8 text-2xl">
+      <div className="flex flex-row mt-8 gap-x-8 text-xl">
         <Button onClick={() => setBotModalOpen(!botModalOpen)}>
           <span className="leading-8">Invite Apello</span>
           <Image

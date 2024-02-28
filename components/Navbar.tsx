@@ -5,6 +5,7 @@ import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
+import csx from "../util/csx";
 
 type Chain = {
   name: string;
@@ -34,10 +35,17 @@ export default function Navbar(props) {
     <Header>
       <Link href="/" className="pt-2 md:pt-0 flex items-center">
         <img
-          src="/logo_apello_full.png"
-          className="relative ml-4 h-12 object-cover"
+          src="/logo-apello-lyre.png"
+          className="relative ml-[-4px] h-24 object-cover"
           style={{ top: "-2px" }}
         />
+        <div
+          className={csx(
+            "relative text-3xl tracking-wider font-bold uppercase left-[-8px]"
+          )}
+        >
+          Apello
+        </div>
       </Link>
 
       <Header.Menu>
