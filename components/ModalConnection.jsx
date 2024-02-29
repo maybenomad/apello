@@ -62,7 +62,7 @@ const ModalConnection = ({ open, close }) => {
       className="fixed w-screen inset-0 bg-black/50 z-50 flex justify-center items-center opacity-100 transition-opacity duration-1000"
       aria-label="modal"
     >
-      <div className="bg-noir rounded left-[-43%] top-0 absolute md:relative flex flex-col justify-center m-8 max-w-sm md:w-full p-6 opacity-100 md:pb-20">
+      <div className="bg-noir rounded md:left-auto left-[-43%] top-0 absolute md:relative flex flex-col justify-center m-8 max-w-sm md:w-full p-6 opacity-100 md:pb-20">
         <div className="relative w-full">
           <h2 className="font-jura font-bold text-xl">Connect wallet</h2>
           <button
