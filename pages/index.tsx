@@ -99,7 +99,7 @@ function Main() {
       <p className="md:mb-2 text-center text-[#e5e5e5] font-jura text-xl md:text-3xl selection:bg-violet ">
         The Premier Toolkit for <b>Cosmos</b> NFT Communities
       </p>
-      <div className="flex flex-row md:mt-4">
+      <div className="hidden flex flex-row md:mt-4">
         <Metric description="Servers Using Apello" value={42069} />
         <Metric description="Holders Verified" value={69420} />
       </div>
