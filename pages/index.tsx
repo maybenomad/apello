@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { useState } from "react";
-import { FaGithub, FaTwitter, FaDiscord, FaGit } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
 
 import csx from "../lib/csx";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
-import SocialLinks from "../components/SocialLinks";
 import { CHAINS } from "../lib/chains";
 
 const BotInviteURL = {
@@ -91,7 +90,7 @@ function Main() {
         className={csx(
           "text-center",
           "mb-3 text-3xl px-2 md:px-0 md:text-6xl tracking-wide",
-          "font-bold uppercase drop-shadow-text-sm drop-shadow-apello",
+          "font-bold uppercase drop-shadow-apello",
           "selection:bg-bleu selection:text-[#171819]"
         )}
       >
