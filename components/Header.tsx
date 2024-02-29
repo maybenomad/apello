@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import csx from "../util/csx";
+import csx from "../lib/csx";
 
 export default function Header({ children }) {
   return (
@@ -53,11 +53,13 @@ Header.MenuLink = function HeaderMenuLink({
   text,
   disabled = false,
   href = "#",
+  newTab = false,
 }) {
   return (
     <Header.MenuItem disabled={disabled}>
       <Link
         href={href}
+        target={newTab && "_blank"}
         className={csx(
           "selected",
           disabled && "selected-dis",

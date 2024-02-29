@@ -5,7 +5,7 @@ import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
-import csx from "../util/csx";
+import csx from "../lib/csx";
 
 type Chain = {
   name: string;
@@ -28,7 +28,7 @@ function SalesDropdown({ chains }: { chains: Chain[] }) {
   );
 }
 
-export default function Navbar(props) {
+export default function Navbar() {
   const { wallet } = useAuthContext();
 
   return (
@@ -36,8 +36,7 @@ export default function Navbar(props) {
       <Link href="/" className="pt-2 md:pt-0 flex items-center">
         <img
           src="/logo-apello-lyre.png"
-          className="relative ml-[-4px] h-24 object-cover"
-          style={{ top: "-2px" }}
+          className="relative ml-2 mr-6 h-14 object-cover"
         />
         <div
           className={csx(
@@ -81,6 +80,7 @@ export default function Navbar(props) {
           href="https://zeus.apello.xyz/create"
         />
         <Header.MenuLink text="Snapshot" disabled />
+        <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
 
         {wallet && (
           <li className="text-xl font-bold md:hidden">
@@ -89,7 +89,7 @@ export default function Navbar(props) {
         )}
       </Header.Menu>
 
-      <div className="ml-2 text-md">
+      <div className="mx-2 text-md">
         <WalletCnx />
       </div>
     </Header>

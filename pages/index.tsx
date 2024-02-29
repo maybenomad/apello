@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import csx from "../util/csx";
+import csx from "../lib/csx";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import SocialLinks from "../components/SocialLinks";
+import { CHAINS } from "../lib/chains";
 
 const BotInviteURL = {
   TokenGating:
@@ -49,6 +50,15 @@ function InviteBotModal({ close }) {
         </div>
       </div>
     </Modal>
+  );
+}
+
+function Metric({ description, value }) {
+  return (
+    <div className="m-4">
+      <div className="text-4xl font-bold text-center">{value}</div>
+      <div className="font-jura text-2xl">{description}</div>
+    </div>
   );
 }
 
@@ -117,11 +127,31 @@ function Main() {
   );
 }
 
-function Metric({ description, value }) {
+function ChainInfo({ chain }) {
   return (
-    <div className="m-4">
-      <div className="text-4xl font-bold text-center">{value}</div>
-      <div className="font-jura text-2xl">{description}</div>
+    <div
+      className={csx(
+        "flex flex-col items-center justify-center gap-y-3",
+        "text-xl",
+        !chain.supported && "opacity-60"
+      )}
+    >
+      <div className={csx("relative h-[100px] w-[100px]", "hover:bottom-1")}>
+        <Image
+          src={`/chains/${chain.name.toLowerCase()}.svg`}
+          alt={chain.name}
+          height={100}
+          width={100}
+        />
+      </div>
+      {chain.name}
+      {!chain.supported && (
+        <div
+          className={csx("absolute bottom-10", "font-bold text-sm uppercase")}
+        >
+          Coming Soon
+        </div>
+      )}
     </div>
   );
 }
@@ -137,52 +167,17 @@ function SupportedChains() {
       <div
         className={csx(
           "text-center",
-          "pt-16 pb-6 text-4xl tracking-wide",
+          "py-16 text-4xl tracking-wide",
           "font-bold uppercase",
           "selection:bg-bleu selection:text-[#171819]"
         )}
       >
         Supported Chains
       </div>
-      <div className={csx("flex flex-row")}>
-        <Image
-          src="/chains/injective.svg"
-          alt="Injective"
-          width={100}
-          height={100}
-        />
-        {/* <Image
-          src="/chains/stargaze.svg"
-          alt="Stargaze"
-          width={75}
-          height={75}
-        />
-        <Image src="/chains/terra.svg" alt="Terra" width={75} height={75} />
-        <Image src="/chains/juno.svg" alt="Juno" width={80} height={80} />
-        <Image
-          src="/chains/chihuahua.svg"
-          alt="Chihuahua"
-          width={100}
-          height={100}
-        />
-        <Image
-          src="/chains/teritori.svg"
-          alt="Teritori"
-          width={100}
-          height={100}
-        />
-        <Image
-          src="/chains/passage.png"
-          alt="Passage"
-          width={100}
-          height={100}
-        />
-        <Image
-          src="/chains/omniflix.svg"
-          alt="Omniflix"
-          width={100}
-          height={100}
-        /> */}
+      <div className="flex flex-row flex-wrap gap-x-5">
+        {CHAINS.map((c) => (
+          <ChainInfo chain={c} />
+        ))}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import csx from "../util/csx";
+import csx from "../lib/csx";
 
 const ButtonVariant = {
   Standard: "standard",
