@@ -23,8 +23,9 @@ Header.Menu = function HeaderMenu({ children }) {
   return (
     <ul
       className={csx(
-        "hidden md:flex justify-center items-center gap-x-3 ml-auto",
-        "uppercase"
+        "flex-col md:flex md:flex-row justify-center items-center gap-x-3 ml-auto",
+        "uppercase",
+        "bg-fauxblack md:bg-transparent"
       )}
     >
       {children}
@@ -77,7 +78,7 @@ Header.MenuLink = function HeaderMenuLink({
 Header.MenuDropdown = function HeaderMenuDropdown({ text = "", children }) {
   return (
     <Header.MenuItem>
-      <div className="flex items-center gap-x-1">
+      <div className="flex items-center gap-x-1 px-1 py-3">
         {text}
         <Header.MenuCaret />
       </div>
