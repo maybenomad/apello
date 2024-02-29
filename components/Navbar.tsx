@@ -33,14 +33,14 @@ export default function Navbar() {
 
   return (
     <Header>
-      <Link href="/" className="pt-2 md:pt-0 flex items-center">
+      <Link href="/" className="flex items-center">
         <img
           src="/logo-apello-lyre.png"
-          className="relative ml-2 mr-6 h-14 object-cover"
+          className="relative ml-2 mr-6 h-10 md:h-14 object-cover"
         />
         <div
           className={csx(
-            "relative text-3xl tracking-wider font-bold uppercase left-[-8px]"
+            "relative text-xl md:text-3xl tracking-wider font-bold uppercase left-[-8px]"
           )}
         >
           Apello
@@ -81,15 +81,14 @@ export default function Navbar() {
         />
         <Header.MenuLink text="Snapshot" disabled />
         <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
+      </Header.Menu>
 
+      <div className="ml-auto mr-2 md:mx-2 text-sm md:text-md flex justify-center items-center">
         {wallet && (
           <li className="text-xl font-bold md:hidden">
             <DisconnectButton showText />
           </li>
         )}
-      </Header.Menu>
-
-      <div className="mx-2 text-md">
         <WalletCnx />
       </div>
     </Header>

@@ -136,7 +136,7 @@ const WalletCnx = () => {
   }, [hasCopied]);
 
   return (
-    <div className="absolute top-1 right-[50px] md:relative md:inset-0 inline-flex gap-1">
+    <div className="relative md:inset-0 inline-flex gap-1">
       {!wallet ? (
         <Button variant="outline" onClick={connectClick}>
           <span className="whitespace-nowrap  ml-1">

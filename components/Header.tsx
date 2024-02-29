@@ -23,7 +23,7 @@ Header.Menu = function HeaderMenu({ children }) {
   return (
     <ul
       className={csx(
-        "flex justify-center items-center gap-x-3 ml-auto",
+        "hidden md:flex justify-center items-center gap-x-3 ml-auto",
         "uppercase"
       )}
     >
