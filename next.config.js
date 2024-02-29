@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require("path");
+
 const nextConfig = {
   reactStrictMode: false,
   transpilePackages: ["@noahsaso/cosmodal"],
@@ -9,6 +11,9 @@ const nextConfig = {
         hostname: "**",
       },
     ],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
   },
   typescript: {
     // !! WARN !!
