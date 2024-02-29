@@ -161,7 +161,8 @@ function SupportedChains() {
     <div
       className={csx(
         "relative flex flex-col items-center justify-center",
-        "pb-16 overflow-hidden"
+        "pb-16 overflow-hidden",
+        "border-b-2 border-bwhite"
       )}
     >
       <div
@@ -176,9 +177,104 @@ function SupportedChains() {
       </div>
       <div className="flex flex-row flex-wrap gap-x-5">
         {CHAINS.map((c) => (
-          <ChainInfo chain={c} />
+          <ChainInfo key={c.name} chain={c} />
         ))}
       </div>
+    </div>
+  );
+}
+
+function Link({ href, children }) {
+  return (
+    <a className={csx("text-apello underline hover:no-underline")} href={href}>
+      {children}
+    </a>
+  );
+}
+
+function TokenGatingInfo() {
+  return (
+    <div
+      className={csx(
+        "relative flex flex-row items-center justify-center",
+        "pb-8 px-12 overflow-hidden",
+        "border-b-2 border-bwhite"
+      )}
+    >
+      <Image
+        src="/tokengatingbot.png"
+        width={420}
+        height={420}
+        alt="Apello Token Gating"
+        style={{ transform: "scaleX(-1)" }}
+      />
+      <div
+        className={csx(
+          "relative mx-auto flex flex-col items-center justify-center basis-1/3"
+        )}
+      >
+        <div
+          className={csx(
+            "text-center text-white",
+            "mb-3 sm:mb-6 text-3xl tracking-wide pb-2 px-4",
+            "font-bold uppercase",
+            "selection:bg-bleu selection:text-[#171819]",
+            "border-b-4 border-apello"
+          )}
+        >
+          Unlock Your Community
+        </div>
+        <div className="text-lg">
+          Apello&apos;s Token Gating Bot allows NFT holders to verify their
+          holdings and automatically receive custom Discord roles based on rules
+          that you configure. You can even link the bot to your{" "}
+          <Link href="https://daodao.zone">DAO DAO</Link> and allow it to verify
+          staked NFTs!
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SalesTrackerInfo() {
+  return (
+    <div
+      className={csx(
+        "relative flex flex-row items-center justify-center",
+        "pb-8 px-16 overflow-hidden",
+        "border-b-2 border-bwhite"
+      )}
+    >
+      <div
+        className={csx(
+          "relative mx-auto flex flex-col items-center justify-center basis-1/3"
+        )}
+      >
+        <div
+          className={csx(
+            "text-center text-white",
+            "mb-3 sm:mb-6 text-3xl tracking-wide pb-2 px-4",
+            "font-bold uppercase",
+            "selection:bg-bleu selection:text-[#171819]",
+            "border-b-4 border-apello"
+          )}
+        >
+          Never Miss A Sale
+        </div>
+        <div className="text-lg">
+          Keep up with your collection&apos;s secondary market in realtime using
+          Apello&apos;s Sales Tracker bot. Let it loose in one of your Discord
+          channels and receive an automatic update every time one of your tokens
+          is sold.
+        </div>
+      </div>
+      <Image
+        src="/auctioneer.png"
+        width={420}
+        height={420}
+        alt="Apello Token Gating"
+        className="relative bottom-[-64px]"
+      />
     </div>
   );
 }
@@ -188,6 +284,12 @@ export default function Home() {
     <>
       <section className="flex flex-col">
         <Main />
+      </section>
+      <section className="flex flex-col">
+        <TokenGatingInfo />
+      </section>
+      <section className="flex flex-col">
+        <SalesTrackerInfo />
       </section>
       <section className="flex flex-col">
         <SupportedChains />
