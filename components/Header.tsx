@@ -87,8 +87,7 @@ Header.MenuDropdown = function HeaderMenuDropdown({ text = "", children }) {
           "absolute",
           "hidden hover:flex group-hover:flex flex-col",
           "bg-noir shadow rounded",
-          "overflow-visible",
-          "w-40 left-[-20px] px-4 py-3 z-20"
+          "w-44 left-[-20px] px-4 py-3 z-20"
         )}
       >
         {children}
