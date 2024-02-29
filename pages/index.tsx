@@ -77,7 +77,7 @@ function Main() {
       <div id="stars2" />
       <div id="stars3" />
       <div
-        className="relative mb-12 mt-8"
+        className="relative mb-12 mt-8 animate-bounce-float"
         style={{
           zIndex: 5,
           height: "35vh",
@@ -103,7 +103,7 @@ function Main() {
         <Metric description="Servers Using Apello" value={42069} />
         <Metric description="Holders Verified" value={69420} />
       </div>
-      <div className="flex flex-row mt-8 gap-x-8 text-xl">
+      <div className="flex flex-row mt-8 gap-x-8 text-xl z-10">
         <Button onClick={() => setBotModalOpen(!botModalOpen)}>
           <span className="leading-8">Invite Apello</span>
           <Image

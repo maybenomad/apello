@@ -111,7 +111,7 @@
     @apply w-7 h-7 flex items-center justify-center rounded-full bg-slate-700 relative z-10 font-semibold mr-4 transition-colors;
   }
   .active .step {
-    @apply bg-violet;
+    @apply bg-apello;
   }
   .complete .step {
     @apply bg-green-600;

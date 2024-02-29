@@ -221,19 +221,3 @@ App.getInitialProps = async () => {
     ...chainOptions,
   };
 };
-
-/**
- * mport { ChainProvider } from '@cosmos-kit/react';
-import { assets, chains } from 'chain-registry';
-import { wallets as keplrWallets } from '@cosmos-kit/keplr';
-import '../styles/globals.css'
-<ChainProvider  chains={chains}
-          assetLists={assets} wallets={[...keplrWallets]}
-          >
-          <AuthContextProvider >
-              <Layout>
-                <Component  />
-              </Layout>
-          </AuthContextProvider>
-        </ChainProvider>
- */
