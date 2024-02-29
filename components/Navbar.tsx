@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
+import useOutsideClick from "../hooks/useOutsideClick";
 import { useAuthContext } from "../hooks/useAuthContext";
+import csx from "../lib/csx";
 import { DisconnectButton } from "./DisconnectButton";
 import WalletCnx from "./WalletCnx";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
-import csx from "../lib/csx";
+import { useRouter } from "next/router";
 
 type Chain = {
   name: string;
@@ -30,40 +32,60 @@ function SalesDropdown({ chains }: { chains: Chain[] }) {
   );
 }
 
-function MobileMenu({ wallet }) {
+function MobileMenu({ wallet, close }) {
+  const ref = useOutsideClick(close);
   return (
-    <Header.Menu>
-      <Header.MenuLink text="Holders" href="/holder" />
-      <SalesDropdown
-        chains={[
-          { name: "Stargaze" },
-          { name: "Injective" },
-          { name: "Teritori", token: "Tori" },
-          { name: "Juno" },
-          { name: "Passage" },
-          { name: "Chihuahua" },
-        ]}
-      />
-      <Header.MenuDropdown text="Calendar">
-        <Header.MenuDropdownLink href="/calendar">View</Header.MenuDropdownLink>
-        <Header.MenuDropdownLink
-          disabled={!Boolean(wallet)}
-          href="/calendar/create"
-        >
-          <div
-            className="relative hover:disableSpan"
-            data-tip={!Boolean(wallet) && "Connect your wallet first"}
+    <div
+      ref={ref}
+      className={csx(
+        "absolute right-0 top-[79px] px-4 py-4 z-50 flex flex-col justify-center",
+        "bg-fauxblack border-bwhite border-r-0 border",
+        "drop-shadow-lg"
+      )}
+    >
+      <div className="my-4 ml-auto mr-2 text-sm flex justify-center items-center">
+        {wallet && (
+          <li className="text-xl font-bold md:hidden">
+            <DisconnectButton showText />
+          </li>
+        )}
+        <WalletCnx />
+      </div>
+      <Header.Menu>
+        <Header.MenuLink text="Holders" href="/holder" />
+        <SalesDropdown
+          chains={[
+            { name: "Stargaze" },
+            { name: "Injective" },
+            { name: "Teritori", token: "Tori" },
+            { name: "Juno" },
+            { name: "Passage" },
+            { name: "Chihuahua" },
+          ]}
+        />
+        <Header.MenuDropdown text="Calendar">
+          <Header.MenuDropdownLink href="/calendar">
+            View
+          </Header.MenuDropdownLink>
+          <Header.MenuDropdownLink
+            disabled={!Boolean(wallet)}
+            href="/calendar/create"
           >
-            Add Collection
-          </div>
-        </Header.MenuDropdownLink>
-      </Header.MenuDropdown>
-      <Header.MenuLink
-        text="Image Creator"
-        href="https://zeus.apello.xyz/create"
-      />
-      <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
-    </Header.Menu>
+            <div
+              className="relative hover:disableSpan"
+              data-tip={!Boolean(wallet) && "Connect your wallet first"}
+            >
+              Add Collection
+            </div>
+          </Header.MenuDropdownLink>
+        </Header.MenuDropdown>
+        <Header.MenuLink
+          text="Image Creator"
+          href="https://zeus.apello.xyz/create"
+        />
+        <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
+      </Header.Menu>
+    </div>
   );
 }
 
@@ -71,7 +93,8 @@ export default function Navbar() {
   const { wallet } = useAuthContext();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenuOpen = () => setMobileMenuOpen(!isMobileMenuOpen);
+  const router = useRouter();
+  useEffect(() => setMobileMenuOpen(false), [router.pathname]);
 
   return (
     <Header>
@@ -137,28 +160,15 @@ export default function Navbar() {
 
       <div
         className="ml-auto mr-4 flex md:hidden color-white"
-        onClick={toggleMobileMenuOpen}
+        onClick={(e) => {
+          e.stopPropagation();
+          setMobileMenuOpen(!isMobileMenuOpen);
+        }}
       >
         <Image src="/menu-outline.svg" height={40} width={40} alt="" />
       </div>
       {isMobileMenuOpen && (
-        <div
-          className={csx(
-            "absolute right-0 top-[79px] px-4 py-4 z-10 flex flex-col justify-center",
-            "bg-fauxblack border-bwhite border-r-0 border",
-            "drop-shadow-lg"
-          )}
-        >
-          <div className="my-4 ml-auto mr-2 text-sm flex justify-center items-center">
-            {wallet && (
-              <li className="text-xl font-bold md:hidden">
-                <DisconnectButton showText />
-              </li>
-            )}
-            <WalletCnx />
-          </div>
-          <MobileMenu wallet={wallet} />
-        </div>
+        <MobileMenu wallet={wallet} close={() => setMobileMenuOpen(false)} />
       )}
     </Header>
   );

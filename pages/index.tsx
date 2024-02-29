@@ -72,7 +72,7 @@ function Main() {
     <div
       className={csx(
         "relative flex flex-col items-center justify-center",
-        "pb-16 overflow-hidden",
+        "pb-16 overflow-hidden bg-fauxblack2",
         "border-b-2 border-bwhite"
       )}
     >
@@ -180,7 +180,7 @@ function SupportedChains() {
       >
         Supported Chains
       </div>
-      <div className="flex flex-row flex-wrap justify-center gap-x-5 md:gap-x-5 gap-y-5 px-4">
+      <div className="flex flex-row flex-wrap justify-center gap-x-5 md:gap-x-5 gap-y-5 px-8">
         {CHAINS.map((c) => (
           <ChainInfo key={c.name} chain={c} />
         ))}
@@ -212,6 +212,7 @@ function TokenGatingInfo() {
         height={420}
         alt="Apello Token Gating"
         style={{ transform: "scaleX(-1)" }}
+        className="h-[280px] w-[280px] md:h-[420px] md:w-[420px]"
       />
       <div
         className={csx(
@@ -278,7 +279,7 @@ function SalesTrackerInfo() {
         width={420}
         height={420}
         alt="Apello Token Gating"
-        className="relative md:bottom-[-64px]"
+        className="relative h-[280px] w-[280px] md:h-[420px] md:w-[420px] md:bottom-[-64px]"
       />
     </div>
   );
@@ -286,7 +287,7 @@ function SalesTrackerInfo() {
 
 function Footer() {
   return (
-    <footer className="flex flex-col align-center justify-center">
+    <footer className="flex flex-col align-center justify-center bg-fauxblack2">
       <div className="flex flex-col py-8">
         <div className="flex mb-6 font-bold text-xl justify-center">
           Join The Community
