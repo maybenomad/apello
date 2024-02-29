@@ -12,8 +12,6 @@ export const useAddWallet = () => {
     setError(null);
     setIsloading(true);
 
-    console.log("addWallet", type, adress);
-
     try {
       const response = await axios.post(
         "https://apello-api.xyz:4000/api/wallets",
@@ -26,7 +24,6 @@ export const useAddWallet = () => {
 
       // save the wallet to the local storage
       localStorage.setItem("auth", JSON.stringify(json));
-      console.log("new wallet added", json);
       //update the auth context
       dispatch({ type: "CONNECT_WALLET", payload: json });
       setIsloading(false);

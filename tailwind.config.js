@@ -17,6 +17,10 @@ module.exports = {
         bleu: "#92d8e0",
         orange: "#ff832b",
         violet: "#6C63FF",
+        fauxblack: "#191617",
+        fauxblack2: "#100d0e",
+        apello: "rgba(230, 150, 0, 1.0)",
+        bwhite: "rgba(255, 255, 255, 0.2)",
       },
       fontFamily: {
         sans: ["Outfit", "sans-serif"],
@@ -24,6 +28,7 @@ module.exports = {
         azonix: ["azonix"],
       },
       dropShadow: {
+        apello: "1px 4px 0px rgba(230, 150, 0, 1.0)",
         "text-sm": "1px 1px 0px rgba(0, 0, 200, 0.90)",
         "text-md": "1px 2px 0px rgba(0, 0, 0, 0.90)",
         "text-lg": "1px 4px 0px rgba(108, 99, 255, 0.90)",
@@ -35,7 +40,7 @@ module.exports = {
       keyframes: {
         floating: {
           "0%, 100%": { transform: "translatey(0)" },
-          "50%": { transform: "translatey(10%)" },
+          "50%": { transform: "translatey(3%)" },
         },
       },
       container: {

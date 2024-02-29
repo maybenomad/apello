@@ -97,9 +97,9 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
       >
         <>
           <p className="text-gray-500  step-parag">
-          Apello is a set of tools for cosmos NFTs, 100% free and open source. 
-          We provide a package of services 
-          for cosmos NFT projects to help them manage and grow their communities.
+            Apello is a set of tools for cosmos NFTs, 100% free and open source.
+            We provide a package of services for cosmos NFT projects to help
+            them manage and grow their communities.
           </p>
           <div
             data-tip="Connect your wallet first."
@@ -109,7 +109,7 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
           >
             <button
               disabled={!wallet}
-              className="clip-button p-2 w-full bg-violet flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible "
+              className="clip-button p-2 w-full bg-apello flex gap-x-3 hover:bg-violet/10 hover:scale-110 transition disabled:cursor-not-allowed overflow-visible "
               onClick={hundleClick}
             >
               <span className="font-azonix ">connect Discord</span>
