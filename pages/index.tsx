@@ -258,7 +258,7 @@ function SalesTrackerInfo() {
         <div
           className={csx(
             "text-center text-white",
-            "mb-3 sm:mb-6 text-2xl md:text-3xl tracking-wide pb-2 px-4",
+            "mb-3 mt-4 sm:mb-6 text-2xl md:text-3xl tracking-wide pb-2 px-4",
             "font-bold uppercase",
             "selection:bg-bleu selection:text-[#171819]",
             "border-b-4 border-apello"
