@@ -180,7 +180,7 @@ function SupportedChains() {
       >
         Supported Chains
       </div>
-      <div className="flex flex-row flex-wrap justify-center gap-x-5 md:gap-x-5 gap-y-5">
+      <div className="flex flex-row flex-wrap justify-center gap-x-5 md:gap-x-5 gap-y-5 px-4">
         {CHAINS.map((c) => (
           <ChainInfo key={c.name} chain={c} />
         ))}
