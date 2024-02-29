@@ -325,7 +325,7 @@ function Footer() {
           </a>
         </div>
         <div className="flex justify-center gap-y-2">
-          <Link href="#">Download Media Kit</Link>
+          <Link href="/apello_brand_assets.zip">Download Media Kit</Link>
         </div>
       </div>
     </footer>
