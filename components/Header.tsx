@@ -8,7 +8,7 @@ export default function Header({ children }) {
       className={csx(
         "relative",
         "flex items-center gap-x-4",
-        "h-20",
+        "h-16",
         "p-1 md:p-2",
         "text-white",
         "border-b border-bwhite"
@@ -40,7 +40,7 @@ Header.MenuItem = function HeaderMenuItem({ disabled = false, children }) {
         "group",
         "relative",
         "box-border ml-0",
-        "text-xl font-bold",
+        "text-md lg:text-lg font-bold",
         "hover:text-apello",
         "cursor-pointer"
       )}

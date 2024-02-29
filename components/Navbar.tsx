@@ -38,7 +38,7 @@ function MobileMenu({ wallet, close }) {
     <div
       ref={ref}
       className={csx(
-        "absolute right-0 top-[79px] px-4 py-4 z-50 flex flex-col justify-center",
+        "absolute right-0 top-[63px] px-4 py-4 z-50 flex flex-col justify-center",
         "bg-fauxblack border-bwhite border-r-0 border",
         "drop-shadow-lg"
       )}
@@ -101,7 +101,7 @@ export default function Navbar() {
       <Link href="/" className="flex items-center">
         <img
           src="/logo-apello-lyre.png"
-          className="relative mx-4 md:mr-6 h-10 md:h-14 object-cover"
+          className="relative mx-4 md:mr-6 h-8 md:h-12 object-cover"
         />
         <div
           className={csx(
@@ -165,7 +165,7 @@ export default function Navbar() {
           setMobileMenuOpen(!isMobileMenuOpen);
         }}
       >
-        <Image src="/menu-outline.svg" height={40} width={40} alt="" />
+        <Image src="/menu-outline.svg" height={36} width={36} alt="" />
       </div>
       {isMobileMenuOpen && (
         <MobileMenu wallet={wallet} close={() => setMobileMenuOpen(false)} />
