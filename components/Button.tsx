@@ -7,7 +7,7 @@ const ButtonVariant = {
 
 export default function Button({
   variant = ButtonVariant.Standard,
-  onClick = () => {},
+  onClick = (e: any) => {},
   children,
 }) {
   return (

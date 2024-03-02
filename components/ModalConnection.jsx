@@ -1,14 +1,7 @@
 import { ChainInfoID } from "@noahsaso/cosmodal";
 import Image from "next/image";
 
-import { useCosmodal } from "../hooks/useCosmodal";
-import { useTerra } from "../hooks/useTerra";
-
 const ModalConnection = ({ open, close }) => {
-  const { connecterra, connectInjNinji, connectOsmo, connectOmniFlix } =
-    useTerra();
-  const { connectToChain } = useCosmodal();
-
   // @noahsaso/cosmodal
   const stargazeClick = () => {
     connectToChain(ChainInfoID.Stargaze1);
