@@ -46,7 +46,7 @@ function ChainSelect({ connect, close }) {
       )}
     >
       {CHAINS.filter((x) => x.supported).map((chain) => (
-        <ChainOption chain={chain} connect={connect} />
+        <ChainOption key={chain.name} chain={chain} connect={connect} />
       ))}
     </div>
   );
