@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../components/AuthProvider";
 
 export const useAuthContext = () => {
   //this hook return to us the value of this context which is the value we passed into the provider component (the state and the dispatch function)

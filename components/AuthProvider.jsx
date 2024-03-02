@@ -1,22 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useManager } from "@cosmos-kit/react";
 
 import * as ApelloAPI from "../interface/apello";
+import waitFor from "../lib/waitFor";
 
 export const AuthContext = createContext();
 
-function waitFor(f) {
-  return new Promise((resolve, reject) => {
-    function poll() {
-      const result = f();
-      if (result) {
-        return resolve(result);
-      }
-      setTimeout(poll, 30);
-    }
-
-    poll();
-  });
+export function useAuthContext() {
+  return useContext(AuthContext);
 }
 
 export function AuthContextProvider({ children }) {

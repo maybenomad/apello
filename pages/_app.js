@@ -4,7 +4,7 @@ import { wallets } from "@cosmos-kit/keplr";
 import { chains, assets } from "chain-registry";
 
 import Layout from "../containers/Layout";
-import { AuthContextProvider } from "../context/AuthContext";
+import { AuthContextProvider } from "../components/AuthProvider";
 import "../styles/globals.css";
 import "../styles/starfield.sass";
 import "@interchain-ui/react/styles";

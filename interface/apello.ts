@@ -8,3 +8,11 @@ export function addWallet(chainName, address) {
     adress: address,
   });
 }
+
+export function checkWallet(token, address) {
+  return axios.get(`${BASE_URL}/api/wallets/verify/${address}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}

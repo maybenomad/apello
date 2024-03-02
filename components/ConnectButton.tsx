@@ -52,6 +52,20 @@ function ChainSelect({ connect, close }) {
   );
 }
 
+function WalletInfo({ wallet }) {
+  return (
+    <div className="flex gap-x-4">
+      <Image
+        src={`/chains/${wallet.type}.svg`}
+        width={20}
+        height={20}
+        alt={wallet.type}
+      />
+      {displayAddress(wallet.address)}
+    </div>
+  );
+}
+
 export default function ConnectButton() {
   const { connect, disconnect, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
@@ -71,7 +85,7 @@ export default function ConnectButton() {
         }}
       >
         <span className="whitespace-nowrap  ml-1">
-          {wallet ? displayAddress(wallet.address) : "Connect Wallet"}
+          {wallet ? <WalletInfo wallet={wallet} /> : "Connect Wallet"}
         </span>
       </Button>
       {isChainSelectorOpen && (
