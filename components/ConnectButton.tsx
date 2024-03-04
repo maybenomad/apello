@@ -67,7 +67,7 @@ function WalletInfo({ wallet }) {
 }
 
 export default function ConnectButton() {
-  const { connect, disconnect, wallet } = useAuthContext();
+  const { connect, disconnect, view, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
 
   function connectAndCloseSelector(chainName) {
@@ -76,18 +76,28 @@ export default function ConnectButton() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex">
       <Button
         variant="outline"
         onClick={(e) => {
           e.stopPropagation();
-          wallet ? disconnect() : setChainSelectorOpen(true);
+          wallet ? view() : setChainSelectorOpen(true);
         }}
       >
-        <span className="whitespace-nowrap  ml-1">
+        <span className="whitespace-nowrap">
           {wallet ? <WalletInfo wallet={wallet} /> : "Connect Wallet"}
         </span>
       </Button>
+      {wallet && (
+        <Image
+          onClick={disconnect}
+          className="ml-4 hover:opacity-80 cursor-pointer"
+          src="/log-out-outline.svg"
+          height={30}
+          width={30}
+          alt="Disconnect"
+        />
+      )}
       {isChainSelectorOpen && (
         <ChainSelect
           connect={connectAndCloseSelector}
