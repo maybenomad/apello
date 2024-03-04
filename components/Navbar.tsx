@@ -5,7 +5,6 @@ import Image from "next/image";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useAuthContext } from "../hooks/useAuthContext";
 import csx from "../lib/csx";
-import { DisconnectButton } from "./DisconnectButton";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
 import { useRouter } from "next/router";
@@ -40,7 +39,7 @@ function MobileMenu({ wallet, close }) {
       className={csx(
         "absolute right-0 top-[63px] px-4 pb-4 z-50 flex flex-col justify-center",
         "bg-fauxblack border-bwhite border-r-0 border",
-        "drop-shadow-lg"
+        "drop-shadow-lg",
       )}
     >
       <div className="my-4 text-sm flex justify-center items-center">
@@ -100,7 +99,7 @@ export default function Navbar() {
         />
         <div
           className={csx(
-            "relative text-xl md:text-3xl tracking-wider font-bold uppercase left-[-8px]"
+            "relative text-xl md:text-3xl tracking-wider font-bold uppercase left-[-8px]",
           )}
         >
           Apello

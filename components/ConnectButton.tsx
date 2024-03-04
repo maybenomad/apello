@@ -16,7 +16,7 @@ function ChainOption({ chain, connect }) {
     <div
       className={csx(
         "flex gap-x-3 py-1",
-        "cursor-pointer hover:text-apello transition duration-200"
+        "cursor-pointer hover:text-apello transition duration-200",
       )}
       onClick={() => connect(chain.name.toLowerCase())}
     >
@@ -42,7 +42,7 @@ function ChainSelect({ connect, close }) {
         "text-xl md:rounded-xl",
         "border-l border-b border-bwhite",
         "top-[-16px] md:top-[70px] right-[-24px] md:right-[0px]",
-        "animate-slide-from-right-mobile md:animate-slide-from-right"
+        "animate-slide-from-right-mobile md:animate-slide-from-right",
       )}
     >
       {CHAINS.filter((x) => x.supported).map((chain) => (
@@ -67,7 +67,7 @@ function WalletInfo({ wallet }) {
 }
 
 export default function ConnectButton() {
-  const { connect, disconnect, view, wallet } = useAuthContext();
+  const { connect, disconnect, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
 
   function connectAndCloseSelector(chainName) {
@@ -79,9 +79,12 @@ export default function ConnectButton() {
     <div className="relative flex">
       <Button
         variant="outline"
+        inactive={Boolean(wallet)}
         onClick={(e) => {
           e.stopPropagation();
-          wallet ? view() : setChainSelectorOpen(true);
+          if (!wallet) {
+            setChainSelectorOpen(true);
+          }
         }}
       >
         <span className="whitespace-nowrap">

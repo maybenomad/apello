@@ -18,15 +18,17 @@ export function AuthContextProvider({ children }) {
     walletRepo.connect();
 
     return waitFor(() =>
-      walletRepo.current.isWalletConnected ? walletRepo.current : null
+      walletRepo.current?.isWalletConnected ? walletRepo.current : null,
     );
   }
 
   function disconnectWallet(chainName) {
     const walletRepo = walletManager.getWalletRepo(chainName);
+    if (!walletRepo.current) return;
+
     walletRepo.current.disconnect();
 
-    return waitFor(() => !walletRepo.current.isWalletConnected);
+    return waitFor(() => !walletRepo.current?.isWalletConnected);
   }
 
   function view() {
@@ -40,9 +42,11 @@ export function AuthContextProvider({ children }) {
     const wallet = await connectWallet(chainName);
     const response = await ApelloAPI.addWallet(
       wallet.chainName,
-      wallet.address
+      wallet.address,
     );
+
     setAuth(response.data);
+
     localStorage.setItem(AUTH_CACHE_KEY, JSON.stringify(response.data));
   }
 
@@ -50,7 +54,10 @@ export function AuthContextProvider({ children }) {
     if (!auth) return;
 
     await disconnectWallet(auth.wallet.type);
+
     setAuth(null);
+
+    localStorage.clear();
   }
 
   async function reconnect(cachedAuth) {
