@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useManager } from "@cosmos-kit/react";
 
 import * as ApelloAPI from "../interface/apello";
-import waitFor from "../lib/waitFor";
+import useThread from "../hooks/useThread";
 
 const AUTH_CACHE_KEY = "apello/wallet";
 
@@ -11,13 +11,14 @@ export const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
   const walletManager = useManager();
   const [auth, setAuth] = useState(null);
+  const thread = useThread();
 
   function connectWallet(chainName) {
     const walletRepo = walletManager.getWalletRepo(chainName);
     walletRepo.activate();
     walletRepo.connect();
 
-    return waitFor(() =>
+    return thread.run(() =>
       walletRepo.current?.isWalletConnected ? walletRepo.current : null,
     );
   }
@@ -27,8 +28,9 @@ export function AuthContextProvider({ children }) {
     if (!walletRepo.current) return;
 
     walletRepo.current.disconnect();
+    walletRepo.disconnect();
 
-    return waitFor(() => !walletRepo.current?.isWalletConnected);
+    return thread.run(() => !walletRepo.current?.isWalletConnected);
   }
 
   function view() {
