@@ -20,7 +20,6 @@ class Thread {
 
         try {
           result = f();
-          console.log(this.intervalID, result);
         } catch (e) {
           reject(e);
         }
