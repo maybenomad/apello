@@ -5,11 +5,10 @@ import Image from "next/image";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useAuthContext } from "../hooks/useAuthContext";
 import csx from "../lib/csx";
-import { DisconnectButton } from "./DisconnectButton";
-import WalletCnx from "./WalletCnx";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
 import { useRouter } from "next/router";
+import ConnectButton from "./ConnectButton";
 
 type Chain = {
   name: string;
@@ -38,18 +37,13 @@ function MobileMenu({ wallet, close }) {
     <div
       ref={ref}
       className={csx(
-        "absolute right-0 top-[63px] px-4 py-4 z-50 flex flex-col justify-center",
+        "absolute right-0 top-[63px] px-4 pb-4 z-50 flex flex-col justify-center",
         "bg-fauxblack border-bwhite border-r-0 border",
-        "drop-shadow-lg"
+        "drop-shadow-lg",
       )}
     >
-      <div className="my-4 ml-auto mr-2 text-sm flex justify-center items-center">
-        {wallet && (
-          <li className="text-xl font-bold md:hidden">
-            <DisconnectButton showText />
-          </li>
-        )}
-        <WalletCnx />
+      <div className="my-4 text-sm flex justify-center items-center">
+        <ConnectButton />
       </div>
       <Header.Menu>
         <Header.MenuLink text="Holders" href="/holder" />
@@ -105,7 +99,7 @@ export default function Navbar() {
         />
         <div
           className={csx(
-            "relative text-xl md:text-3xl tracking-wider font-bold uppercase left-[-8px]"
+            "relative text-xl md:text-3xl tracking-wider font-bold uppercase left-[-8px]",
           )}
         >
           Apello
@@ -149,12 +143,7 @@ export default function Navbar() {
           <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
         </Header.Menu>
         <div className="mx-2 ml-8 text-md flex justify-center items-center">
-          {wallet && (
-            <li className="text-xl font-bold md:hidden">
-              <DisconnectButton showText />
-            </li>
-          )}
-          <WalletCnx />
+          <ConnectButton />
         </div>
       </div>
 

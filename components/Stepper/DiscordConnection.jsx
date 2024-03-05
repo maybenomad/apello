@@ -13,7 +13,6 @@ const DiscordConnection = ({ currentStep, setcurrentStep }) => {
   const { authorizeDiscord, error } = useDiscordCnx();
 
   //to assure
-  //const { signBytes,txResult, txError, verifyResult} = useIsConnected()
   const fetchDiscord = useCallback(async () => {
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [accessToken, tokenType] = [

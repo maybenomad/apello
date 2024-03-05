@@ -7,7 +7,8 @@ const ButtonVariant = {
 
 export default function Button({
   variant = ButtonVariant.Standard,
-  onClick = () => {},
+  onClick = (e: any) => {},
+  inactive = false,
   children,
 }) {
   return (
@@ -19,10 +20,11 @@ export default function Button({
         "border-2 border-apello",
         "tracking-wider",
         "duration-200",
-        "hover:brightness-[0.8]",
-        "active:brightness-[1.2]",
+        inactive && "cursor-default",
+        !inactive && "hover:brightness-[0.8]",
+        !inactive && "active:brightness-[1.2]",
         variant === ButtonVariant.Standard && "bg-apello",
-        variant === ButtonVariant.Outline ? "text-apello" : "text-fauxblack"
+        variant === ButtonVariant.Outline ? "text-apello" : "text-fauxblack",
       )}
       onClick={onClick}
     >

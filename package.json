@@ -1,5 +1,5 @@
 {
-  "name": "nextfront",
+  "name": "apello",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,20 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cosmjs/cosmwasm-stargate": "^0.31.1",
-    "@cosmjs/encoding": "^0.31.1",
-    "@cosmjs/stargate": "^0.31.1",
-    "@keplr-wallet/cosmos": "^0.12.25",
-    "@keplr-wallet/provider": "^0.12.25",
-    "@keplr-wallet/stores": "^0.12.25",
-    "@noahsaso/cosmodal": "^0.11.1",
+    "@cosmos-kit/core": "^2.8.9",
+    "@cosmos-kit/keplr": "^2.6.9",
+    "@cosmos-kit/leap": "^2.6.11",
+    "@cosmos-kit/ninji": "^2.6.9",
+    "@cosmos-kit/react": "^2.10.11",
+    "@interchain-ui/react": "^1.22.1",
     "@solana/web3.js": "^1.78.5",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@terra-money/terra.js": "^3.1.10",
-    "@terra-money/wallet-provider": "^3.11.1",
     "@types/node": "^20.6.3",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.2.0",
+    "chain-registry": "^1.28.6",
     "date-fns": "^2.29.3",
     "eslint": "8.28.0",
     "eslint-config-next": "^13.4.4",
@@ -32,9 +30,7 @@
     "react-google-recaptcha-v3": "^1.10.1",
     "react-hook-form": "^7.43.1",
     "react-icons": "^4.4.0",
-    "react-particles": "^2.3.3",
     "sharp": "^0.32.1",
-    "tsparticles": "^2.3.4",
     "typescript": "^5.2.2"
   },
   "devDependencies": {

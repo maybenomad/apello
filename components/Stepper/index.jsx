@@ -1,40 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DiscordConnection from "./DiscordConnection";
-import TerraConnection from "./TerraConnection";
 import { TiTick } from "react-icons/ti";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Stepper = () => {
-  const steps = [
-    {
-      name: "Connect your wallet",
-      p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
-      btn: {
-        text: "Connect Wallet",
-        click: () => {
-          console.log(connect(availableConnectTypes[0]));
-          console.log(wallets);
-          //setWalletAdress(wallets[0]["terraAddress"]);
-        },
-      },
-    },
-    {
-      name: "Connect to Discord",
-      p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
-      btn: {
-        text: "Connect Discord",
-      },
-    },
-    {
-      name: "Confirm & go to Discord",
-      p: "Apello is a set of tools for cosmos NFTs, 100% free and open source. We provide a package of services for cosmos NFT projects to help them manage and grow their communities.",
-      btn: {
-        text: "Confirm",
-        click: () => console.log("done!"),
-      },
-    },
-  ];
-
   const [currentStep, setcurrentStep] = useState(1);
   //comlete all the steps
   const [complete, setcomplete] = useState(false);

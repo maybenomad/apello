@@ -36,11 +36,21 @@ module.exports = {
       animation: {
         "bounce-slow": "bounce 5s ease-in-out infinite",
         "bounce-float": "floating 3s ease-in-out infinite",
+        "slide-from-right": "slidefromright 0.25s ease-in-out",
+        "slide-from-right-mobile": "slidefromrightmobile 0.25s ease-in-out",
       },
       keyframes: {
         floating: {
           "0%, 100%": { transform: "translatey(0)" },
           "50%": { transform: "translatey(3%)" },
+        },
+        slidefromright: {
+          "0%": { right: "-196px" },
+          "100%": { right: "0px" },
+        },
+        slidefromrightmobile: {
+          "0%": { right: "-196px" },
+          "100%": { right: "-24px" },
         },
       },
       container: {

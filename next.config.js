@@ -3,7 +3,6 @@ const path = require("path");
 
 const nextConfig = {
   reactStrictMode: false,
-  transpilePackages: ["@noahsaso/cosmodal"],
   images: {
     remotePatterns: [
       {

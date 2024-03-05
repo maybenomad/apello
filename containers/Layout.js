@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
         <FileHeader
           appPath="/"
           title="Apello"
-          description="Evolving the Cosmos ecosystem with tooling and utiltiy for the community."
+          description="Evolving the Cosmos ecosystem with tooling for your community."
         />
         <Navbar />
         {children}
