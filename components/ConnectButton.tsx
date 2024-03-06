@@ -61,7 +61,15 @@ function WalletInfo({ wallet }) {
   );
 }
 
-export default function ConnectButton() {
+export default function ConnectButton({
+  children,
+  color,
+  hideDisconnect = false,
+}: {
+  children?: React.ReactNode;
+  color?: string;
+  hideDisconnect?: boolean;
+}) {
   const { connect, disconnect, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
 
@@ -74,6 +82,7 @@ export default function ConnectButton() {
     <div className="relative flex">
       <Button
         variant="outline"
+        color={color}
         inactive={Boolean(wallet)}
         onClick={(e) => {
           e.stopPropagation();
@@ -83,10 +92,28 @@ export default function ConnectButton() {
         }}
       >
         <span className="whitespace-nowrap">
-          {wallet ? <WalletInfo wallet={wallet} /> : "Connect Wallet"}
+          {wallet ? (
+            <WalletInfo wallet={wallet} />
+          ) : (
+            <div className="flex gap-x-3 items-center">
+              {children ? (
+                children
+              ) : (
+                <>
+                  <span>Connect</span>
+                  <Image
+                    src="/wallet-outline.svg"
+                    height={28}
+                    width={28}
+                    alt="Wallet"
+                  />
+                </>
+              )}
+            </div>
+          )}
         </span>
       </Button>
-      {wallet && (
+      {wallet && !hideDisconnect && (
         <Image
           onClick={disconnect}
           className="ml-4 hover:opacity-80 cursor-pointer"

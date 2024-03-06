@@ -26,7 +26,9 @@
     background-position: 0 78%; /*OR bottom left */
     background-size: 0% 3px;
     background-repeat: no-repeat;
-    transition: background-size 0.3s, background-position 0s 0.3s; /*change after the size immediately*/
+    transition:
+      background-size 0.3s,
+      background-position 0s 0.3s; /*change after the size immediately*/
   }
   .selected-dis {
     background-image: linear-gradient(#c4c4c4, #c4c4c4);
@@ -63,7 +65,8 @@
     );
   }
   .popIn {
-    transition: opacity 328ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    transition:
+      opacity 328ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       transform 218ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   }
 
@@ -100,31 +103,6 @@
     z-index: -1;
   }
 
-  .step-item {
-    @apply relative flex flex-col justify-center items-start max-w-sm mx-auto;
-  }
-  .step-item:not(:last-child):after {
-    @apply content-[""] bg-slate-200 absolute h-[calc(100%-2.45rem)] w-0.5 top-12 left-[38px] mt-2;
-  }
-
-  .step {
-    @apply w-7 h-7 flex items-center justify-center rounded-full bg-slate-700 relative z-10 font-semibold mr-4 transition-colors;
-  }
-  .active .step {
-    @apply bg-apello;
-  }
-  .complete .step {
-    @apply bg-green-600;
-  }
-
-  .step-parag {
-    @apply pl-14  py-4;
-  }
-
-  .complete:not(:last-child):after {
-    @apply bg-green-600 transition-colors;
-  }
-
   /* the top sale card styles --inspired by pokemon holo effect*/
   .card {
     position: relative;
@@ -135,11 +113,17 @@
     touch-action: none;
 
     border-radius: 5% / 3.5%;
-    box-shadow: -5px -5px 5px -5px rgb(255, 207, 64), 5px 5px 5px -5px #6c63ff,
-      -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent,
-      0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    box-shadow:
+      -5px -5px 5px -5px rgb(255, 207, 64),
+      5px 5px 5px -5px #6c63ff,
+      -7px -7px 10px -5px transparent,
+      7px 7px 10px -5px transparent,
+      0 0 5px 0px rgba(255, 255, 255, 0),
+      0 55px 35px -20px rgba(0, 0, 0, 0.5);
 
-    transition: transform 0.5s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.5s ease,
+      box-shadow 0.2s ease;
     will-change: transform, filter;
 
     background-color: #040712;
@@ -150,9 +134,12 @@
     transform-origin: center;
   }
   .card:hover {
-    box-shadow: -20px -20px 30px -25px rgb(255, 207, 64),
-      20px 20px 30px -25px #6c63ff, -7px -7px 10px -5px rgb(255, 207, 64),
-      7px 7px 10px -5px #6c63ff, 0 0 13px 4px rgba(255, 255, 255, 0.3),
+    box-shadow:
+      -20px -20px 30px -25px rgb(255, 207, 64),
+      20px 20px 30px -25px #6c63ff,
+      -7px -7px 10px -5px rgb(255, 207, 64),
+      7px 7px 10px -5px #6c63ff,
+      0 0 13px 4px rgba(255, 255, 255, 0.3),
       0 55px 35px -20px rgba(0, 0, 0, 0.5);
   }
 
@@ -367,7 +354,9 @@
   border-radius: 0.4rem;
   padding: 0.7rem 1rem;
   margin-right: 1rem; /* Must used margin-right instead of gap for the loop to be smooth */
-  box-shadow: 0 0.1rem 0.2rem rgb(0 0 0 / 20%), 0 0.1rem 0.5rem rgb(0 0 0 / 30%),
+  box-shadow:
+    0 0.1rem 0.2rem rgb(0 0 0 / 20%),
+    0 0.1rem 0.5rem rgb(0 0 0 / 30%),
     0 0.2rem 1.5rem rgb(0 0 0 / 40%);
 }
 .tag span {

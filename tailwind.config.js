@@ -19,6 +19,7 @@ module.exports = {
         violet: "#6C63FF",
         fauxblack: "#191617",
         fauxblack2: "#100d0e",
+        green: "#3da17e",
         apello: "rgba(230, 150, 0, 1.0)",
         bwhite: "rgba(255, 255, 255, 0.2)",
       },
