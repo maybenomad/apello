@@ -9,14 +9,14 @@ export default function FileHeader({ appPath, title, keywords, description }) {
       <meta
         key="keywords"
         name="keywords"
-        content={`apello, apello.org, ${keywords}`}
+        content={`apello, apello.xyz, ${keywords}`}
       />
       <meta key="description" name="description" content={description} />
       <meta key="og-title" property="og:title" content={title} />
       <meta
         property="og:image"
         key="og:image"
-        content="https://apello.org/og-image.jpg"
+        content="https://apello.xyz/og-image.jpg"
       />
       <meta
         key="og-description"
@@ -26,7 +26,7 @@ export default function FileHeader({ appPath, title, keywords, description }) {
       <meta
         key="og-url"
         property="og:url"
-        content={`https://apello.org${appPath}`}
+        content={`https://apello.xyz${appPath}`}
       />
       <meta key="twitter-title" name="twitter:title" content={title} />
       <meta
@@ -36,7 +36,7 @@ export default function FileHeader({ appPath, title, keywords, description }) {
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@apello_app" />
-      <meta name="twitter:image" content="https://apello.org/og-image.jpg" />
+      <meta name="twitter:image" content="https://apello.xyz/og-image.jpg" />
     </Head>
   );
 }
