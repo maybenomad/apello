@@ -8,6 +8,7 @@ import { chains, assets } from "chain-registry";
 
 import Layout from "../containers/Layout";
 import { AuthContextProvider } from "../components/AuthProvider";
+import { DiscordProvider } from "../hooks/useDiscordConnection";
 import "../styles/globals.css";
 import "../styles/starfield.sass";
 import "@interchain-ui/react/styles";
@@ -25,10 +26,12 @@ export default function App({ Component, pageProps }) {
       walletConnectOptions={{ signClient: { projectId: WC_PROJECT_ID } }}
     >
       <AuthContextProvider>
-        <Layout>
-          <Component {...pageProps} />
-          <Analytics />
-        </Layout>
+        <DiscordProvider>
+          <Layout>
+            <Component {...pageProps} />
+            <Analytics />
+          </Layout>
+        </DiscordProvider>
       </AuthContextProvider>
     </ChainProvider>
   );

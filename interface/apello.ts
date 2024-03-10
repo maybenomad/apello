@@ -16,3 +16,23 @@ export function checkWallet(token, address) {
     },
   });
 }
+
+export function linkDiscord(token, wallet, account) {
+  return axios.post(
+    `${BASE_URL}/api/users`,
+    {
+      name: account.username,
+      discordId: account.id,
+      discordImage: account.avatar,
+      wallet: {
+        adress: wallet.address,
+        type: wallet.chain,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+}
