@@ -43,7 +43,7 @@ function MobileMenu({ wallet, close }) {
       )}
     >
       <div className="my-4 text-sm flex justify-center items-center">
-        <ConnectButton />
+        <ConnectButton isMobileNav />
       </div>
       <Header.Menu>
         <Header.MenuLink text="Holders" href="/holder" />

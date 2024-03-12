@@ -5,6 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./containers/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: ["bg-apello"],
   theme: {
     extend: {
       boxShadow: {

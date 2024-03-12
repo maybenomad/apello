@@ -56,6 +56,21 @@ function DiscordSummary({ account }) {
   );
 }
 
+function NFTRow({ ids }) {
+  return (
+    <div className="flex">
+      {ids.map((id) => (
+        <Image
+          src={`/napejas/${id}.png`}
+          height={80}
+          width={80}
+          alt={"Napejas"}
+        />
+      ))}
+    </div>
+  );
+}
+
 const HolderSection = () => {
   const { wallet } = useAuthContext();
   const discordAccount = useDiscordConnection();
@@ -68,27 +83,64 @@ const HolderSection = () => {
       <div className="flex flex-col z-10 w-full md:w-[630px]">
         <div className="flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2">
           <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-lg rounded-xl p-6 gap-y-2">
-            <Image
-              className="w-[50%]"
-              src="/tokengate.png"
-              height={250}
-              width={250}
-              alt="Token Gate"
-            />
             <div className="text-center text-xl md:text-2xl font-bold">
               Welcome to Apello Token Gate
             </div>
             <div className="text-base md:text-lg text-center">
-              Link your wallet and Discord account below to verify your NFT
-              holdings.
+              Link your wallet and Discord account to verify your NFT holdings.
             </div>
           </div>
         </div>
-        {/* <div className="flex flex-col border-2 border-bwhite rounded-xl mb-2">
-          <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-lg rounded-xl gap-y-2">
-
+        <div className="flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2">
+          <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-md rounded-xl p-6 gap-y-2 hidden md:flex">
+            <div className="text-center md:text-left">
+              Apello is an NFT community toolkit for Cosmos projects built by
+              CAA Labs.{" "}
+              <a
+                className="text-apello hover:underline hover:opacity-90 cursor-pointer"
+                href="https://apello.xyz"
+              >
+                Check out
+              </a>{" "}
+              our tools,{" "}
+              <a
+                className="text-apello hover:underline hover:opacity-90 cursor-pointer"
+                href="https://discord.gg/caalabs"
+              >
+                join
+              </a>{" "}
+              our community, or support our project by purchasing one of our
+              NFTS:
+            </div>
           </div>
-        </div> */}
+          <div className="pb-4 flex justify-center gap-x-5 hidden md:flex">
+            <a
+              href="https://injective.talis.art/collection/65e75806add77a2a935e81e2"
+              className="flex gap-x-2 text-apello hover:underline hover:opacity-90 cursor-pointer"
+            >
+              Napejas
+              <Image
+                src="/chains/injective.svg"
+                height={20}
+                width={20}
+                alt="Injective"
+              />
+            </a>
+            <a
+              href="https://www.stargaze.zone/m/stars1yrpjz5cu5vemal70p686jk6cyj8aktuz8qkcg7xvvlalr90pxhqqvc4zy9/tokens"
+              className="flex gap-x-2 text-apello hover:underline hover:opacity-90 cursor-pointer"
+            >
+              Cosmos Apes
+              <Image
+                src="/chains/stargaze.svg"
+                height={20}
+                width={20}
+                alt="Injective"
+              />
+            </a>
+          </div>
+        </div>
+
         <VerifyStep
           instruction="Connect Wallet"
           number={1}

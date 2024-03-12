@@ -26,17 +26,21 @@ function ChainOption({ chain, connect }) {
   );
 }
 
-function ChainSelect({ connect, close }) {
+function ChainSelect({ connect, close, isMobileNav = false }) {
   const ref = useOutsideClick(close);
 
   return (
     <div
       ref={ref}
       className={csx(
-        "absolute flex flex-col z-50 bg-fauxblack py-4 pl-5 pr-[64px] md:pr-12",
-        "text-xl md:rounded-xl",
+        "flex flex-col z-50 bg-fauxblack py-4 pl-5 pr-[64px] md:pr-12",
+        "text-xl",
+        !isMobileNav && "rounded-xl",
         "border-l border-b border-bwhite",
-        "top-[-16px] md:top-[70px] right-[-24px] md:right-[0px]",
+        isMobileNav
+          ? "fixed top-[0px] right-[0px]"
+          : "fixed top-[70px] right-[4px]",
+        // "top-[-16px] md:top-[70px] right-[-24px] md:right-[0px]",
         "animate-slide-from-right-mobile md:animate-slide-from-right",
       )}
     >
@@ -65,10 +69,12 @@ export default function ConnectButton({
   children,
   color,
   hideDisconnect = false,
+  isMobileNav = false,
 }: {
   children?: React.ReactNode;
   color?: string;
   hideDisconnect?: boolean;
+  isMobileNav?: boolean;
 }) {
   const { connect, disconnect, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
@@ -127,6 +133,7 @@ export default function ConnectButton({
         <ChainSelect
           connect={connectAndCloseSelector}
           close={() => setChainSelectorOpen(false)}
+          isMobileNav={isMobileNav}
         />
       )}
     </div>
