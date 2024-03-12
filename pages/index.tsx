@@ -26,7 +26,7 @@ function InviteLink({ text, href }) {
         "text-base font-medium uppercase tracking-wide text-center text-white",
         "hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc",
         "shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-700",
-        "hover:shadow-[inset_240px_0_0_rgba(230,150,0,1)]"
+        "hover:shadow-[inset_240px_0_0_rgba(230,150,0,1)]",
       )}
     >
       {text}
@@ -72,7 +72,7 @@ function Main() {
       className={csx(
         "relative flex flex-col items-center justify-center",
         "pb-16 overflow-hidden bg-fauxblack2",
-        "border-b-2 border-bwhite"
+        "border-b-2 border-bwhite",
       )}
     >
       <div id="stars" />
@@ -91,7 +91,7 @@ function Main() {
           "text-center",
           "mb-3 text-3xl px-2 md:px-0 md:text-6xl tracking-wide",
           "font-bold uppercase drop-shadow-apello",
-          "selection:bg-bleu selection:text-[#171819]"
+          "selection:bg-bleu selection:text-[#171819]",
         )}
       >
         Evolving The Cosmos
@@ -133,24 +133,24 @@ function ChainInfo({ chain }) {
       className={csx(
         "relative flex flex-col items-center justify-center gap-y-3",
         "text-md md:text-xl w-[60px] md:w-[100px]",
-        !chain.supported && "opacity-60"
+        !chain.supported && "opacity-60",
       )}
     >
       <div className={csx("relative", "hover:bottom-1")}>
         <Image
           className="h-[50px] w-[50px] md:h-[100px] md:w-[100px]"
-          src={`/chains/${chain.name.toLowerCase()}.svg`}
+          src={chain.icon}
           alt={chain.name}
           height={100}
           width={100}
         />
       </div>
-      {chain.name}
+      {chain.displayName}
       {!chain.supported && (
         <div
           className={csx(
             "absolute bottom-[-20px] md:bottom-[-24px] text-center whitespace-nowrap",
-            "font-bold text-xs md:text-sm uppercase"
+            "font-bold text-xs md:text-sm uppercase",
           )}
         >
           Coming Soon
@@ -166,7 +166,7 @@ function SupportedChains() {
       className={csx(
         "relative flex flex-col items-center justify-center",
         "pb-16 overflow-hidden",
-        "border-b border-bwhite"
+        "border-b border-bwhite",
       )}
     >
       <div
@@ -174,7 +174,7 @@ function SupportedChains() {
           "text-center",
           "py-8 md:py-16 text-2xl md:text-4xl tracking-wide",
           "font-bold uppercase",
-          "selection:bg-bleu selection:text-[#171819]"
+          "selection:bg-bleu selection:text-[#171819]",
         )}
       >
         Supported Chains
@@ -202,7 +202,7 @@ function TokenGatingInfo() {
       className={csx(
         "relative flex flex-col md:flex-row items-center justify-center",
         "pb-8 px-12 overflow-hidden",
-        "border-b-2 border-bwhite"
+        "border-b-2 border-bwhite",
       )}
     >
       <Image
@@ -215,7 +215,7 @@ function TokenGatingInfo() {
       />
       <div
         className={csx(
-          "relative mx-auto flex flex-col items-center justify-center basis-1/3"
+          "relative mx-auto flex flex-col items-center justify-center basis-1/3",
         )}
       >
         <div
@@ -224,7 +224,7 @@ function TokenGatingInfo() {
             "mb-3 sm:mb-6 text-2xl md:text-3xl tracking-wide pb-2 px-4 pt-4 md:pt-8",
             "font-bold uppercase",
             "selection:bg-bleu selection:text-[#171819]",
-            "border-b-4 border-apello"
+            "border-b-4 border-apello",
           )}
         >
           Unlock Your Community
@@ -247,12 +247,12 @@ function SalesTrackerInfo() {
       className={csx(
         "relative flex flex-col-reverse md:flex-row items-center justify-center",
         "pb-8 pt-8 md:pt-0 px-16 overflow-hidden",
-        "border-b-2 border-bwhite"
+        "border-b-2 border-bwhite",
       )}
     >
       <div
         className={csx(
-          "relative mx-auto flex flex-col items-center justify-center basis-1/3"
+          "relative mx-auto flex flex-col items-center justify-center basis-1/3",
         )}
       >
         <div
@@ -261,7 +261,7 @@ function SalesTrackerInfo() {
             "mb-3 mt-4 sm:mb-6 text-2xl md:text-3xl tracking-wide pb-2 px-4",
             "font-bold uppercase",
             "selection:bg-bleu selection:text-[#171819]",
-            "border-b-4 border-apello"
+            "border-b-4 border-apello",
           )}
         >
           Never Miss A Sale
