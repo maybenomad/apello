@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "./Button";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
-import { CHAINS } from "../lib/chains";
+import { CHAINS, chainForWallet } from "../lib/chains";
 import csx from "../lib/csx";
 import useOutsideClick from "../hooks/useOutsideClick";
 
@@ -20,13 +20,8 @@ function ChainOption({ chain, connect }) {
       )}
       onClick={() => connect(chain.name.toLowerCase())}
     >
-      <Image
-        src={`/chains/${chain.name.toLowerCase()}.svg`}
-        height={20}
-        width={20}
-        alt={chain.name}
-      />
-      {chain.name}
+      <Image src={chain.icon} height={20} width={20} alt={chain.name} />
+      {chain.displayName}
     </div>
   );
 }
@@ -56,7 +51,7 @@ function WalletInfo({ wallet }) {
   return (
     <div className="flex gap-x-4">
       <Image
-        src={`/chains/${wallet.type}.svg`}
+        src={chainForWallet(wallet).icon}
         width={20}
         height={20}
         alt={wallet.type}

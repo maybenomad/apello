@@ -3,6 +3,7 @@ import { useManager } from "@cosmos-kit/react";
 
 import * as ApelloAPI from "../interface/apello";
 import useThread from "../hooks/useThread";
+import { chainForWallet } from "../lib/chains";
 
 const AUTH_CACHE_KEY = "apello/wallet";
 
@@ -36,7 +37,9 @@ export function AuthContextProvider({ children }) {
   function view() {
     if (!auth) return;
 
-    const walletRepo = walletManager.getWalletRepo(auth.wallet.type);
+    const walletRepo = walletManager.getWalletRepo(
+      chainForWallet(auth.wallet).name,
+    );
     walletRepo.openView();
   }
 
@@ -55,7 +58,7 @@ export function AuthContextProvider({ children }) {
   async function disconnect() {
     if (!auth) return;
 
-    await disconnectWallet(auth.wallet.type);
+    await disconnectWallet(chainForWallet(auth.wallet).name);
 
     setAuth(null);
 
@@ -69,7 +72,9 @@ export function AuthContextProvider({ children }) {
       return localStorage.clear();
     }
 
-    const walletRepo = walletManager.getWalletRepo(cachedAuth.wallet.type);
+    const walletRepo = walletManager.getWalletRepo(
+      chainForWallet(cachedAuth.wallet).name,
+    );
     walletRepo.activate();
 
     setAuth(cachedAuth);
