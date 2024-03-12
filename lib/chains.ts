@@ -1,44 +1,72 @@
-interface Chain {
+import mapping from "./mapping";
+import { capitalize } from "./string";
+
+export class Chain {
   name: string;
+  properName?: string;
   ticker: string;
   supported: boolean;
+
+  constructor(props) {
+    this.name = props.name;
+    this.properName = props.properName;
+    this.ticker = props.ticker;
+    this.supported = props.supported;
+  }
+
+  get icon() {
+    return `/chains/${this.name}.svg`;
+  }
+
+  get displayName() {
+    return this.properName || capitalize(this.name);
+  }
 }
 
 export const CHAINS: Chain[] = [
   {
-    name: "Injective",
+    name: "injective",
     ticker: "INJ",
     supported: true,
   },
   {
-    name: "Stargaze",
+    name: "stargaze",
     ticker: "STARS",
     supported: true,
   },
-  { name: "Juno", ticker: "JUNO", supported: true },
+  { name: "juno", ticker: "JUNO", supported: true },
   {
-    name: "Passage",
+    name: "passage",
     ticker: "PASG",
     supported: true,
   },
   {
-    name: "Chihuahua",
+    name: "chihuahua",
     ticker: "HUAHUA",
     supported: true,
   },
   {
-    name: "Teritori",
+    name: "teritori",
     ticker: "TORI",
     supported: true,
   },
   {
-    name: "Terra",
+    name: "terra",
     ticker: "LUNA",
     supported: true,
   },
   {
-    name: "OmniFlix",
+    properName: "Omniflix",
+    name: "omniflixhub",
     ticker: "FLIX",
-    supported: false,
+    supported: true,
   },
-];
+].map((c) => new Chain(c));
+
+export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) =>
+  k === "omniflixhub" ? "omniflix" : k,
+);
+
+export function chainForWallet(wallet: { type: string }) {
+  return CHAINS_BY_WALLET_TYPE[wallet.type];
+}
