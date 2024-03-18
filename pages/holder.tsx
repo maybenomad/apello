@@ -91,8 +91,8 @@ const HolderSection = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2">
-          <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-md rounded-xl p-6 gap-y-2 hidden md:flex">
+        <div className="relative overflow-hidden flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2h">
+          <div className="flex tracking-wide flex-col items-center text-md rounded-xl p-6 gap-y-2 hidden md:flex">
             <div className="text-center md:text-left">
               Apello is an NFT community toolkit for Cosmos projects built by
               CAA Labs.{" "}
@@ -138,6 +138,16 @@ const HolderSection = () => {
                 alt="Injective"
               />
             </a>
+          </div>
+          <div className="text-center text-sm italic mb-4">
+            (Want to advertise your project here? Open a ticket on{" "}
+            <a
+              className="text-apello hover:underline hover:opacity-90 cursor-pointer"
+              href="https://discord.gg/caalabs"
+            >
+              our Discord
+            </a>
+            .)
           </div>
         </div>
 

@@ -8,6 +8,9 @@ module.exports = {
   safelist: ["bg-apello"],
   theme: {
     extend: {
+      backgroundImage: {
+        holderad: "url(/apello_ad.png)",
+      },
       boxShadow: {
         dark: "rgba(0, 0, 0, 0.5) 0px 2px 10px 4px",
       },
