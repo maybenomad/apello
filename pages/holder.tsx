@@ -61,6 +61,7 @@ function NFTRow({ ids }) {
     <div className="flex">
       {ids.map((id) => (
         <Image
+          key={id}
           src={`/napejas/${id}.png`}
           height={80}
           width={80}
