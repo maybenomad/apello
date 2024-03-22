@@ -26,7 +26,7 @@ export function linkDiscord(token, wallet, account) {
       discordImage: account.avatar,
       wallet: {
         adress: wallet.address,
-        type: wallet.chain,
+        type: wallet.type,
       },
     },
     {
