@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div
-        className={`App bg-fauxblack relative text-blanc min-h-screen overflow-hidden w-full flex flex-col`}
+        className={`App bg-fauxblack2 relative text-blanc min-h-screen overflow-hidden w-full flex flex-col`}
       >
         <FileHeader
           appPath="/"
