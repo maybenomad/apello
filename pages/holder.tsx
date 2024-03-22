@@ -92,7 +92,7 @@ const HolderSection = () => {
             </div>
           </div>
         </div>
-        <div className="relative overflow-hidden flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2h">
+        <div className="bg-fauxblack2 relative overflow-hidden flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2h">
           <div className="flex tracking-wide flex-col items-center text-md rounded-xl p-6 gap-y-2 hidden md:flex">
             <div className="text-center md:text-left">
               Apello is an NFT community toolkit for Cosmos projects built by
