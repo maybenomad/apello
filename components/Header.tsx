@@ -11,7 +11,7 @@ export default function Header({ children }) {
         "h-16",
         "p-1 md:p-2",
         "text-white",
-        "border-b border-bwhite"
+        "border-b border-bwhite",
       )}
     >
       {children}
@@ -25,7 +25,7 @@ Header.Menu = function HeaderMenu({ children }) {
       className={csx(
         "flex-col md:flex md:flex-row justify-center items-center gap-x-3 md:ml-auto",
         "uppercase",
-        "bg-fauxblack md:bg-transparent"
+        "bg-fauxblack md:bg-transparent",
       )}
     >
       {children}
@@ -42,7 +42,7 @@ Header.MenuItem = function HeaderMenuItem({ disabled = false, children }) {
         "box-border ml-0",
         "text-md lg:text-lg font-bold",
         "hover:text-apello",
-        "cursor-pointer"
+        "cursor-pointer",
       )}
     >
       {children}
@@ -60,13 +60,13 @@ Header.MenuLink = function HeaderMenuLink({
     <Header.MenuItem disabled={disabled}>
       <Link
         href={href}
-        target={newTab && "_blank"}
+        target={newTab ? "_blank" : undefined}
         className={csx(
           "selected",
           disabled && "selected-dis",
           "p-1 md:py-3",
           "ring-violet focus:outline-none focus-visible:ring-4",
-          "rounded-xl"
+          "rounded-xl",
         )}
       >
         {text}
@@ -87,7 +87,7 @@ Header.MenuDropdown = function HeaderMenuDropdown({ text = "", children }) {
           "absolute",
           "hidden hover:flex group-hover:flex flex-col",
           "bg-noir shadow rounded",
-          "w-44 left-[-20px] px-4 py-1 md:py-3 z-20"
+          "w-44 left-[-20px] px-4 py-1 md:py-3 z-20",
         )}
       >
         {children}
@@ -109,7 +109,7 @@ Header.MenuDropdownLink = function HeaderMenuDropdownLink({
         "p-1 pr-1",
         "text-base text-white whitespace-nowrap hover:text-apello",
         "transition-colors",
-        disabled && "cursor-not-allowed"
+        disabled && "cursor-not-allowed",
       )}
     >
       {children}

@@ -26,17 +26,21 @@ function ChainOption({ chain, connect }) {
   );
 }
 
-function ChainSelect({ connect, close }) {
+function ChainSelect({ connect, close, isMobileNav = false }) {
   const ref = useOutsideClick(close);
 
   return (
     <div
       ref={ref}
       className={csx(
-        "absolute flex flex-col z-50 bg-fauxblack py-4 pl-5 pr-[64px] md:pr-12",
-        "text-xl md:rounded-xl",
+        "flex flex-col z-50 bg-fauxblack py-4 pl-5 pr-[64px] md:pr-12",
+        "text-xl",
+        !isMobileNav && "rounded-xl",
         "border-l border-b border-bwhite",
-        "top-[-16px] md:top-[70px] right-[-24px] md:right-[0px]",
+        isMobileNav
+          ? "fixed top-[0px] right-[0px]"
+          : "fixed top-[70px] right-[4px]",
+        // "top-[-16px] md:top-[70px] right-[-24px] md:right-[0px]",
         "animate-slide-from-right-mobile md:animate-slide-from-right",
       )}
     >
@@ -61,7 +65,17 @@ function WalletInfo({ wallet }) {
   );
 }
 
-export default function ConnectButton() {
+export default function ConnectButton({
+  children,
+  color,
+  hideDisconnect = false,
+  isMobileNav = false,
+}: {
+  children?: React.ReactNode;
+  color?: string;
+  hideDisconnect?: boolean;
+  isMobileNav?: boolean;
+}) {
   const { connect, disconnect, wallet } = useAuthContext();
   const [isChainSelectorOpen, setChainSelectorOpen] = useState(false);
 
@@ -74,6 +88,7 @@ export default function ConnectButton() {
     <div className="relative flex">
       <Button
         variant="outline"
+        color={color}
         inactive={Boolean(wallet)}
         onClick={(e) => {
           e.stopPropagation();
@@ -83,10 +98,28 @@ export default function ConnectButton() {
         }}
       >
         <span className="whitespace-nowrap">
-          {wallet ? <WalletInfo wallet={wallet} /> : "Connect Wallet"}
+          {wallet ? (
+            <WalletInfo wallet={wallet} />
+          ) : (
+            <div className="flex gap-x-3 items-center">
+              {children ? (
+                children
+              ) : (
+                <>
+                  <span>Connect</span>
+                  <Image
+                    src="/wallet-outline.svg"
+                    height={28}
+                    width={28}
+                    alt="Wallet"
+                  />
+                </>
+              )}
+            </div>
+          )}
         </span>
       </Button>
-      {wallet && (
+      {wallet && !hideDisconnect && (
         <Image
           onClick={disconnect}
           className="ml-4 hover:opacity-80 cursor-pointer"
@@ -100,6 +133,7 @@ export default function ConnectButton() {
         <ChainSelect
           connect={connectAndCloseSelector}
           close={() => setChainSelectorOpen(false)}
+          isMobileNav={isMobileNav}
         />
       )}
     </div>
