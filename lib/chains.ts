@@ -30,6 +30,11 @@ export const CHAINS: Chain[] = [
     supported: true,
   },
   {
+    name: "osmosis",
+    ticker: "OSMO",
+    supported: true,
+  },
+  {
     name: "stargaze",
     ticker: "STARS",
     supported: true,
