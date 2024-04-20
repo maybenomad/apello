@@ -192,9 +192,11 @@ const HolderSection = () => {
                   </li>
                   <li className="pb-2">
                     Click
-                    <span className="bg-green mx-2 p-2 px-4 rounded-md text-sm uppercase">
-                      &#128273;&nbsp;&nbsp; Verify
-                    </span>
+                    <a href="https://discord.gg/caalabs">
+                      <span className="bg-green mx-2 p-2 px-4 rounded-md text-sm uppercase">
+                        &#128273;&nbsp;&nbsp; Verify
+                      </span>
+                    </a>
                   </li>
                 </ul>
               </div>
