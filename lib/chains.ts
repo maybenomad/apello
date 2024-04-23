@@ -66,6 +66,11 @@ export const CHAINS: Chain[] = [
     ticker: "FLIX",
     supported: true,
   },
+  {
+    name: "archway",
+    ticker: "ARCH",
+    supported: true,
+  },
 ].map((c) => new Chain(c));
 
 export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) =>
