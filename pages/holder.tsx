@@ -187,7 +187,6 @@ const HolderSection = () => {
               <div className="pt-2">
                 To finish receiving your roles:
                 <ul className="list-disc mx-8">
-                </br> 
                     <li className="pb-2">
                     Click
                     <a href="https://discord.gg/caalabs">
